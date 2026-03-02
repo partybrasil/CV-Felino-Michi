@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Inquilino Senior y Especialista en Silencio</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Apple / Stripe inspired palette */
+            --bg-color: #f7f7f9;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-blue: #0071e3;
+            --accent-blue-hover: #005bb5;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated Background Blobs for Glassmorphism effect */
+        .bg-shapes {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 15s infinite alternate ease-in-out;
+            opacity: 0.6;
+        }
+        .shape-1 {
+            width: 40vw; height: 40vw;
+            background: #e0f2fe; /* Light blue */
+            top: -10vw; left: -10vw;
+        }
+        .shape-2 {
+            width: 35vw; height: 35vw;
+            background: #fae8ff; /* Soft pink/purple */
+            bottom: -5vw; right: -10vw;
+            animation-delay: -5s;
+        }
+        .shape-3 {
+            width: 30vw; height: 30vw;
+            background: #e0e7ff; /* Indigo tint */
+            top: 40%; left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5vw, 5vw) scale(1.05); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Utility */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .avatar-wrapper {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, #e0e7ff, #fae8ff, #e0f2fe);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #fff;
+        }
+        
+        .hero h1 {
+            font-size: min(3rem, 9vw);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1d1d1f, #434346);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards Grid */
+        .guarantees {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .card {
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--accent-blue);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* About Section */
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .about p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Comparison Table */
+        .comparison h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 600px;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        th {
+            font-weight: 600;
+            color: var(--text-primary);
+            padding-bottom: 1.5rem;
+        }
+        .pro-badge {
+            background: linear-gradient(135deg, #0071e3, #00c6ff);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        td:nth-child(2) {
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(0, 113, 227, 0.03);
+            border-radius: 8px;
+        }
+        td:nth-child(3) {
+            color: var(--text-secondary);
+        }
+
+        /* Footer & Actions */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 4rem 0;
+            gap: 1.5rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: var(--text-primary);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            background-color: #000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .btn-linkedin:hover {
+            color: var(--accent-blue-hover);
+        }
+
+        .legal {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .legal p {
+            margin-bottom: 0.5rem;
+        }
+        .legal span {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .glass-panel {
+                padding: 1.5rem;
+            }
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Decoration -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <header class="hero fade-up">
+            <div class="avatar-wrapper">
+                <!-- Fallback to a nice Unsplash cat if michi.jpg is missing -->
+                <img src="michi.jpg" alt="Michi el gato" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=400&h=400';">
+            </div>
+            <h1>Michi: Inquilino Senior & Especialista en Silencio</h1>
+            <p class="subtitle">Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo en Primor (7 años de antigüedad).</p>
+        </header>
+
+        <!-- Guarantees Grid -->
+        <section class="guarantees">
+            <!-- Card 1 -->
+            <div class="card fade-up" style="transition-delay: 100ms;">
+                <div class="icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+                <h3>Salud Total</h3>
+                <p>Castrado, rigurosamente vacunado y con microchip registrado (Campaña FAADA 2026).</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="card fade-up" style="transition-delay: 200ms;">
+                <div class="icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <h3>Mobiliario a Salvo</h3>
+                <p>0% historial de arañazos en muebles o rodapiés. Absolutamente adicto a su propio rascador de cartón.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card fade-up" style="transition-delay: 300ms;">
+                <div class="icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                </div>
+                <h3>Silencio Absoluto</h3>
+                <p>Hipersensible al ruido, experto en dormir 16 horas diarias y no molestar jamás a los vecinos.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card fade-up" style="transition-delay: 400ms;">
+                <div class="icon">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <h3>Solvencia Humana</h3>
+                <p>Respaldado por contrato indefinido de traductor senior en Primor. Alquiler garantizado mes a mes.</p>
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section class="about glass-panel fade-up">
+            <h2>Sobre mí</h2>
+            <p>¡Hola, futuros caseros en Málaga! Soy Michi.</p>
+            <p>A diferencia de esos cachorros caóticos que trepan por las cortinas, tiran macetas y muerden los rodapiés, yo ya he superado esa fase de inmadurez. Soy un gato adulto de 5 años con gustos refinados.</p>
+            <p>Mi rutina diaria consiste principalmente en buscar el rayo de sol perfecto en el salón, lavarme con meticulosidad suiza y tomar largas siestas. No organizo fiestas, no invito a otros gatos y considero que los arañazos en los sofás son una tremenda falta de educación (para eso tengo mis rascadores aprobados por la junta directiva).</p>
+            <p>Busco un hogar tranquilo donde mi humano pueda trabajar, mantener el piso impoluto y pagar el alquiler puntualmente, mientras yo superviso la calidad acústica de las siestas.</p>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="comparison glass-panel fade-up">
+            <h2>Por qué un gato adulto es la mejor inversión</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Michi (5 años) <span class="pro-badge">Pro</span></th>
+                            <th>Cachorro / Gatito pormedio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>⚡ Nivel de Energía</td>
+                            <td>Chill / Zen (Modo ahorro de batería)</td>
+                            <td>Huracán Categoría 5</td>
+                        </tr>
+                        <tr>
+                            <td>🚽 Uso del arenero</td>
+                            <td>100% Precisión comprobada</td>
+                            <td>"Aún aprendiendo geometría básica"</td>
+                        </tr>
+                        <tr>
+                            <td>🪴 Interés decorativo</td>
+                            <td>Nulo (Las cortinas son aburridas)</td>
+                            <td>Las cortinas son un parque de atracciones</td>
+                        </tr>
+                        <tr>
+                            <td>🌙 Horario Nocturno</td>
+                            <td>Duerme como un tronco pesado</td>
+                            <td>Parkour extremo a las 3:00 AM</td>
+                        </tr>
+                        <tr>
+                            <td>💰 Riesgo de Fianza</td>
+                            <td>0% (Cuida el piso más que su humano)</td>
+                            <td>Alto y variable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CTA Actions -->
+        <section class="actions fade-up">
+            <a href="https://wa.me/?text=Hola%21%20Me%20ha%20encantado%20el%20CV%20de%20Michi%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20el%20piso%20en%20M%C3%A1laga." class="btn-primary" target="_blank" rel="noopener noreferrer">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.219.578 4.383 1.676 6.294L.5 23.5l5.318-1.156A11.97 11.97 0 0 0 12.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zM17.65 16.94c-.266.75-1.531 1.453-2.11 1.547-.563.094-1.312.14-3.656-.828-2.828-1.156-4.656-4.047-4.797-4.234-.14-.188-1.141-1.516-1.141-2.906 0-1.391.719-2.078.984-2.359.266-.281.578-.344.766-.344.188 0 .375 0 .547.016.188.016.422-.063.656.484.25.594.859 2.109.938 2.266.078.156.125.344.031.531-.094.188-.14.297-.281.5-.14.203-.297.438-.422.563-.14.125-.281.266-.125.531.156.266.703 1.156 1.516 1.875.984.875 1.859 1.156 2.125 1.281.266.125.422.094.578-.078.156-.172.672-.781.859-1.047.188-.266.375-.219.625-.125.25.094 1.578.75 1.844.891.266.14.438.203.5.328.062.125.062.734-.203 1.484z"/></svg>
+                Contactar a mi humano
+            </a>
+            
+            <a href="https://linkedin.com/in/" class="btn-linkedin" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                Ver perfil de LinkedIn de mi humano
+            </a>
+        </section>
+
+        <!-- Footer / Legal -->
+        <footer class="legal fade-up">
+            <p><strong>⚖️ Aviso Legal y Licencia de Uso</strong></p>
+            <p>Este diseño de "CV Felino" puede ser replicado como plantilla (código abierto), pero todos los datos personales, descripciones e identidades aquí mostradas pertenecen a individuos reales y están protegidos por la Ley Orgánica de Protección de Datos y Garantía de Derechos Digitales (LOPDGDD).</p>
+            <p>Queda estrictamente prohibido el uso, modificación o apropiación de esta información personal para fines distintos a la evaluación de este perfil como inquilino. Las consecuencias legales pertinentes se aplicarán ante cualquier uso indebido, suplantación de identidad o scraping no autorizado.</p>
+            <span>&copy; 2026 - Michi & Humano en Málaga</span>
+        </footer>
+
+    </main>
+
+    <!-- JS for scroll animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optional: unobserve after animating
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-up');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
