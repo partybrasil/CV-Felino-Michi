@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Isometric Islands</title>
+    <!-- Geometric Sans Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; min-height: 100vh;
+            background: #ff7675; /* Soft modern coral */
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* 3D Scene Setup */
+        .scene {
+            position: relative;
+            transform-style: preserve-3d;
+            /* Global Isometric Rotation */
+            transform: rotateX(60deg) rotateZ(-45deg);
+            width: 800px; height: 800px;
+        }
+
+        /* Floating 3D Blocks (Islands) */
+        .block {
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: levitate 4s infinite alternate ease-in-out;
+            cursor: pointer;
+        }
+        
+        @keyframes levitate {
+            0% { transform: translateZ(0px); }
+            100% { transform: translateZ(40px); }
+        }
+
+        /* Independent delays for organic floating */
+        .b1 { top: 100px; left: 100px; animation-delay: 0s; }
+        .b2 { top: 100px; left: 450px; animation-delay: 1s; }
+        .b3 { top: 450px; left: 100px; animation-delay: 2s; }
+        .b4 { top: 450px; left: 450px; animation-delay: 0.5s; width: 300px; height: 300px;}
+
+        /* Block Faces */
+        .face {
+            position: absolute; border: 2px solid rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-sizing: border-box; padding: 20px; text-align: center;
+            /* Invert text rotation on top face so it reads upright relative to block */
+        }
+
+        /* Dimension definitions for Standard Blocks (300x300x50) */
+        .block:not(.b4) .face-top { width: 300px; height: 300px; transform: translateZ(50px); background: #fff; }
+        .block:not(.b4) .face-front { width: 300px; height: 50px; transform: rotateX(-90deg) translateZ(250px) translateY(25px); background: #dfe6e9; align-items:flex-end;}
+        .block:not(.b4) .face-right { width: 50px; height: 300px; transform: rotateY(90deg) translateZ(250px) translateX(-25px); background: #b2bec3; }
+
+        /* Content inside the top faces rotated to face the user flatly in isometric view */
+        .content-flat {
+            transform: rotateZ(45deg); /* Counteract the Z rotation of the scene */
+            width: 140%; height: 140%; /* Expand to fit after rotation */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        h2 { font-size: 1.5rem; margin: 0 0 10px 0; color: #d63031; font-weight: 900; text-transform: uppercase;}
+        p { font-size: 1rem; color: #2d3436; margin: 0; line-height: 1.5; font-weight: bold;}
+        
+        .avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 20px;}
+
+        /* Hover interaction */
+        .block:hover { transform: translateZ(80px) !important; animation-play-state: paused;}
+        .block:hover .face-top { background: #ffeaa7; }
+
+    </style>
+</head>
+<body>
+    <div class="scene">
+        
+        <div class="block b1">
+            <div class="face face-top">
+                <div class="content-flat">
+                    <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                    <h2>MICHI</h2>
+                    <p style="color:#0984e3">Inquilino Senior</p>
+                </div>
+            </div>
+            <div class="face face-front"></div>
+            <div class="face face-right"></div>
+        </div>
+
+        <div class="block b2">
+            <div class="face face-top">
+                <div class="content-flat">
+                    <h2>0% DAÑOS</h2>
+                    <p>Sistema Operativo Maduro (5 Años). Arañazos de tela bloqueados. Sin riesgos para el mobiliario de arrendamiento.</p>
+                </div>
+            </div>
+            <div class="face face-front"></div>
+            <div class="face face-right"></div>
+        </div>
+
+        <div class="block b3">
+            <div class="face face-top">
+                <div class="content-flat">
+                    <h2>MUTE MODE</h2>
+                    <p>Total aversión al ruido. A diferencia de un cachorro impetuoso, mi rutina opera en constante silencio.</p>
+                </div>
+            </div>
+            <div class="face face-front"></div>
+            <div class="face face-right"></div>
+        </div>
+
+        <div class="block b4">
+            <!-- Custom sizes for the 4th block -->
+            <div class="face face-top" style="width: 300px; height: 300px; transform: translateZ(50px); background: #fff;">
+                 <div class="content-flat">
+                    <h2 style="color:#00b894;">FINANZAS SOLUCIONADAS</h2>
+                    <p>Protocolos de vacunas activos. Salud perfecta. Mi asistente personal (Hombre, Traductor Senior Fijo) paga por todas mis necesidades vitalicias.</p>
+                </div>
+            </div>
+            <div class="face face-front" style="width: 300px; height: 50px; transform: rotateX(-90deg) translateZ(250px) translateY(25px); background: #dfe6e9;"></div>
+            <div class="face face-right" style="width: 50px; height: 300px; transform: rotateY(90deg) translateZ(250px) translateX(-25px); background: #b2bec3;"></div>
+        </div>
+
+    </div>
+</body>
+</html>

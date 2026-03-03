@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Flipping Cards</title>
+    <!-- Solid Display Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 50px 20px; min-height: 100vh;
+            background: #e9ecef; color: #343a40;
+            font-family: 'Open Sans', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .header { text-align: center; margin-bottom: 50px; perspective: 1000px;}
+        
+        /* Flipping Avatar */
+        .avatar-container {
+            width: 150px; height: 150px; margin: 0 auto 20px;
+            perspective: 1000px;
+        }
+        .avatar-inner {
+            width: 100%; height: 100%; position: relative;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        .avatar-container:hover .avatar-inner { transform: rotateY(180deg); }
+        .avatar-front, .avatar-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+            border-radius: 50%; border: 4px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex; align-items: center; justify-content: center;
+            background: #fff;
+        }
+        .avatar-front img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .avatar-back { transform: rotateY(180deg); background: #343a40; color: #fff;}
+
+        h1 { font-family: 'Teko', sans-serif; font-size: 5rem; margin: 0; line-height: 1;}
+        .subtitle { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;}
+
+        /* Card Grid Setup */
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; max-width: 1000px; width: 100%;
+        }
+
+        /* Flipping Card setup */
+        .flip-card {
+            background-color: transparent; height: 250px; perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            border-radius: 15px; padding: 30px; box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Front face design */
+        .flip-card-front { background: #fff; border-top: 5px solid #007bff;}
+        .flip-card-front h2 { font-family: 'Teko', sans-serif; font-size: 3rem; margin: 0; color: #343a40;}
+        .icon { font-size: 40px; margin-bottom: 10px; }
+
+        /* Back face design */
+        .flip-card-back { background: #007bff; color: white; transform: rotateY(180deg); }
+        .flip-card-back p { font-size: 1.1rem; line-height: 1.5; margin: 0;}
+
+        /* Distinct colors for cards */
+        .c2 .flip-card-front { border-color: #28a745; }
+        .c2 .flip-card-back { background: #28a745; }
+        .c3 .flip-card-front { border-color: #dc3545; }
+        .c3 .flip-card-back { background: #dc3545; }
+        .c4 .flip-card-front { border-color: #6f42c1; }
+        .c4 .flip-card-back { background: #6f42c1; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="avatar-container">
+            <div class="avatar-inner">
+                <div class="avatar-front">
+                    <img src="../michi.jpg" alt="Michi" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                </div>
+                <div class="avatar-back">
+                    <div style="font-family:'Teko'; font-size:2rem;">5 AÑOS</div>
+                </div>
+            </div>
+        </div>
+        <h1>MICHI CV</h1>
+        <div class="subtitle">Interactivo - Pase el cursor sobre los paneles</div>
+    </div>
+
+    <div class="card-grid">
+        <!-- Card 1 -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🔊</div>
+                    <h2>ACÚSTICA</h2>
+                </div>
+                <div class="flip-card-back">
+                    <p>Totalmente mudo. No ladra. Ideal para arrendatarios que valoran el silencio nocturno ininterrumpido a las 3:00 AM.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card c2">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🛋️</div>
+                    <h2>MUEBLES</h2>
+                </div>
+                <div class="flip-card-back">
+                    <p>Respeto absoluto al entorno. Uñas programadas en inactividad. Cero arañazos en tapicerías o cortinas del dueño original.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card c3">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">🏥</div>
+                    <h2>SANIDAD</h2>
+                </div>
+                <div class="flip-card-back">
+                    <p>Esterilizado, microchipado y full vacunas. Mantenimiento físico finalizado, eliminando todo riesgo de marcas territoriales de juventud.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card c4">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="icon">💰</div>
+                    <h2>FINANZAS</h2>
+                </div>
+                <div class="flip-card-back">
+                    <p>Acompañado de "Traductor Humano Senior" con sueldo fijo y empleo remoto asegurado para sufragar todos sus lujos diarios.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

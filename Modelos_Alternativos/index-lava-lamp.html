@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Lava Lamp</title>
+    <!-- Rounded soft font -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            background: #2a0845;
+            color: #fff; font-family: 'Baloo 2', sans-serif;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Essential SVG Filter for Gooey Effect */
+        svg.gooey-filter { display: none; }
+
+        .lava-container {
+            position: absolute; top:0; left:0; width: 100vw; height: 100vh; z-index: -1;
+            /* Apply SVG filter to children of this container */
+            filter: url('#goo');
+            overflow: hidden;
+            background: #2a0845; /* solid bg required for contrast filter to work perfectly */
+        }
+
+        /* Abstract blobs of lava */
+        .blob {
+            position: absolute; border-radius: 50%;
+            background: #ff416c;
+            animation: float-blob infinite alternate ease-in-out;
+        }
+
+        .b1 { width: 35vw; height: 35vw; left: 10vw; bottom: -10vw; animation-duration: 8s;}
+        .b2 { width: 45vw; height: 45vw; right: -5vw; top: -15vw; animation-duration: 12s; background: #ff4b2b;}
+        .b3 { width: 25vw; height: 25vw; left: 40vw; bottom: 20vw; animation-duration: 9s;}
+        .b4 { width: 30vw; height: 30vw; right: 20vw; bottom: -5vw; animation-duration: 10s; background: #ff4b2b;}
+
+        @keyframes float-blob {
+            0% { transform: translateY(0) scale(1) translateX(0); }
+            100% { transform: translateY(-30vh) scale(1.2) translateX(10vw); }
+        }
+
+        /* Content UI */
+        .ui-card {
+            width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto;
+            /* White frosted glass floating OVER the lava */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 40px; padding: 40px; text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        ::-webkit-scrollbar { width: 0; } /* hide scrollbar for cleaner look */
+
+        .avatar {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 5px solid #fff; margin-bottom: 20px;
+        }
+
+        h1 { font-size: 4rem; line-height: 1; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        h2 { font-size: 1.5rem; font-weight: 400; margin-bottom: 30px; border-bottom: 2px dashed rgba(255,255,255,0.3); padding-bottom: 15px;}
+
+        .chip {
+            display: inline-block; padding: 10px 20px; background: #ff416c; color: white;
+            border-radius: 30px; font-weight: bold; margin: 5px; box-shadow: 0 5px 15px rgba(255,65,108,0.4);
+        }
+
+        p { font-size: 1.2rem; line-height: 1.6; text-align: justify; margin-top: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+
+        .vs { font-size: 1.5rem; font-weight:bold; margin: 30px 0; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 20px;}
+
+    </style>
+</head>
+<body>
+    <!-- SVG Gooey Filter Definition -->
+    <svg class="gooey-filter" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -20" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="lava-container">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+    </div>
+
+    <div class="ui-card">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>MICHI</h1>
+        <h2>Fluidez y Calma (5 Años)</h2>
+
+        <div>
+            <span class="chip">Esterilizado</span>
+            <span class="chip">Vacunado Todo</span>
+            <span class="chip">Contrato Humano Fijo</span>
+        </div>
+
+        <p>A diferencia de la rigidez y el nerviosismo de los cachorros convencionales, mi presencia en un inmueble es igual a la de esta lámpara de lava: constante, silenciosa, fluida y altamente decorativa. No emito ladridos, no poseo interés por arañar costosos muebles humanos y mi humano traductor cubre el 100% de mis gastos operacionales.</p>
+
+        <div class="vs">
+            <div>Cachorro = Caos Sólido</div>
+            <div style="font-size:2rem; color:#ff4b2b;">Michi = Paz Líquida</div>
+        </div>
+    </div>
+</body>
+</html>

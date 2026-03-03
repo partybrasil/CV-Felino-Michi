@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Pulsar Star Core</title>
+    <!-- Minimal futuristic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            background: #000; color: #fff;
+            font-family: 'Jura', sans-serif;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Central Pulsing Star Rings */
+        .pulsar-wrapper {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0,255,255,0.2);
+            /* Rings expand outward and fade */
+            animation: pulse-outward 4s infinite cubic-bezier(0.215, 0.610, 0.355, 1);
+            opacity: 0;
+        }
+
+        .r1 { animation-delay: 0s; }
+        .r2 { animation-delay: 1s; }
+        .r3 { animation-delay: 2s; }
+        .r4 { animation-delay: 3s; }
+
+        @keyframes pulse-outward {
+            0% { width: 100px; height: 100px; opacity: 1; border-width: 10px; }
+            100% { width: 150vw; height: 150vw; opacity: 0; border-width: 1px; }
+        }
+
+        /* Core Glowing object */
+        .core {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 150px; height: 150px; border-radius: 50%;
+            background: #00ffff;
+            box-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff;
+            animation: core-throb 1s infinite alternate;
+        }
+        @keyframes core-throb { 100% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 80px #00ffff, 0 0 150px #fff; } }
+
+        /* The actual reading content layered clearly over the bright background effects */
+        .content {
+            position: relative; z-index: 10;
+            background: rgba(0,0,0,0.85); border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px; padding: 50px; text-align: center;
+            max-width: 700px; width: 90%;
+            backdrop-filter: blur(5px);
+        }
+
+        .avatar {
+            width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+            border: 2px solid transparent; margin-bottom: 20px;
+            /* Sync border glow with core throb */
+            animation: border-throb 1s infinite alternate;
+        }
+        @keyframes border-throb { 100% { border-color: #00ffff; box-shadow: 0 0 30px #00ffff; transform: scale(1.05); } }
+
+        h1 { font-size: 4rem; margin: 0; font-weight: 700; letter-spacing: 10px; text-transform: uppercase;}
+        .vitals { color: #00ffff; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 30px;}
+
+        h2 { font-size: 1.5rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; margin-top: 30px;}
+
+        .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+        .spec-card { background: rgba(0,255,255,0.05); padding: 15px; border-radius: 5px; border-left: 3px solid #00ffff;}
+        .spec-card span { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; margin-bottom: 5px;}
+        .spec-card strong { font-size: 1.1rem; }
+
+        .desc { font-size: 1.1rem; line-height: 1.6; text-align: justify; margin-top: 30px; color: #ccc;}
+
+    </style>
+</head>
+<body>
+    <div class="pulsar-wrapper">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="ring r4"></div>
+        <div class="core"></div>
+    </div>
+
+    <div class="content">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>MICHI</h1>
+        <div class="vitals">ENERGY SIGNATURE: STABLE</div>
+
+        <div class="specs">
+            <div class="spec-card"><span>Salud Gral</span><strong>Esterilizado / Vacunado</strong></div>
+            <div class="spec-card"><span>Emisión Sonora</span><strong>0.00% (Mute Activo)</strong></div>
+            <div class="spec-card"><span>Impacto Ambiental</span><strong>Nulo (Muebles a Salvo)</strong></div>
+            <div class="spec-card"><span>Soporte Financiero</span><strong>Asumido (Humano Senior)</strong></div>
+        </div>
+
+        <div class="desc">
+            A diferencia del pulsar destructivo y ruidoso de las entidades inestables (Cachorros), mi núcleo irradia únicamente tranquilidad. He mantenido una integridad estructural perfecta durante 5 años. Soy la inversión más segura para la paz de un hogar de arriendo.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Star Crawl</title>
+    <!-- Cinematic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            background: #000; overflow: hidden;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* 3D Container setup */
+        .scene {
+            width: 100vw; height: 100vh;
+            perspective: 400px;
+            display: flex; justify-content: center; align-items: flex-end;
+            position: relative;
+        }
+
+        /* Static Starfield background */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: transparent url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Starfield_st_01.png') center/cover;
+            animation: drift 100s infinite linear;
+        }
+        @keyframes drift { 100% { background-position: -500px 0; } }
+
+        /* The Crawl Element */
+        .crawl {
+            width: 80%; max-width: 800px;
+            transform-origin: 50% 100%;
+            /* The perspective rotation and upward translation */
+            transform: rotateX(25deg) translateY(100vh) translateZ(0); 
+            animation: crawl-anim 60s linear infinite;
+            text-align: justify;
+            color: #ffcc00; /* Classic crawl yellow */
+            position: relative;
+        }
+
+        @keyframes crawl-anim {
+            0% { transform: rotateX(25deg) translateY(100vh); opacity: 1;}
+            95% { opacity: 0;}
+            100% { transform: rotateX(25deg) translateY(-2500px); opacity: 0; }
+        }
+
+        .episode { text-align: center; font-size: 3rem; margin-bottom: 20px;}
+        h1 { text-align: center; font-size: 6rem; text-transform: uppercase; margin: 0 0 50px 0; line-height: 1;}
+
+        p { font-size: 2.5rem; line-height: 1.5; font-weight: 700; margin-bottom: 40px; }
+
+        .image-block { text-align: center; margin: 60px 0; }
+        .avatar { width: 300px; height: 300px; border-radius: 50%; border: 5px solid #ffcc00; display: inline-block;}
+
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <div class="scene">
+        <div class="crawl">
+            <div class="episode">EPISODIO V</div>
+            <h1>EL RETORNO<br>DE MICHI</h1>
+
+            <div class="image-block">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+
+            <p>
+                Es una época de caos en la galaxia. Los cachorros rebeldes atacan desde bases ocultas, destruyendo sofás y emitiendo estridentes ladridos a horas impías en los apartamentos del imperio.
+            </p>
+            <p>
+                Sin embargo, un héroe veterano emerge: MICHI. Con 5 años solares de experiencia letárgica, se presenta como el Inquilino Perfecto. Ha sido esterilizado de toda agresión y sus escudos de vacunación están operando a máxima capacidad.
+            </p>
+            <p>
+                A diferencia de la ruidosa resistencia canina, Michi jura lealtad inquebrantable al Silencio. Sus garras ignoran deliberadamente los muebles aterciopelados de la alianza, enfocándose puramente en su objetivo primario: dormir.
+            </p>
+            <p>
+                Acompañado siempre por su leal Traductor Humano Senior, quien tiene un puesto laboral fijo y garantiza los suministros imperiales vitalicios, Michi solicita ingreso a tu sistema residencial. Alianza concedida...
+            </p>
+        </div>
+    </div>
+</body>
+</html>

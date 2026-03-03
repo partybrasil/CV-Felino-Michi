@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Sonar Radar Tab</title>
+    <!-- Tactical font -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            background: #001000; color: #00ff44;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            background-image: radial-gradient(rgba(0,255,68,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Large Radar Base */
+        .radar-container {
+            position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+            width: 40vw; height: 40vw; max-width: 500px; max-height: 500px;
+            border-radius: 50%; border: 2px solid #00ff44;
+            box-shadow: 0 0 30px rgba(0,255,68,0.2), inset 0 0 50px rgba(0,255,68,0.2);
+            overflow: hidden;
+        }
+
+        /* Concentric Rings */
+        .radar-container::before {
+            content: ''; position: absolute; top:25%; left:25%; width:50%; height:50%;
+            border-radius: 50%; border: 1px solid rgba(0,255,68,0.4);
+        }
+        .radar-container::after {
+            content: ''; position: absolute; top:50%; left:0; width:100%; height:1px; background: rgba(0,255,68,0.4);
+        }
+        .vert-line { position: absolute; top:0; left:50%; width:1px; height:100%; background: rgba(0,255,68,0.4); }
+
+        /* The Sweeping Hand */
+        .sweep {
+            position: absolute; top:0; left:50%; width:50%; height:50%;
+            background: conic-gradient(from 0deg, transparent 70deg, rgba(0,255,68,0.8) 90deg);
+            transform-origin: 0% 100%;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan { 100% { transform: rotate(360deg); } }
+
+        /* A blip representing Michi on the radar */
+        .blip {
+            position: absolute; top: 40%; left: 60%; width: 10px; height: 10px;
+            background: #fff; border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #00ff44;
+            /* Opacity syncing with the 4s radar sweep */
+            animation: blip-fade 4s ease-out infinite;
+            animation-delay: 1.2s; /* Roughly when the sweep passes that quadrant */
+            opacity: 0;
+        }
+
+        @keyframes blip-fade { 0% { opacity: 1; transform: scale(1.5);} 50% { opacity: 0; transform: scale(1);} 100% {opacity:0} }
+
+        /* Data Interface */
+        .data-panel {
+            position: absolute; left: 5%; top: 50%; transform: translateY(-50%);
+            width: 45%; max-width: 600px;
+            border-left: 5px solid #00ff44; padding-left: 30px;
+        }
+
+        .avatar {
+            width: 100px; height: 100px; border-radius: 50%; border: 2px solid #00ff44;
+            filter: sepia(100%) hue-rotate(80deg) saturate(400%); margin-bottom: 20px; display: inline-block; vertical-align: middle;
+        }
+
+        h1 { font-size: 3rem; margin: 0; display: inline-block; vertical-align: middle; margin-left: 20px;}
+        .subtitle { font-size: 1.2rem; color: #fff; opacity: 0.8; margin: 10px 0 30px;}
+
+        h2 { font-size: 1.5rem; border-bottom: 1px dashed #00ff44; padding-bottom: 10px; margin-top: 30px;}
+
+        ul { list-style: none; padding: 0;}
+        li { margin-bottom: 15px; font-size: 1.1rem; line-height: 1.5;}
+        li::before { content: '[OK] '; color: #fff; font-weight: bold;}
+        .warn::before { content: '[WARN] '; color: #ff0044; }
+
+        .log { margin-top: 30px; font-size: 1rem; color: #00aa22; opacity: 0.8; border: 1px solid #004411; padding: 10px; background: rgba(0,50,0,0.5);}
+
+    </style>
+</head>
+<body>
+    <div class="data-panel">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>TARGET: MICHI</h1>
+        <div class="subtitle">ESTADO: SIGILO TOTAL (V5.0)</div>
+
+        <h2>> REPORT DE TELEMETRÍA</h2>
+        <ul>
+            <li>VITALES: Señales de castración completadas. Redundancias de vacunas verdes. 5 Años de salud funcional impecable.</li>
+            <li>ACÚSTICA: Ruido cero detectado en los sensores nocturnos. El sujeto repudia altos decibeles y los evita tácticamente con sueño prolongado.</li>
+            <li>DAÑO ESTRUCTURAL: Cero incidencias físicas formales en tejidos, sofás u otros objetos base.</li>
+            <li>MANTENIMIENTO: Contramedidas activas, el "Traductor Humano Fijo" asume 100% de la carga de mantenimiento a nivel financiero sin intervención de caseros.</li>
+        </ul>
+
+        <h2>> COMPARATIVA DE ENJAMBRE</h2>
+        <ul>
+            <li class="warn">CACHORRO.BAT: Alta estática. Movimiento frenético. Fallas catastróficas contra el ambiente.</li>
+            <li>MICHI.EXE: Operación fría y estable. Inmóvil en la sombra.</li>
+        </ul>
+
+        <div class="log">
+            > RASTREO: Misión Completada. Michi es apto para infiltración segura en cualquier apartamento insonorizado de alto estándar.
+        </div>
+    </div>
+
+    <div class="radar-container">
+        <div class="vert-line"></div>
+        <div class="sweep"></div>
+        <!-- Target indicator -->
+        <div class="blip"></div>
+        <div style="position:absolute; top:36%; left:62%; font-size:12px; opacity:0.8;">MICHI</div>
+    </div>
+</body>
+</html>

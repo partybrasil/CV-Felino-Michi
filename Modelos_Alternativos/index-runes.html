@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Mystic Runes</title>
+    <!-- Medieval / Fantasy Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 40px 20px; min-height: 100vh;
+            background: radial-gradient(circle at center, #1b172a 0%, #08060c 100%);
+            color: #d6ccff;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Glowing Runes in Background */
+        .rune-field {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none; overflow: hidden;
+        }
+
+        .rune {
+            position: absolute;
+            font-family: monospace; font-size: 3rem; color: #a685ff;
+            opacity: 0;
+            text-shadow: 0 0 10px #a685ff, 0 0 20px #8055ff, 0 0 40px #5511ff;
+            animation: rune-glow infinite alternate ease-in-out;
+        }
+
+        @keyframes rune-glow {
+            0% { opacity: 0; transform: scale(0.8) translateY(10px); filter: blur(2px);}
+            50% { opacity: 0.6; transform: scale(1.1) translateY(0); filter: blur(0px);}
+            100% { opacity: 0; transform: scale(0.9) translateY(-10px); filter: blur(2px);}
+        }
+
+        /* Main Stone Tablet */
+        .container {
+            max-width: 800px; margin: 0 auto;
+            position: relative; z-index: 10;
+        }
+
+        .stone-slab {
+            background: rgba(20, 15, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid #3d2a5c;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 
+                inset 0 0 50px rgba(0,0,0,0.8),
+                0 20px 50px rgba(0,0,0,0.9),
+                0 0 30px rgba(166, 133, 255, 0.2); /* Purple magic glow */
+            position: relative;
+        }
+
+        /* Inner rune border */
+        .stone-slab::before {
+            content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px dashed rgba(166, 133, 255, 0.4); pointer-events: none;
+            border-radius: 5px;
+        }
+
+        .avatar-frame {
+            width: 180px; height: 180px; margin: 0 auto 30px;
+            position: relative;
+            border-radius: 50%;
+            background: #000;
+            padding: 5px;
+            box-shadow: 0 0 30px rgba(166,133,255,0.5);
+            animation: float 6s infinite ease-in-out alternate;
+        }
+        
+        @keyframes float { 100% { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(166,133,255,0.7); } }
+
+        .avatar {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            filter: contrast(1.1) sepia(20%) hue-rotate(240deg); /* Magical tint */
+        }
+
+        h1 {
+            font-family: 'Cinzel Decorative', serif; text-align: center;
+            font-size: 4rem; margin: 0;
+            color: #fff; text-shadow: 0 0 10px #a685ff, 0 0 20px #a685ff;
+        }
+        .title-sub {
+            text-align: center; font-family: 'Cinzel Decorative', serif; font-size: 1.3rem; 
+            color: #a685ff; letter-spacing: 3px; margin: 10px 0 40px 0;
+        }
+
+        h2 { font-family: 'Cinzel Decorative', serif; border-bottom: 1px solid #3d2a5c; padding-bottom: 10px; color: #e6ddff; margin-top: 40px;}
+
+        .grid-spells {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+        }
+
+        .spell-card {
+            background: linear-gradient(135deg, rgba(85,17,255,0.1) 0%, rgba(0,0,0,0) 100%);
+            border: 1px solid rgba(166,133,255,0.2);
+            padding: 20px; border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .spell-card:hover { border-color: #a685ff; box-shadow: inset 0 0 20px rgba(166,133,255,0.2); }
+        .spell-card h3 { font-family: 'Cinzel Decorative', serif; color: #c4aaff; font-size: 1.2rem; margin-top:0;}
+        .spell-card p { opacity: 0.9; line-height: 1.5; font-size: 1.05rem;}
+
+        .scroll-text {
+            text-align: center; font-size: 1.2rem; line-height: 1.8; color: #f2ebff;
+            font-style: italic; background: rgba(0,0,0,0.4); padding: 30px; border-radius: 5px;
+            border-left: 4px solid #a685ff; border-right: 4px solid #a685ff; margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="rune-field" id="runes"></div>
+
+    <div class="container">
+        <div class="stone-slab">
+            <div class="avatar-frame">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+            <h1>Michi</h1>
+            <div class="title-sub">Amo de los Sigilos & Guardián del Silencio</div>
+
+            <div class="grid-spells">
+                <div class="spell-card">
+                    <h3>&#10022; Conjuro de Vitalidad</h3>
+                    <p>Poseedor de esencia pura. Ritual de castración finalizado. Sellos de vacunación activos e inquebrantables por 5 eras terrenales.</p>
+                </div>
+                <div class="spell-card">
+                    <h3>&#10023; Aura Incorpórea</h3>
+                    <p>Las garras permanecen ocultas en el plano material. Los mobiliarios y telares están defendidos por un juramento de no agresión. 0 roturas.</p>
+                </div>
+                <div class="spell-card">
+                    <h3>&#10042; Escudo de Enmudecimiento</h3>
+                    <p>Detecta el ruido a distancia leguaria. Profesa votos de silencio total en su morada. Evade las perturbaciones acústicas a toda costa.</p>
+                </div>
+                <div class="spell-card">
+                    <h3>&#10050; Bóveda de Oro</h3>
+                    <p>Un humano clase "Traductor Sénior" está atado a su servicio mediante un contrato arcano indefinido. Garantiza provisiones perennes.</p>
+                </div>
+            </div>
+
+            <h2>El Tratado Oscuro</h2>
+            <table>
+                <tr style="color: #a685ff; font-family:'Cinzel Decorative'; font-size: 1.2rem; text-align:left;">
+                    <th style="padding-bottom:15px">Encantamiento</th>
+                    <th style="padding-bottom:15px">Magia de Michi</th>
+                    <th style="padding-bottom:15px">Magia de Cachorro</th>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-top:1px solid #333;">Evocación de Energía</td>
+                    <td style="padding:10px; border-top:1px solid #333; color:#c4aaff;">Letargo Zen Iluminado</td>
+                    <td style="padding:10px; border-top:1px solid #333; opacity:0.6;">Caos Elemental Desenfrenado</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border-top:1px solid #333;">Artefactos Terrenales (Muebles)</td>
+                    <td style="padding:10px; border-top:1px solid #333; color:#c4aaff;">Ignorados / Respetados</td>
+                    <td style="padding:10px; border-top:1px solid #333; opacity:0.6;">Destrucción de Nivel 1</td>
+                </tr>
+            </table>
+
+            <div class="scroll-text">
+                "Escuchad los susurros de los antiguos pergaminos: 'El cachorro muerde y grita en la noche; el Maestro Michi, en cambio, reposa en contemplación absoluta'. Yo poseo 5 ciclos completos de sabiduría. Deseo adentrarme en una fortaleza de paz absoluta para velar que el equilibrio de los sueños se mantenga inalterado, subsidiado por el tesoro de mi siervo humano."
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate random runes dynamically via simple script -->
+    <script>
+        const runefield = document.getElementById('runes');
+        // Random unicode mystic/runic characters (Runic block mostly)
+        const runeChars = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', 'ᚾ', 'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛊ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ', 'ᛚ', 'ᛜ', 'ᛟ', 'ᛞ'];
+        
+        for(let i=0; i<30; i++) {
+            let el = document.createElement('div');
+            el.className = 'rune';
+            el.innerText = runeChars[Math.floor(Math.random() * runeChars.length)];
+            el.style.left = Math.random() * 100 + '%';
+            el.style.top = Math.random() * 100 + '%';
+            
+            // Random animation params
+            el.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            el.style.animationDelay = (Math.random() * 5) + 's';
+            el.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            runefield.appendChild(el);
+        }
+    </script>
+</body>
+</html>

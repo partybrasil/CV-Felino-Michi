@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Rainy Glass</title>
+    <!-- Elegant serif for a moody glass look -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: 'Lato', sans-serif;
+            background: #1a1a2e; /* Dark moody background under the glass */
+            overflow: hidden; /* Rain spans the whole window */
+        }
+
+        /* Base background image (the city outside) */
+        .city-bg {
+            position: fixed; top: -5%; left: -5%; width: 110%; height: 110%;
+            background: url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            filter: blur(8px) brightness(0.6); /* Heavy blur simulating frosted/wet glass */
+            z-index: -2;
+        }
+
+        /* Canvas for procedural rain drops */
+        #rain-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+
+        /* Main reading window with frosted glass effect */
+        .glass-panel {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 90%; max-width: 800px; max-height: 85vh; overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            padding: 50px; box-sizing: border-box;
+            color: #fff;
+        }
+
+        /* Custom scrollbar for panel */
+        .glass-panel::-webkit-scrollbar { width: 6px; }
+        .glass-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+
+        .avatar {
+            width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            display: block; margin: 0 auto 30px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; margin: 0;
+            background: linear-gradient(180deg, #fff, #aabfe8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .role { text-align: center; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: #aabfe8; margin-bottom: 40px;}
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;}
+
+        p { font-size: 1.1rem; line-height: 1.8; color: #e0e0e0; font-weight: 300;}
+
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;}
+        
+        .stat-card {
+            background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .stat-card h3 { font-family: 'Playfair Display', serif; margin: 0 0 10px 0; color: #fff;}
+        .stat-card p { margin: 0; font-size: 1rem; color: #ccc;}
+
+        .signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; text-align: right; margin-top: 40px; color: #aabfe8;}
+
+    </style>
+</head>
+<body>
+    <div class="city-bg"></div>
+    <canvas id="rain-canvas"></canvas>
+
+    <div class="glass-panel">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>Michi</h1>
+        <div class="role">Inquilino Senior & Observador de Tormentas</div>
+
+        <p>No busco el alboroto de los cachorros. A mis 5 años, mi estado ideal es sentarme tras el cristal a observar el mundo exterior pasar, en total y absoluto silencio. Traigo paz a tu hogar, sin daños colaterales a tus muebles ni ruidos que interrumpan tus madrugadas.</p>
+
+        <h2>Credenciales de Convivencia</h2>
+        <div class="card-grid">
+            <div class="stat-card">
+                <h3>Historial Médico Inmaculado</h3>
+                <p>Esterilizado. Protocolos de vacunación activos y verificados. Arquitectura biológica en estado de preservación óptima.</p>
+            </div>
+            <div class="stat-card">
+                <h3>Integridad del Mobiliario</h3>
+                <p>Garantía de cero desgaste. Desinterés total en el rasgado de estructuras verticales, telas o superficies de soporte.</p>
+            </div>
+            <div class="stat-card">
+                <h3>Hipersensibilidad Acústica</h3>
+                <p>Aversión nativa al ruido. El sistema interno prioriza el silencio y la evasión de áreas de alta frecuencia decibélica.</p>
+            </div>
+            <div class="stat-card">
+                <h3>Sustento Financiero</h3>
+                <p>Mantenido independientemente por un 'Traductor Senior Humano' con contrato fijo, asegurando todos los gastos de insumos.</p>
+            </div>
+        </div>
+
+        <div class="signature">- Michi.</div>
+    </div>
+
+    <script>
+        // Procedural Rain Simulation for the Canvas background
+        const canvas = document.getElementById('rain-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let drops = [];
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            drops = [];
+            for(let i=0; i<100; i++) {
+                drops.push(newDrop());
+            }
+        }
+
+        function newDrop() {
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height * -1,
+                len: Math.random() * 20 + 10,
+                speed: Math.random() * 10 + 15,
+                thickness: Math.random() * 2 + 1
+            };
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineCap = 'round';
+
+            for(let i = 0; i < drops.length; i++) {
+                let d = drops[i];
+                ctx.lineWidth = d.thickness;
+                ctx.beginPath();
+                ctx.moveTo(d.x, d.y);
+                ctx.lineTo(d.x - (d.len/3), d.y + d.len); // slight angle
+                ctx.stroke();
+
+                d.y += d.speed;
+                d.x -= d.speed / 3;
+
+                // reset drop if it hits bottom
+                if(d.y > height) {
+                    drops[i] = newDrop();
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+    </script>
+</body>
+</html>

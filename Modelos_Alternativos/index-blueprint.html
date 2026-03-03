@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Blueprint Draw</title>
+    <!-- Architectural style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 40px;
+            background-color: #034b7d; /* Blueprint blue */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            color: #fff;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .container {
+            max-width: 900px; margin: 0 auto;
+            position: relative;
+        }
+
+        /* SVG Line drawing animations for structural boxes */
+        .box-wrapper {
+            position: relative; padding: 40px; margin-bottom: 30px;
+        }
+        
+        .box-svg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        /* Essential SVG Stroke Animation */
+        .draw-line {
+            fill: none; stroke: #fff; stroke-width: 2;
+            stroke-dasharray: 4000; stroke-dashoffset: 4000;
+            animation: draw 3s ease forwards;
+        }
+
+        .draw-line-delay-1 { animation-delay: 1s; }
+        .draw-line-delay-2 { animation-delay: 2s; }
+
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+
+        /* The Content slowly fading in after box draws */
+        .content-layer {
+            position: relative; z-index: 10;
+            opacity: 0;
+            animation: fade-in 1s ease forwards;
+        }
+        .content-delay-0 { animation-delay: 1s; }
+        .content-delay-1 { animation-delay: 2s; }
+        .content-delay-2 { animation-delay: 3s; }
+
+        @keyframes fade-in { to { opacity: 1; } }
+
+        /* Typography */
+        h1 {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 4.5rem; margin: 0; color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+        .dim-text { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+        h2 { font-family: 'Architects Daughter', cursive; border-bottom: 1px dashed #fff; padding-bottom: 10px; font-size: 2rem;}
+
+        .avatar {
+            width: 150px; height: 150px;
+            border: 2px solid #fff; padding: 5px;
+            object-fit: cover;
+            filter: contrast(1.5) sepia(1) hue-rotate(180deg) brightness(1.2); /* Make it look like a cyanotype print */
+            float: right; margin-left: 20px;
+            position: relative; z-index: 20;
+        }
+
+        .blueprint-data {
+            display: flex; flex-wrap: wrap; gap: 30px; margin-top: 20px;
+        }
+        .data-point {
+            flex: 1 1 200px;
+        }
+        .data-point span { display: block; font-size: 2rem; font-family: 'Architects Daughter', cursive;}
+        .data-point label { font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+        ul { list-style: none; padding: 0;}
+        li { margin-bottom: 15px; position: relative; padding-left: 20px;}
+        li::before { content: '>'; position: absolute; left: 0; color: #88ccff;}
+
+        .stamp {
+            position: absolute; right: 20px; bottom: 20px;
+            border: 3px solid #ff4444; color: #ff4444;
+            padding: 10px; font-family: 'Architects Daughter', cursive;
+            font-size: 1.5rem; text-transform: uppercase;
+            transform: rotate(-15deg);
+            opacity: 0; animation: stamp 0.5s ease forwards 4s;
+            z-index: 30; pointer-events:none;
+        }
+        @keyframes stamp { 0% { opacity:0; transform: scale(3) rotate(-15deg); } 100% { opacity:0.8; transform: scale(1) rotate(-15deg); } }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Section 1 -->
+        <div class="box-wrapper">
+            <svg class="box-svg" width="100%" height="100%">
+                <rect x="0" y="0" width="100%" height="100%" class="draw-line"></rect>
+                <line x1="0" y1="40" x2="10px" y2="40" class="draw-line"></line>
+            </svg>
+            <div class="content-layer content-delay-0">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                <div class="dim-text">PROJECT REF: 001-A-MICHI</div>
+                <h1>Michi</h1>
+                <div style="font-size: 1.2rem; margin-top: 0px">PLANO ARQUITECTÓNICO: INQUILINO SENIOR</div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="box-wrapper">
+            <svg class="box-svg" width="100%" height="100%">
+                <rect x="0" y="0" width="100%" height="100%" class="draw-line draw-line-delay-1"></rect>
+            </svg>
+            <div class="content-layer content-delay-1">
+                <h2>> ESPECIFICACIONES ESTRUCTURALES</h2>
+                <div class="blueprint-data">
+                    <div class="data-point"><label>Edad Estructura</label><span>5 Años</span></div>
+                    <div class="data-point"><label>Módulo Reproductivo</label><span>Castrado (Inactivo)</span></div>
+                    <div class="data-point"><label>Defensa Viral</label><span>Vacunas 100% (Óptimo)</span></div>
+                    <div class="data-point"><label>Soporte Habitacional</label><span>Humano T. Senior Fijo</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="box-wrapper">
+            <svg class="box-svg" width="100%" height="100%">
+                <rect x="0" y="0" width="100%" height="100%" class="draw-line draw-line-delay-2"></rect>
+            </svg>
+            <div class="content-layer content-delay-2">
+                <h2>> ANÁLISIS DE IMPACTO AMBIENTAL (INTERIORES)</h2>
+                <ul>
+                    <li><strong>ACÚSTICA ZERO:</strong> El modelo carece de escapes sónicos. Totalmente mudo. No perturbará decibeles de las estructuras colindantes.</li>
+                    <li><strong>INTEGRIDAD MATERIAL:</strong> Configuración pacífica inhabilita daño a tapicerías, marcos de puertas y sofás (0% Fricción).</li>
+                    <li><strong>SISTEMA AUTÓNOMO:</strong> El Humano anexo recauda fondos externos (Trabajo remoto/fijo) para sufragar arena y suplementos premium del modelo Michi. Tolerancia a atrasos: Ninguna. Rentabilidad asegurada.</li>
+                    <li><strong>DIAGNÓSTICO FINAL:</strong> Un cachorro produce daño estructural. Michi (5 años) representa el equilibrio arquitectónico consumado.</li>
+                </ul>
+                <div class="stamp">Aprobado Mudo</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

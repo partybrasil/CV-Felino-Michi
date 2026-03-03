@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Ink Bleed Reveal</title>
+    <!-- Elegant minimal serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; height: 100vh;
+            background: #fdfdfd; font-family: 'Cormorant Garamond', serif;
+            color: #111; overflow-x: hidden;
+        }
+
+        /* The hidden content layered behind the black screen */
+        .true-content {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 1; padding: 20px; box-sizing: border-box;
+            background: url('https://images.unsplash.com/photo-1603484477859-abe6a7346cfb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        
+        .true-content::after {
+            content: ''; position: absolute; top:0;left:0;width:100%;height:100%;
+            background: rgba(255,255,255,0.85); z-index: -1;
+        }
+
+        /* The Black Overlay that uses mask to reveal */
+        .ink-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 10; pointer-events: none;
+            /* Use a complex radial mask animated from 0 to 200% via CSS */
+            /* Using webkit mask */
+            -webkit-mask-image: radial-gradient(circle, transparent 10%, black 15%);
+            -webkit-mask-position: center;
+            -webkit-mask-size: 0% 0%;
+            -webkit-mask-repeat: no-repeat;
+            
+            /* Expand the mask rapidly until it clears the screen */
+            animation: clear-ink 4s cubic-bezier(0.85, 0, 0.15, 1) forwards 1s;
+        }
+
+        @keyframes clear-ink {
+            0% { -webkit-mask-size: 0% 0%; }
+            100% { -webkit-mask-size: 300% 300%; } /* clears entire screen */
+        }
+
+        /* Reading Box */
+        .paper-card {
+            background: #fff; border: 1px solid #ddd; padding: 60px; max-width: 700px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            /* Fade up */
+            opacity: 0; transform: translateY(50px);
+            animation: fade-up 2s ease forwards 2s;
+        }
+
+        @keyframes fade-up { to { opacity: 1; transform: translateY(0); } }
+
+        .avatar {
+            width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
+            margin-bottom: 20px; filter: grayscale(100%);
+        }
+
+        h1 { font-size: 4rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; font-weight: 700;}
+        .subtitle { font-size: 1.5rem; font-style: italic; color: #555; margin-bottom: 40px;}
+
+        h2 { font-size: 2rem; border-bottom: 1px solid #000; padding-bottom: 10px; display: inline-block; margin-top: 40px;}
+
+        p { font-size: 1.3rem; line-height: 1.8; text-align: justify; margin-bottom: 20px;}
+
+        .specs { display: flex; justify-content: space-around; margin-top: 40px; font-weight: bold; font-size: 1.2rem;}
+        .specs span { border: 1px solid #111; padding: 10px 20px;}
+
+    </style>
+</head>
+<body>
+    <!-- The black wall that creates the ink bleed effect -->
+    <div class="ink-overlay"></div>
+
+    <div class="true-content">
+        <div class="paper-card">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>Michi</h1>
+            <div class="subtitle">El inquilino literario de 5 años.</div>
+
+            <p>A diferencia del ladrido estridente de un cachorro carente de modales, mi estadía se basa en el más elegante de los silencios. Mi contrato biológico prohíbe el uso de garras contra los refinados textiles humanos. Cuento con certificaciones de salud impecables de tipo "Castrado y Vacunado".</p>
+            
+            <p>Soy el inquilino poético definitivo: ofrezco la elegancia de mi inactividad, respaldado enteramente por un humano adulto con estabilidad laboral remota que sufre todos mis gastos decorativos.</p>
+
+            <div class="specs">
+                <span>0.0 Db Emitidos</span>
+                <span>Inmune a Arañazos</span>
+                <span>Sanidad Total</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

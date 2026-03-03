@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Cinematic Glitch</title>
+    <!-- Strong bold futuristic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 40px 20px;
+            background: #090909; color: #fff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Abstract glitchy horizontal bars in background */
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(255,255,255,0.03) 100px, rgba(255,255,255,0.03) 110px);
+            z-index: -1; animation: bg-scroll 10s linear infinite; pointer-events: none;
+        }
+        @keyframes bg-scroll { 100% { transform: translateY(110px); } }
+
+        .container {
+            max-width: 900px; margin: 0 auto; position: relative;
+        }
+
+        /* Glitch Effect Core Mixin/Class */
+        .glitch-block {
+            position: relative;
+            background: #111; padding: 40px; border: 1px solid #333; margin-bottom: 30px;
+            transition: all 0.2s;
+        }
+
+        .glitch-block:hover {
+            border-color: #f00;
+        }
+
+        /* The pseudo elements that create the chromatic aberration slice on hover */
+        .glitch-block::before, .glitch-block::after {
+            content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
+            background: inherit; z-index: -1;
+            transition: all 0.2s; border: 1px solid transparent;
+        }
+
+        .glitch-block:hover::before {
+            transform: translate(-5px, 2px);
+            border-color: #0ff; opacity: 0.6;
+            clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+        }
+        
+        .glitch-block:hover::after {
+            transform: translate(5px, -2px);
+            border-color: #f0f; opacity: 0.6;
+            clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+        }
+
+        .glitch-text {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 4rem; margin:0 0 10px 0; text-transform: uppercase;
+            position: relative; display: inline-block;
+        }
+        
+        .glitch-text::before, .glitch-text::after {
+            content: 'MICHI'; position: absolute; top:0; left:0; width:100%; height:100%;
+            opacity: 0.8;
+        }
+        .glitch-text::before {
+            left: 3px; text-shadow: -2px 0 red; clip-path: inset(10% 0 80% 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -3px; text-shadow: -2px 0 blue; clip-path: inset(80% 0 10% 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 40% { clip-path: inset(40% 0 50% 0); }
+            60% { clip-path: inset(80% 0 5% 0); } 80% { clip-path: inset(10% 0 70% 0); } 100% { clip-path: inset(30% 0 50% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(30% 0 20% 0); } 40% { clip-path: inset(70% 0 10% 0); }
+            60% { clip-path: inset(20% 0 50% 0); } 80% { clip-path: inset(90% 0 5% 0); } 100% { clip-path: inset(50% 0 30% 0); }
+        }
+
+        .avatar {
+            width: 100%; height: 300px; object-fit: cover; margin-bottom: 20px;
+            filter: grayscale(100%) contrast(1.5);
+        }
+        
+        /* Fast flicker for headers */
+        h2 { font-family: 'Syncopate'; font-size: 1.5rem; border-bottom: 2px solid #555; padding-bottom: 10px; color: #fff;}
+        .flicker { animation: text-flicker 4s linear infinite; }
+        @keyframes text-flicker { 0%, 9%, 11%, 19%, 21%, 100% { opacity: 1; } 10%, 20% { opacity: 0.1; } }
+
+        p { font-size: 1.1rem; line-height: 1.6; color: #ccc;}
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .stat-line { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #333;}
+        .stat-label { font-weight: bold; color: #fff;}
+        .stat-val { color: #f00;}
+
+        .btn-glitch {
+            background: transparent; border: 2px solid #fff; color: #fff; padding: 15px 30px; font-family: 'Syncopate'; font-weight: 700;
+            display: block; margin: 30px auto 0; cursor: pointer; position: relative; overflow: hidden;
+            transition: all 0.3s;
+        }
+        .btn-glitch:hover { background: #fff; color: #000; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glitch-block" style="text-align: center;">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <div class="glitch-text">MICHI</div>
+            <div style="font-family:'Syncopate'; font-size: 1.2rem; letter-spacing: 5px; color:#aaa;">ERROR: NOISE_NOT_FOUND</div>
+        </div>
+
+        <div class="grid">
+            <div class="glitch-block">
+                <h2 class="flicker">SYSTEM_SPECS</h2>
+                <div class="stat-line"><span class="stat-label">RUNTIME</span> <span class="stat-val">5 YRS</span></div>
+                <div class="stat-line"><span class="stat-label">NEUTERED</span> <span class="stat-val">TRUE</span></div>
+                <div class="stat-line"><span class="stat-label">VACCINES</span> <span class="stat-val">LOADED</span></div>
+                <div class="stat-line"><span class="stat-label">FURNITURE_DMG</span> <span class="stat-val">0.00%</span></div>
+            </div>
+            
+            <div class="glitch-block">
+                <h2 class="flicker">INCOME_MODULE</h2>
+                <p>Dependencies met: "Traductor Humano Senior". Fixed infinite contract established. Salary capable of sustaining premium cat food drops remotely without landlord intervention.</p>
+            </div>
+        </div>
+
+        <div class="glitch-block">
+            <h2 class="flicker">CRITICAL_OVERVIEW</h2>
+            <p style="font-size: 1.25rem; font-weight: bold; color: #fff; text-align: justify;">
+                "WARNING > Puppy protocols detected in standard pet models. Puppies = Noise, Chaos, Carpet Damage. <br><br>
+                MICHI model runs in passive background. Absolute silence. Ignores cloth structures. Requires a quiet server room to sleep while human pays the rent. Accept connection?"
+            </p>
+            <button class="btn-glitch" onclick="alert('CONNECTION ACCEPTED')">AUTHORIZE MICHI</button>
+        </div>
+    </div>
+</body>
+</html>

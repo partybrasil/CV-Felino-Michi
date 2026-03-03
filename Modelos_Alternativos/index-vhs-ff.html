@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - VHS Fast Forward</title>
+    <!-- Analog retro font -->
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; min-height: 100vh;
+            background: #000; color: #ddd;
+            font-family: 'Chivo Mono', monospace;
+            overflow-x: hidden;
+        }
+
+        /* VHS Fast Forward Noise and Blur filter on entirety */
+        .ff-wrapper {
+            position: relative;
+            /* Strong vertical motion blur effect imitation */
+            filter: drop-shadow(0 4px 0 rgba(255,255,255,0.2)) blur(0.5px);
+            animation: ff-jitter 0.1s infinite;
+        }
+
+        /* Jitter the whole screen up and down slightly */
+        @keyframes ff-jitter {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+            100% { transform: translateY(2px); }
+        }
+
+        /* The moving tracking bands of noise */
+        .vhs-band {
+            position: fixed; left: 0; width: 100vw; height: 10vh;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.3) 2px, rgba(255,255,255,0.3) 4px);
+            z-index: 100; pointer-events: none; mix-blend-mode: overlay;
+            animation: scan-ff 5s linear infinite;
+        }
+        .band-2 { height: 5vh; animation-duration: 3s; animation-direction: reverse; opacity: 0.5;}
+        
+        @keyframes scan-ff {
+            0% { top: -20vh; }
+            100% { top: 120vh; }
+        }
+
+        /* Fast Forward Text UI */
+        .ui-ff {
+            position: fixed; top: 30px; right: 40px;
+            font-size: 3rem; font-weight: bold; color: #fff;
+            text-shadow: 2px 2px 0 #f00, -2px -2px 0 #00f;
+            z-index: 200; pointer-events: none; letter-spacing: 5px;
+        }
+        .blink { animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate; }
+        @keyframes blinker { 100% { opacity: 0; } }
+
+        .container {
+            max-width: 800px; margin: 80px auto; padding: 40px;
+            /* Slanted italicizing for visual speed */
+            transform: skewX(-5deg);
+        }
+
+        /* Content block */
+        .block {
+            border-left: 10px solid #fff; padding-left: 30px; margin-bottom: 50px;
+        }
+
+        h1 { font-size: 5rem; margin: 0; text-transform: uppercase; color: #fff;}
+        .distort { display: block; font-size: 1.5rem; letter-spacing: 3px; border-bottom: 2px solid #555; padding-bottom: 10px; margin-bottom: 20px;}
+
+        p { font-size: 1.3rem; line-height: 1.5; text-transform: uppercase; margin-bottom: 0;}
+
+        /* Splitting RGB naturally */
+        .rgb-split {
+            text-shadow: 3px 0 0 red, -3px 0 0 aqua;
+        }
+
+        ul { list-style-type: none; padding: 0; margin-top: 30px;}
+        li { font-size: 1.5rem; border-bottom: 1px dashed #444; padding: 10px 0;}
+        li span { color: #fff; font-weight: bold;}
+
+        /* Animated fake video timeline */
+        .timeline {
+            position: fixed; bottom: 30px; left: 5%; width: 90%; height: 5px; background: #333;
+        }
+        .timeline-progress {
+            height: 100%; width: 50%; background: #fff; position: relative;
+            animation: progress-bar 10s linear infinite;
+        }
+        @keyframes progress-bar { 0% {width: 0%;} 100% {width:100%;} }
+
+        .avatar {
+            width: 100%; height: 300px; object-fit: cover; margin-bottom: 30px;
+            filter: grayscale(100%) contrast(150%) brightness(0.8);
+            border: 2px solid #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="vhs-band"></div>
+    <div class="vhs-band band-2"></div>
+    <div class="ui-ff"><span class="blink">►►</span> FF</div>
+
+    <div class="ff-wrapper">
+        <div class="container">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            
+            <div class="block">
+                <h1>MICHI_05</h1>
+                <span class="distort rgb-split">MODE: SILENT_SENIOR_RESIDENT.DAT</span>
+                <p>
+                    Saltate la etapa destructiva del cachorro. <br>
+                    Avance rápido a la paz mental.<br><br>
+                    Sin daños. Sin ruido. Operacion esteril al 100%. Humano_Senior incluido provee rentabilidad de costos.
+                </p>
+            </div>
+
+            <div class="block">
+                <span class="distort">DATA_LOG</span>
+                <ul>
+                    <li>SANIDAD: <span>[ CASTRADO = TRUE ] | [ VACUNAS = UP_TO_DATE ]</span></li>
+                    <li>COMPORTAMIENTO_NOCTURNO: <span>[ SLEEP_MODE = 100% ]</span></li>
+                    <li>MANTENIMIENTO_MUEBLES: <span>[ DANOS = 0_BYTES ]</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-progress"></div>
+    </div>
+</body>
+</html>

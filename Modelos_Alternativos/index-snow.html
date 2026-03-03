@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Pixel Snowstorm</title>
+    <!-- Pixel art font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; min-height: 100vh;
+            background: #0f1626; /* Deep winter night */
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            overflow-x: hidden;
+        }
+
+        /* Abstract CSS Snow generated via box-shadow */
+        .snow {
+            width: 8px; height: 8px;
+            background: #fff;
+            position: fixed; top: -10px; z-index: 5;
+            animation: fall linear infinite;
+        }
+
+        /* Wind keyframes */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) translateX(0px); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(200px); opacity: 0; }
+        }
+
+        /* Layered landscape using CSS gradients */
+        .landscape {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 300px;
+            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+            z-index: 0; pointer-events: none;
+        }
+
+        .container {
+            max-width: 800px; margin: 50px auto; position: relative; z-index: 10;
+        }
+
+        /* 8-bit chunky UI Box */
+        .pixel-box {
+            background: #223;
+            border: 8px solid #fff;
+            box-shadow: 
+                -8px 0 0 #fff, 8px 0 0 #fff, 
+                0 -8px 0 #fff, 0 8px 0 #fff,
+                inset -8px -8px 0 rgba(0,0,0,0.5);
+            padding: 40px; margin-bottom: 40px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* Pixel art avatar container */
+        .avatar-container {
+            width: 140px; height: 140px; margin: 0 auto 30px;
+            border: 8px solid #fff;
+            box-shadow: 8px 8px 0 #000;
+            background: #000; overflow: hidden;
+            position: relative;
+        }
+        
+        /* Simulating pixelation via image rendering */
+        .avatar {
+            width: 100%; height: 100%; object-fit: cover;
+            /* Force pixelation on standard image */
+            image-rendering: pixelated;
+            filter: contrast(1.2) grayscale(0.2);
+        }
+
+        h1 { font-size: 3rem; text-align: center; color: #7df9ff; margin: 0 0 10px 0; }
+        .lvl { text-align: center; color: #ffeb3b; font-size: 1.2rem; margin-bottom: 40px;}
+
+        h2 { font-size: 1.5rem; color: #ff3f3f; border-bottom: 4px solid #ff3f3f; padding-bottom: 15px; margin-top: 0;}
+
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px;}
+        
+        .stat { margin-bottom: 20px;}
+        .stat-name { color: #f2f2f2; font-size: 0.9rem; margin-bottom: 5px; line-height: 1.5;}
+        
+        /* 8-bit health bars */
+        .bar-bg { width: 100%; height: 20px; border: 4px solid #fff; background: #000; position: relative;}
+        .bar-fill { height: 100%; background: #4caf50; }
+        .bar-fill.max { width: 100%; background: #2196f3; }
+        .bar-fill.warning { width: 100%; background: #ff9800; animation: blink 1s infinite alternate;}
+        .bar-fill.zero { width: 0%; }
+
+        @keyframes blink { from {opacity: 1} to {opacity: 0.5} }
+        
+        p { font-size: 1rem; line-height: 2; color: #ccc;}
+
+    </style>
+</head>
+<body>
+    <!-- Generate Snowflakes via simple script below -->
+    <div id="snow-layer"></div>
+    <div class="landscape"></div>
+
+    <div class="container">
+        <div class="pixel-box">
+            <div class="avatar-container">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+            <h1>MICHI</h1>
+            <div class="lvl">LVL 5 ICE MAGE (INQUILINO)</div>
+
+            <div class="stat-grid">
+                <div>
+                    <h2>STATUS</h2>
+                    <div class="stat">
+                        <div class="stat-name">SANIDAD (VACUNAS)</div>
+                        <div class="bar-bg"><div class="bar-fill max"></div></div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-name">ESTERILIZACION</div>
+                        <div class="bar-bg"><div class="bar-fill max"></div></div>
+                    </div>
+                </div>
+                <div>
+                    <h2>SKILLS</h2>
+                    <div class="stat">
+                        <div class="stat-name">CRIANZA_PERROS_NO</div>
+                        <div class="bar-bg"><div class="bar-fill warning"></div></div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-name">RUIDO Y DANYO_MUEBLES</div>
+                        <div class="bar-bg"><div class="bar-fill zero"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pixel-box">
+            <h2>LORE . TXT</h2>
+            <p>
+                "ESTA FRIA NOCHE DE INVIERNO, MUCHOS GUERREROS (CACHORROS) BUSCAN REFUGIO, PERO DESTRUYEN EL CASTILLO POR DENTRO Y ARRUINAN LOS MUEBLES.
+                <br><br>
+                YO, MICHI, OFREZCO MAGIA CAOTICA CERO. SOLO DESEO DESCANSAR JUNTO AL FUEGO EN COMPLETO SILENCIO. MI COMPANERO (TRADUCTOR SENIOR) TIENE ORO INFINITO PARA PAGAR MIS POCIONES Y COMIDA. ALIANZA RECOMENDADA."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const snowLayer = document.getElementById('snow-layer');
+        // Generate 150 snowflakes
+        for(let i=0; i<150; i++) {
+            let flake = document.createElement('div');
+            flake.className = 'snow';
+            flake.style.left = Math.random() * 120 - 20 + 'vw'; // Start slightly offscreen to account for wind
+            
+            // Randomize size heavily for depth effect
+            let size = Math.random() * 8 + 4;
+            flake.style.width = size + 'px';
+            flake.style.height = size + 'px';
+            
+            // Layer opacity based on size
+            flake.style.opacity = size / 12;
+            
+            // Wind speed
+            flake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            flake.style.animationDelay = Math.random() * 5 + 's';
+            
+            snowLayer.appendChild(flake);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Infinite 3D Tunnel</title>
+    <!-- Geometric futuristic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; overflow: hidden; font-family: 'Orbitron', sans-serif;
+            background: #000; color: #fff;
+        }
+
+        /* 3D Infinity Tunnel */
+        .tunnel-wrapper {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            perspective: 600px;
+            display: flex; justify-content: center; align-items: center;
+            z-index: -1;
+        }
+
+        .tunnel {
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: tunnel-fly 4s linear infinite;
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 400px; height: 400px;
+            margin: -200px 0 0 -200px;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.2);
+            border-radius: 5px; /* sharp edges for sci fi feel */
+            /* Generate distance iteratively using JS below */
+        }
+
+        @keyframes tunnel-fly {
+            0% { transform: translateZ(0); }
+            100% { transform: translateZ(1000px); } /* matches loop depth */
+        }
+
+        /* Reading UI Overlay */
+        .glass-ui {
+            height: 100vh;
+            overflow-y: auto;
+            position: relative; z-index: 10;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 70%, #000 100%);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #0ff; }
+
+        .content {
+            max-width: 800px; margin: 0 auto;
+            background: rgba(0, 10, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #0ff;
+            border-radius: 10px; padding: 40px;
+            box-shadow: 0 0 30px rgba(0,255,255,0.2);
+        }
+
+        .avatar {
+            width: 150px; height: 150px; object-fit: cover;
+            border: 3px solid #0ff; border-radius: 15px;
+            box-shadow: 0 0 15px #0ff;
+            display: block; margin: 0 auto 20px;
+            transform: rotate(45deg); /* Diamond shape */
+        }
+        .avatar-inner {
+            transform: rotate(-45deg) scale(1.4); /* corrective inner rotation */
+            object-fit:cover; width: 100%; height: 100%;
+        }
+
+        h1 { font-size: 4rem; text-align: center; margin: 30px 0 0 0; color: #fff; text-shadow: 0 0 10px #0ff; font-weight: 900; letter-spacing: 5px;}
+        .subtitle { font-size: 1.2rem; text-align: center; color: #0ff; letter-spacing: 3px; border-bottom: 1px dashed #0ff; padding-bottom: 20px; margin-bottom: 30px;}
+
+        h2 { color: #fff; border-left: 5px solid #0ff; padding-left: 15px; font-size: 1.8rem; text-transform: uppercase;}
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px;}
+        
+        .data-box {
+            border: 1px solid rgba(0,255,255,0.3); padding: 20px;
+            background: linear-gradient(90deg, rgba(0,255,255,0.1) 0%, transparent 100%);
+            position: relative; overflow: hidden;
+        }
+        .data-box::after {
+            content:''; position: absolute; top:0; left:0; width:2px; height:100%; background: #0ff;
+            animation: scanline 2s linear infinite;
+        }
+        @keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+        .data-box h3 { margin: 0 0 10px 0; color: #0ff; font-size: 1.2rem; }
+        .data-box p { margin: 0; color: #ccc; font-family: sans-serif; line-height: 1.5; font-size: 1rem;}
+
+        .hologram-text {
+            border: 1px solid #0ff; padding: 20px; text-align: center; font-style: italic; color: #fff; font-family: sans-serif; line-height: 1.6;
+            box-shadow: inset 0 0 10px rgba(0,255,255,0.2);
+            animation: pulse-op 2s infinite alternate;
+        }
+        @keyframes pulse-op { 0% { opacity: 0.8;} 100% { opacity: 1; text-shadow: 0 0 5px #0ff;} }
+
+    </style>
+</head>
+<body>
+
+    <!-- Structure to hold JS generated 3D rings -->
+    <div class="tunnel-wrapper">
+        <div class="tunnel" id="tunnel"></div>
+    </div>
+
+    <!-- Interface -->
+    <div class="glass-ui">
+        <div class="content">
+            <div style="width:150px; height:150px; margin: 0 auto; overflow:hidden;" class="avatar">
+                <img src="../michi.jpg" alt="Michi" class="avatar-inner" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+            <h1>MICHI</h1>
+            <div class="subtitle">ENTITY CLASSIFICATION: SENIOR_SILENT</div>
+
+            <h2>> SYSTEM ANALYSIS</h2>
+            <div class="grid">
+                <div class="data-box">
+                    <h3>INTEGRITY_CHECK</h3>
+                    <p>Status: Perfect. Alteraciones neutras (castrado). Firewalls de inmunidad (vacunas) completamente al día.</p>
+                </div>
+                <div class="data-box">
+                    <h3>FURNITURE_COLLISION</h3>
+                    <p>Parameters set to zero. Las texturas de los muebles físicos son ignoradas por completo. Riesgo minimizado.</p>
+                </div>
+                <div class="data-box">
+                    <h3>AUDIO_OUTPUT</h3>
+                    <p>Mute loop habilitado permanentemente. Susceptibilidad extrema al ruido requiere entornos insonorizados/pacíficos.</p>
+                </div>
+                <div class="data-box">
+                    <h3>POWER_SOURCE</h3>
+                    <p>Garantía respaldada por 'Traductor Senior Humano' local. Suscripción eterna de croquetas funcionales. Paga los recibos.</p>
+                </div>
+            </div>
+
+            <h2>> ENCRYPTED COMM</h2>
+            <div class="hologram-text">
+                "Soy la convergencia definitiva de la tranquilidad felina. Viajando por el túnel del tiempo, pasé la caótica y ruidosa etapa de los cachorros. Mi único requerimiento de sistema es una base dock silenciosa donde mi humano recupere su estatus laboral diario mientras yo duermo eternizado en la Matrix."
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tunnel = document.getElementById('tunnel');
+        // create rings in depth
+        const ringSpacing = 100;
+        const totalRings = 25; // 2500px deep tunnel
+        
+        for(let i=0; i<totalRings; i++) {
+            let ring = document.createElement('div');
+            ring.className = 'ring';
+            ring.style.transform = `translateZ(${-i * ringSpacing}px) rotate(${i * 10}deg)`;
+            tunnel.appendChild(ring);
+        }
+        // Tunnel CSS animation will thrust container forward over 1000px creating infinite loop with spacing math.
+    </script>
+</body>
+</html>

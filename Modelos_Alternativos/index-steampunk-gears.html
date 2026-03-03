@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Steampunk Gears</title>
+    <!-- Victorian/Mechanical Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rye&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 40px 20px; min-height: 100vh;
+            background: #2b1f1a url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%232b1f1a"/><path d="M0 0l100 100M100 0L0 100" stroke="%23382721" stroke-width="1"/></svg>');
+            color: #d6b48a; /* Brass/Gold color */
+            font-family: 'Merriweather', serif;
+            overflow-x: hidden; position: relative;
+        }
+
+        /* Abstract Mechanical Engine Background */
+        .engine-room {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none; overflow: hidden;
+        }
+
+        /* Generating CSS drawn gears using radial backgrounds and masks */
+        .gear {
+            position: absolute; border-radius: 50%;
+            border: 15px dashed rgba(214, 180, 138, 0.2); /* Basic teeth simulation */
+            box-sizing: border-box;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.5);
+            background: radial-gradient(circle, transparent 30%, rgba(214, 180, 138, 0.1) 32%, rgba(214, 180, 138, 0.3) 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gear::after {
+            content: ''; width: 20%; height: 20%; background: #2b1f1a; border-radius: 50%;
+            box-shadow: 0 0 10px inset black;
+            border: 5px solid rgba(214, 180, 138, 0.4);
+        }
+
+        .g1 { width: 400px; height: 400px; top: -100px; left: -100px; animation: spin 20s linear infinite; }
+        .g2 { width: 300px; height: 300px; top: 180px; left: 240px; animation: spin 15s linear infinite reverse; }
+        .g3 { width: 500px; height: 500px; bottom: -200px; right: -150px; animation: spin 25s linear infinite; border-width: 25px; border-color: rgba(184, 115, 51, 0.2); background: radial-gradient(circle, transparent 40%, rgba(184, 115, 51, 0.1) 42%, rgba(184, 115, 51, 0.2) 100%);}
+        .g4 { width: 200px; height: 200px; bottom: 250px; right: 280px; animation: spin 10s linear infinite reverse; }
+        .g5 { width: 150px; height: 150px; top: 50px; right: 50px; animation: spin 8s linear infinite; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .container { max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
+
+        .brass-plate {
+            background: linear-gradient(135deg, #4a362b 0%, #2b1f1a 100%);
+            border: 8px solid #a67c52;
+            border-radius: 5px; padding: 40px;
+            box-shadow: inset 0 0 20px #000, 5px 5px 15px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        
+        /* Screws in corners */
+        .brass-plate::before, .brass-plate::after {
+            content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%; background: #664f3c; box-shadow: inset -2px -2px 5px #000;
+        }
+        .brass-plate::before { top: 10px; left: 10px; }
+        .brass-plate::after { bottom: 10px; right: 10px; }
+        
+        .brass-plate-inner-screw-1 { position: absolute; top: 10px; right: 10px; width: 15px; height: 15px; border-radius: 50%; background: #664f3c; box-shadow: inset -2px -2px 5px #000; }
+        .brass-plate-inner-screw-2 { position: absolute; bottom: 10px; left: 10px; width: 15px; height: 15px; border-radius: 50%; background: #664f3c; box-shadow: inset -2px -2px 5px #000; }
+
+
+        .avatar {
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            border: 5px solid #d6b48a; margin: 0 auto 30px; display: block;
+            filter: sepia(0.8) contrast(1.2);
+            box-shadow: 0 0 15px #000;
+        }
+
+        h1 { font-family: 'Rye', cursive; font-size: 5rem; text-align: center; margin: 0; color: #f2d0a4; text-shadow: 3px 3px 6px #000, -1px -1px 0 #fff;}
+        .subtitle { text-align: center; font-family: 'Rye', cursive; font-size: 1.5rem; letter-spacing: 2px; margin-bottom: 40px; border-bottom: 2px solid #a67c52; padding-bottom: 20px;}
+
+        h2 { font-family: 'Rye', cursive; color: #f2d0a4;}
+
+        .spec-list { list-style: none; padding: 0;}
+        .spec-list li {
+            background: rgba(0,0,0,0.3); margin-bottom: 15px; padding: 15px 20px; border-left: 5px solid #a67c52; font-size: 1.1rem; line-height: 1.5;
+        }
+        
+        .cog-icon {
+            display: inline-block; width: 16px; height: 16px; margin-right: 10px; vertical-align: middle;
+            border-radius: 50%; border: 2px dashed #d6b48a; animation: spin 5s linear infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="engine-room">
+        <div class="gear g1"></div>
+        <div class="gear g2"></div>
+        <div class="gear g3"></div>
+        <div class="gear g4"></div>
+        <div class="gear g5"></div>
+    </div>
+
+    <div class="container">
+        <div class="brass-plate">
+            <div class="brass-plate-inner-screw-1"></div>
+            <div class="brass-plate-inner-screw-2"></div>
+            
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>MICHI</h1>
+            <div class="subtitle">Autómata del Silencio - Modelo Mark V</div>
+
+            <p style="text-align: justify; font-size: 1.2rem; line-height: 1.8;">
+                Caballeros y Damas de la Junta: A diferencia de los modelos prototipo (Cachorros erráticos), mi engranaje interno lleva funcionando a la perfección durante 5 años mecánicos. No libero emisiones sonoras (ladridos) que interfieran con la maquinaria del edificio, y mis garfios están programados para retraerse ante el mobiliario tapizado.
+            </p>
+
+            <h2>Especificaciones Técnicas</h2>
+            <ul class="spec-list">
+                <li><div class="cog-icon"></div><strong>Módulo Sanitario:</strong> Operación Estéril completada (Castrado). Interrupciones biológicas anuladas. Inmunizaciones al 100%.</li>
+                <li><div class="cog-icon"></div><strong>Acústica Interna:</strong> Funcionamiento a fricción 0. Cero ruidos registrados en ciclo diurno ni nocturno.</li>
+                <li><div class="cog-icon"></div><strong>Respeto Patrimonial:</strong> El protocolo "Anti-Destrucción de Interiores" es inamovible. Daño patrimonial estimado: Nulo.</li>
+                <li><div class="cog-icon"></div><strong>Consumo de Carbón/Alimento:</strong> Mi maquinista humano titular (Traductor Senior) asume la totalidad de la carga tributaria para los suministros.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Water Ripples</title>
+    <!-- Elegant serene font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Muli:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; min-height: 100vh;
+            background: #071f33; /* deep water blue */
+            color: #e0f2fe; font-family: 'Muli', sans-serif;
+            overflow-x: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* The container for SVG Ripples */
+        .water-surface {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; pointer-events: none; overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute; border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.2);
+            /* Transform origin center to expand from middle */
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+            animation: ripple-effect linear forwards;
+        }
+
+        @keyframes ripple-effect {
+            100% { transform: translate(-50%, -50%) scale(5); opacity: 0; border-width: 0.1px; }
+        }
+
+        /* Foreground Content */
+        .container {
+            max-width: 800px; width: 90%;
+            background: rgba(7, 31, 51, 0.6);
+            backdrop-filter: blur(10px); border-radius: 20px; padding: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            /* gentle float animation mimicking water */
+            animation: soft-float 6s infinite alternate ease-in-out;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        @keyframes soft-float { 100% { transform: translateY(15px); } }
+
+        .avatar {
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #38bdf8; padding: 5px;
+            margin-bottom: 20px; filter: contrast(1.1) brightness(1.1);
+        }
+
+        h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; margin: 0; letter-spacing: 3px; color: #bae6fd;}
+        .role { font-size: 1.2rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;}
+
+        h2 { font-family: 'Cinzel', serif; font-size: 2rem; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding-bottom: 15px;}
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; margin-top: 30px;}
+        .item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;}
+        .item strong { color: #38bdf8; display: block; margin-bottom: 5px; font-size: 1.1rem;}
+        .item p { margin: 0; line-height: 1.5; color: #cbd5e1;}
+
+        .poetic { margin-top: 40px; font-size: 1.1rem; line-height: 1.8; font-style: italic; color: #94a3b8; text-align: justify;}
+
+    </style>
+</head>
+<body>
+    <div class="water-surface" id="water"></div>
+
+    <div class="container">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>MICHI</h1>
+        <div class="role">Entidad de Calma (5 Años)</div>
+
+        <div class="grid">
+            <div class="item">
+                <strong>0% Ruido Generado</strong>
+                <p>La tranquilidad sobre el caos. Rechazo instintivo a los sonidos fuertes, promoviendo un santuario de silencio a horas nocturnas.</p>
+            </div>
+            <div class="item">
+                <strong>Mobiliario Inmaculado</strong>
+                <p>Garras retiradas del escrutinio ambiental. Sofás, cortinas y alfombras permanecen tan intactas como la superficie de un lago en calma.</p>
+            </div>
+            <div class="item">
+                <strong>Salud Óptima Confirmada</strong>
+                <p>Registros de esterilización concluidos y vacunas anualmente reforzadas eliminando comportamientos erráticos hormonales.</p>
+            </div>
+            <div class="item">
+                <strong>Autosuficiencia Financiada</strong>
+                <p>Gastos absorbidos integramente por un anfitrión humano adherido permanentemente con trabajo estable y devoción exclusiva.</p>
+            </div>
+        </div>
+
+        <div class="poetic">
+            "A diferencia de las ruidosas olas rompientes causadas por entidades más jóvenes (como cachorros), mi presencia en un hogar se asemeja a una suave onda en el agua: casi imperceptible, elegante, y pacífica."
+        </div>
+    </div>
+
+    <!-- Script to auto generate random water ripples -->
+    <script>
+        const waterLayer = document.getElementById('water');
+        
+        setInterval(() => {
+            let ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            
+            // Randomize position across the screen
+            ripple.style.left = Math.random() * 100 + 'vw';
+            ripple.style.top = Math.random() * 100 + 'vh';
+            
+            // Randomize duration and base size
+            const duration = Math.random() * 4 + 4; // 4s to 8s
+            const baseSize = Math.random() * 100 + 50;
+            
+            ripple.style.width = baseSize + 'px';
+            ripple.style.height = baseSize + 'px';
+            ripple.style.animationDuration = duration + 's';
+            
+            waterLayer.appendChild(ripple);
+            
+            // Cleanup
+            setTimeout(() => {
+                ripple.remove();
+            }, duration * 1000);
+            
+        }, 1500); // New ripple every 1.5s
+    </script>
+</body>
+</html>
