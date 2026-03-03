@@ -5,10 +5,10 @@
 
 <img src="./michi.jpg" alt="Michi CEO" width="200" style="border-radius: 50%; border: 5px solid #6366f1; margin: 20px 0;">
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-netlify-id/deploy-status)](https://app.netlify.com/sites/your-site-name/deploys)
+![Powered By](https://img.shields.io/badge/Powered_by-At%C3%BAn__y__Siestas-ff69b4?style=for-the-badge)
 ![Cat-Friendly](https://img.shields.io/badge/Status-100%25_Cat_Friendly-success?style=for-the-badge&logo=dependabot)  
-![No-Scratch](https://img.shields.io/badge/Garantía-0%25_Arañazos-blue?style=for-the-badge&logo=shieldcheck)
-![Purr-Sec](https://img.shields.io/badge/Seguridad-Póliza_de_Hogar_Activa-yellow?style=for-the-badge&logo=policemen)
+![No-Scratch](https://img.shields.io/badge/Garant%C3%ADa-0%25_Ara%C3%B1azos-blue?style=for-the-badge&logo=shieldcheck)
+![Purr-Sec](https://img.shields.io/badge/Seguridad-P%C3%B3liza_de_Hogar_Activa-yellow?style=for-the-badge&logo=policemen)
 
 ---
 
@@ -61,3 +61,13 @@ Si eres un humano con conocimientos básicos de teclear:
 <div align="center">
 <i>Creado con 🐾 y mucho atún. No me acaricien la panza, es una trampa.</i>
 </div>
+
+<br>
+
+### ⚖️ Aviso Legal y Licencia de Uso Gatuno
+
+Este diseño web intergaláctico de "CV Felino" puede ser replicado como plantilla (código abierto) para tus propios sirvientes humanos. 
+
+Sin embargo, todos los datos personales, descripciones y mi majestuosa identidad expuestos aquí pertenecen a individuos reales y están protegidos por la **Ley Orgánica de Protección de Datos y Garantía de Derechos Digitales (LOPDGDD)**... y por mis garras afiladas.
+
+Queda estrictamente prohibido el uso, modificación o apropiación de esta información personal para fines distintos a la evaluación de este perfil irreprochable como inquilino supremo. Las consecuencias legales pertinentes se aplicarán ante cualquier uso indebido, suplantación de identidad o scraping no autorizado por parte de cualquier bot o perro callejero. Puesto de forma sencilla: si tocas mi identidad, mi bufete de abogados y mis colmillos irán por ti. 😼⚖️
