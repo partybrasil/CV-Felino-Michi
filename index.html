@@ -333,6 +333,42 @@
                 justify-content: center;
             }
         }
+        /* EASTER EGGS CSS */
+        body.laser-cursor, body.laser-cursor * { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="4" fill="red"/></svg>') 8 8, auto !important; }
+        .paw-print { position: fixed; width: 24px; height: 24px; pointer-events: none; opacity: 0; z-index: 9999; 
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z"/></svg>');
+            background-size: contain; background-repeat: no-repeat;
+            animation: fadePaw 2s forwards; }
+        @keyframes fadePaw { 0% { opacity: 0.6; transform: scale(0.8); } 100% { opacity: 0; transform: scale(1.2); } }
+        @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(3px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(3px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
+        .shake-active { animation: shake 0.5s; animation-iteration-count: 3; }
+        .night-vision { filter: invert(1) hue-rotate(180deg) contrast(1.2) brightness(1.2); background: #000 !important; color: #0f0 !important; }
+        .night-vision img { filter: invert(1) hue-rotate(180deg); }
+        #purr-bar-container { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.1); z-index: 100000; pointer-events: none; }
+        #purr-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff9a9e 0%, #a18cd1 50%, #fecfef 100%); transition: width 0.1s; box-shadow: 0 0 5px rgba(255,154,158,0.5); }
+        .purr-max { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ff9a9e; color: #fff; padding: 10px 20px; border-radius: 20px; font-weight: bold; z-index: 100000; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+        #back-to-top { position: fixed; bottom: -50px; right: 20px; width: 40px; height: 40px; background: var(--accent-blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: bottom 0.3s, transform 0.3s; z-index: 1000; opacity: 0; font-weight: bold; }
+        #back-to-top.visible { bottom: 20px; opacity: 1; }
+        #cat-paw-attack { position: fixed; bottom: -120px; right: 5px; width: 70px; height: 100px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M495.9 166.6c-3.2-8.5-12.7-12.7-21.2-9.4L337.5 208v-96c0-8.8-7.2-16-16-16h-48v59.9l121.2-46c8.5-3.2 12.7-12.7 9.4-21.2-3.1-8.5-12.6-12.7-21.1-9.4L208 145.4v-40.8A38.4 38.4 0 0 0 169.6 66h-24C124.4 66 107 83.4 107 104.5V208l-69.5-25.9c-8.5-3.2-18 1.1-21.2 9.6-3.2 8.5 1.1 18 9.6 21.2l61.5 22.9C36.7 274.6 15 329.8 15 391.2A96.3 96.3 0 0 0 111.4 488H401c53 0 96-43.1 96-96 0-61.9-22-117.6-72.9-155.6l62.4-23.2c8.5-3.2 12.7-12.7 9.4-21.2z"/></svg>'); background-size: contain; background-repeat: no-repeat; transition: bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1001; pointer-events: none; }
+        #cat-paw-attack.attack { bottom: 60px; }
+        .comic-bubble { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #fff; border: 2px solid #000; color:#000; border-radius: 10px; padding: 10px; font-weight: bold; font-size: 13px; white-space: pre-wrap; text-align: center; width: 140px; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 10; box-shadow: 2px 2px 0 #000; margin-bottom: 5px; }
+        .comic-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #000 transparent transparent transparent; }
+        .comic-bubble.show { opacity: 1; }
+        .avatar-turn { transform: rotateY(180deg) !important; transition: transform 0.5s !important; }
+        #sleep-mode-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9900; opacity: 0; pointer-events: none; transition: opacity 1s; }
+        #sleep-mode-overlay.sleeping { opacity: 1; }
+        .zzz { position: absolute; color: #fff; font-weight: bold; font-size: 24px; text-shadow: 0 0 5px #000; animation: zzzAnimation 2s infinite; opacity: 0; z-index: 9901; pointer-events: none; }
+        @keyframes zzzAnimation { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-50px) scale(1.5); opacity: 0; } }
+        .surprised-cat { filter: brightness(1.5) contrast(1.2); transform: scale(1.1) rotate(5deg) !important; transition: all 0.2s !important; }
+        #chaos-btn { position: fixed; top: 20px; right: 20px; background: #ff3b30; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; z-index: 10000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #clean-btn { position: fixed; top: 20px; right: 120px; background: #34c759; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; z-index: 10000; display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .chaos-mode p, .chaos-mode h1, .chaos-mode h2, .chaos-mode h3, .chaos-mode .card { transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+        #not-found-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 100000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        #not-found-modal.show { opacity: 1; pointer-events: auto; }
+        #not-found-modal img { max-width: 90%; max-height: 60vh; border-radius: 10px; margin-bottom: 20px; }
+        #not-found-modal p { color: white; font-size: 24px; font-weight: bold; text-align: center; }
+        #close-not-found { margin-top: 20px; padding: 10px 20px; background: #0071e3; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight:bold; }
+        /* END EASTER EGGS CSS */
     </style>
 </head>
 <body>
@@ -458,6 +494,9 @@
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 Ver perfil de LinkedIn de mi humano
             </a>
+            
+            <!-- Easter Egg 404 Trigger -->
+            <a href="#404-secret" style="color: var(--text-secondary); text-decoration: underline; font-size: 0.85rem; margin-top: 1.5rem; cursor: pointer;">No hacer clic aquí (Archivo súper secreto)</a>
         </section>
 
         <!-- Footer / Legal -->
@@ -487,27 +526,344 @@
 
     </main>
 
-    <!-- JS for scroll animations -->
+    <!-- EASTER EGGS -->
+    <!-- Audio Elements -->
+    <audio id="meow-sound" src="https://www.myinstants.com/media/sounds/cat-meow-1.mp3"></audio>
+
+    <!-- HTML Elements -->
+    <div id="purr-bar-container"><div id="purr-bar"></div></div>
+    <div id="purr-message" class="purr-max">Nivel de satisfacción humana: Máximo</div>
+    
+    <div id="back-to-top">↑</div>
+    <div id="cat-paw-attack"></div>
+
+    <div id="sleep-mode-overlay"></div>
+
+    <button id="chaos-btn">⚠️ Modo Caos</button>
+    <button id="clean-btn">🧹 Limpiar desastre</button>
+
+    <div id="not-found-modal">
+        <!-- New working Giphy URL -->
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjkwMDFjZGJhMGRjMWQ0MjRiMGQyOGZhMjY0NDIwNGZiZmZhMTBiYiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/mlvseq9yvZhba/giphy.gif" alt="Gato tirando vaso">
+        <p>Yo no he sido, ha sido la gravedad.</p>
+        <button id="close-not-found">Volver</button>
+    </div>
+
+    <!-- JS LOGIC -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
+            // Original Fade Logic
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // Optional: unobserve after animating
-                        // observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
-
             const fadeElements = document.querySelectorAll('.fade-up');
             fadeElements.forEach(el => observer.observe(el));
+
+            // 1. Efecto Puntero (y rotación avatar)
+            document.body.classList.add('laser-cursor');
+
+            const avatar = document.querySelector('.avatar');
+            const avatarWrapper = document.querySelector('.avatar-wrapper');
+            if (avatarWrapper && avatar) {
+                avatar.style.transition = 'transform 0.1s';
+                
+                const bubble = document.createElement('div');
+                bubble.className = 'comic-bubble';
+                bubble.innerText = '¡Basta de mimos, estoy ocupado cazando moscas!';
+                avatarWrapper.appendChild(bubble);
+                avatarWrapper.style.position = 'relative';
+
+                const handleMove = (clientX, clientY, pageX, pageY) => {
+                    const rect = avatar.getBoundingClientRect();
+                    const avatarX = rect.left + rect.width / 2;
+                    const avatarY = rect.top + rect.height / 2;
+                    const deltaX = clientX - avatarX;
+                    const deltaY = clientY - avatarY;
+                    
+                    const rotateY = deltaX > 0 ? 10 : -10;
+                    const rotateX = deltaY > 0 ? -10 : 10;
+                    
+                    if (!avatar.classList.contains('avatar-turn')) {
+                        avatar.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    }
+
+                    // Huellas
+                    if (Math.random() < 0.05) { 
+                        const paw = document.createElement('div');
+                        paw.className = 'paw-print';
+                        paw.style.left = (pageX - 12) + 'px';
+                        paw.style.top = (pageY - 12) + 'px';
+                        paw.style.transform = `rotate(${Math.random() * 360}deg)`;
+                        document.body.appendChild(paw);
+                        setTimeout(() => paw.remove(), 2000);
+                    }
+                };
+
+                document.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY, e.pageX, e.pageY));
+                document.addEventListener('touchmove', (e) => {
+                    if(e.touches.length > 0) {
+                        const touch = e.touches[0];
+                        handleMove(touch.clientX, touch.clientY, touch.pageX, touch.pageY);
+                    }
+                });
+
+                // Spam de caricias
+                let clickCount = 0;
+                let clickTimer;
+                avatar.style.cursor = 'pointer';
+                
+                const handleAvatarTap = () => {
+                    clickCount++;
+                    clearTimeout(clickTimer);
+                    
+                    if (clickCount >= 5) {
+                        bubble.classList.add('show');
+                        avatar.classList.add('avatar-turn');
+                        setTimeout(() => {
+                            bubble.classList.remove('show');
+                            avatar.classList.remove('avatar-turn');
+                            clickCount = 0;
+                        }, 3000);
+                    } else {
+                        clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+                    }
+                };
+
+                avatar.addEventListener('click', handleAvatarTap);
+                avatar.addEventListener('touchstart', (e) => {
+                    e.preventDefault(); 
+                    handleAvatarTap();
+                }, { passive: false });
+            }
+
+            // 2. Easter Eggs de Teclado y Gestos Móviles
+            function triggerMeow() {
+                const audio = document.getElementById('meow-sound');
+                audio.currentTime = 0;
+                audio.play().catch(e => console.log('Audio autoplay blocked'));
+                document.body.classList.add('shake-active');
+                setTimeout(() => document.body.classList.remove('shake-active'), 1500);
+                
+                const msg = document.createElement('div');
+                msg.innerText = '¡Súper Poder Activado! 🐱💥';
+                msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:min(3rem, 8vw);font-weight:bold;color:white;background:rgba(0,0,0,0.8);padding:20px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;width:90%;';
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 2000);
+            }
+
+            function triggerNightVision() {
+                document.body.classList.toggle('night-vision');
+            }
+
+            // Teclado
+            let typedKeys = '';
+            let konamiKeys = [];
+            const konamiCodeArray = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+            
+            document.addEventListener('keydown', (e) => {
+                // Miau check
+                const keyLower = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+                typedKeys += keyLower;
+
+                if (typedKeys.includes('miau')) {
+                    triggerMeow();
+                    typedKeys = ''; 
+                }
+                if (typedKeys.length > 50) typedKeys = typedKeys.slice(-20);
+
+                // Konami Check (necesita verificación exacta de la secuencia para funcionar bien)
+                konamiKeys.push(e.key === 'B' || e.key === 'A' ? e.key.toLowerCase() : e.key);
+                konamiKeys = konamiKeys.slice(-10); // Keep last 10
+                
+                if (JSON.stringify(konamiKeys) === JSON.stringify(konamiCodeArray)) {
+                    triggerNightVision();
+                    konamiKeys = [];
+                    typedKeys = '';
+                }
+            });
+
+            // Gestos táctiles alternativos (Móvil)
+            // Mantener pulsado el avatar para "MEOW"
+            let meowPressTimer;
+            if(avatar) {
+                avatar.addEventListener('touchstart', () => {
+                    meowPressTimer = setTimeout(triggerMeow, 2000);
+                });
+                avatar.addEventListener('touchend', () => clearTimeout(meowPressTimer));
+                avatar.addEventListener('touchmove', () => clearTimeout(meowPressTimer));
+            }
+
+            // 7 toques rápidos en el encabezado (h1) para modo "Visión Nocturna"
+            let headerTaps = 0;
+            let headerTapTimer;
+            const heroHeader = document.querySelector('.hero h1');
+            if(heroHeader) {
+                const handleHeaderTap = () => {
+                    headerTaps++;
+                    clearTimeout(headerTapTimer);
+                    if(headerTaps >= 7) {
+                        triggerNightVision();
+                        headerTaps = 0;
+                    } else {
+                        headerTapTimer = setTimeout(() => { headerTaps = 0; }, 1000);
+                    }
+                };
+                heroHeader.addEventListener('touchstart', handleHeaderTap);
+                heroHeader.addEventListener('click', handleHeaderTap);
+            }
+
+            // 3. Detalles en el Scroll
+            const purrBar = document.getElementById('purr-bar');
+            const purrMsg = document.getElementById('purr-message');
+            const backToTop = document.getElementById('back-to-top');
+            const catPaw = document.getElementById('cat-paw-attack');
+            
+            let purrShown = false;
+
+            window.addEventListener('scroll', () => {
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / scrollHeight) * 100;
+                purrBar.style.width = Math.min(scrolled, 100) + '%';
+
+                if (scrolled >= 99 && !purrShown) {
+                    purrMsg.style.opacity = '1';
+                    purrShown = true;
+                } else if (scrolled < 99) {
+                    purrMsg.style.opacity = '0';
+                    purrShown = false;
+                }
+
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            const scrollUp = (e) => {
+                if(e) e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                catPaw.classList.remove('attack');
+            }
+            backToTop.addEventListener('click', scrollUp);
+
+            const showPawAttack = () => {
+                if (window.scrollY > document.documentElement.scrollHeight - window.innerHeight - 100) {
+                    catPaw.classList.add('attack');
+                }
+            };
+            const hidePawAttack = () => {
+                catPaw.classList.remove('attack');
+            };
+
+            // Solo mostrar la patita al pasar el raton (hover), no al llegar abajo
+            backToTop.addEventListener('mouseenter', showPawAttack);
+            backToTop.addEventListener('mouseleave', hidePawAttack);
+            backToTop.addEventListener('touchstart', showPawAttack, {passive: true});
+            backToTop.addEventListener('touchend', hidePawAttack, {passive: true});
+
+            // 4. Errores y Consola
+            console.log("%c¿Buscando bugs? Aquí solo hay pulgas y código limpio. ¡Contrátame miau!", "color: #0071e3; font-size: 16px; font-weight: bold; background: #e0f2fe; padding: 10px; border-radius: 5px;");
+
+            const notFoundModal = document.getElementById('not-found-modal');
+            const closeNotFound = document.getElementById('close-not-found');
+            
+            document.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    const href = a.getAttribute('href');
+                    if (href === '#' || href === '' || href.includes('404')) {
+                        e.preventDefault();
+                        notFoundModal.classList.add('show');
+                    }
+                });
+            });
+            closeNotFound.addEventListener('click', () => notFoundModal.classList.remove('show'));
+
+            // 5. Modo Siesta
+            let inactivityTime = 0;
+            const sleepOverlay = document.getElementById('sleep-mode-overlay');
+            let zzzInterval;
+            
+            function createZzz() {
+                if(!avatarWrapper) return;
+                const z = document.createElement('div');
+                z.className = 'zzz';
+                z.innerText = 'Zzz';
+                const rect = avatarWrapper.getBoundingClientRect();
+                z.style.left = (rect.left + rect.width / 2 + (Math.random()*40-20)) + 'px';
+                z.style.top = rect.top + 'px';
+                document.body.appendChild(z);
+                setTimeout(() => z.remove(), 2000);
+            }
+
+            function resetTimer() {
+                if (sleepOverlay.classList.contains('sleeping')) {
+                    sleepOverlay.classList.remove('sleeping');
+                    clearInterval(zzzInterval);
+                    if(avatar) {
+                        avatar.style.transform = '';
+                        avatar.classList.add('surprised-cat');
+                        setTimeout(() => avatar.classList.remove('surprised-cat'), 1000);
+                    }
+                }
+                inactivityTime = 0;
+            }
+
+            setInterval(() => {
+                inactivityTime++;
+                if (inactivityTime === 10) {
+                    sleepOverlay.classList.add('sleeping');
+                    zzzInterval = setInterval(createZzz, 1000);
+                }
+            }, 1000);
+
+            ['mousemove', 'mousedown', 'keypress', 'DOMMouseScroll', 'mousewheel', 'touchmove', 'touchstart'].forEach(event => {
+                document.addEventListener(event, resetTimer, true);
+            });
+
+            // 6. Modo Caos
+            const chaosBtn = document.getElementById('chaos-btn');
+            const cleanBtn = document.getElementById('clean-btn');
+            const nodesToMess = document.querySelectorAll('.card, p, h1, h2, h3, li');
+            
+            const activateChaos = (e) => {
+                e.preventDefault();
+                document.body.classList.add('chaos-mode');
+                chaosBtn.style.display = 'none';
+                cleanBtn.style.display = 'block';
+                
+                nodesToMess.forEach(node => {
+                    if (!node.classList.contains('icon') && !node.classList.contains('btn-primary')) {
+                        const randomRotate = (Math.random() - 0.5) * 20; 
+                        const randomX = (Math.random() - 0.5) * 50;
+                        const randomY = (Math.random() - 0.5) * 50;
+                        node.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
+                    }
+                });
+            };
+
+            const cleanChaos = (e) => {
+                e.preventDefault();
+                document.body.classList.remove('chaos-mode');
+                chaosBtn.style.display = 'block';
+                cleanBtn.style.display = 'none';
+                
+                nodesToMess.forEach(node => {
+                    node.style.transform = '';
+                });
+            };
+
+            chaosBtn.addEventListener('click', activateChaos);
+            chaosBtn.addEventListener('touchstart', activateChaos, { passive: false });
+            
+            cleanBtn.addEventListener('click', cleanChaos);
+            cleanBtn.addEventListener('touchstart', cleanChaos, { passive: false });
+
         });
     </script>
 </body>
