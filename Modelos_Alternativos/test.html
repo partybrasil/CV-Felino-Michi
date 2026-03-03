@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Vista Michi</title>
+<style>
+  /* Estilos base suaves para que se vea bonito */
+  body { 
+    font-family: sans-serif; 
+    background: #f4d03f; /* Fondo amarillo cómic */
+    margin: 0; 
+    padding: 40px 20px; 
+    transition: background 0.3s; 
+  }
+  
+  /* El contenedor principal */
+  #contenedor { 
+    background: white; 
+    padding: 30px; 
+    border: 4px solid black;
+    box-shadow: 10px 10px 0px rgba(0,0,0,1);
+    margin: 0 auto; 
+    transition: all 0.5s ease; /* Esta línea hace que el cambio sea animado y fluido */
+  }
+
+  .perfil { text-align: center; margin-bottom: 20px; }
+  .gato-boton { font-size: 80px; cursor: pointer; user-select: none; transition: transform 0.2s;}
+  .gato-boton:hover { transform: scale(1.1); } /* Efecto al pasar el ratón */
+
+  .cajas { display: flex; gap: 20px; }
+  .caja { background: #00ffff; padding: 20px; flex: 1; border: 3px solid black; font-weight: bold; font-size: 20px;}
+
+  /* ---------------------------------------------------
+     VISTA NORMAL DE PC (Por defecto en pantallas grandes) 
+     --------------------------------------------------- */
+  @media (min-width: 768px) {
+    #contenedor { width: 800px; }
+  }
+
+  /* EL EFECTO: PC simulando MÓVIL (Se activa al hacer clic) */
+  @media (min-width: 768px) {
+    body.vista-alternativa { background: #333; } /* Oscurecemos el fondo */
+    
+    body.vista-alternativa #contenedor {
+      width: 320px; /* Lo estrechamos a tamaño móvil */
+      border: 15px solid #111; /* Le ponemos marco de teléfono */
+      border-radius: 30px; /* Bordes redondeados de teléfono */
+    }
+    
+    body.vista-alternativa .cajas {
+      flex-direction: column; /* Apilamos las cajas azules */
+    }
+  }
+
+  /* ---------------------------------------------------
+     VISTA NORMAL DE MÓVIL (Por defecto en pantallas pequeñas) 
+     --------------------------------------------------- */
+  @media (max-width: 767px) {
+    .cajas { flex-direction: column; }
+  }
+
+  /* EL EFECTO: Móvil simulando PC (Se activa al hacer clic) */
+  @media (max-width: 767px) {
+    body.vista-alternativa #contenedor {
+      min-width: 800px; /* Lo forzamos a ser muy ancho */
+    }
+    body.vista-alternativa .cajas {
+      flex-direction: row; /* Ponemos las cajas una al lado de la otra */
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div id="contenedor">
+    <div class="perfil">
+      <div id="foto-michi" class="gato-boton">🐱</div>
+      <h1>Toca el gato para cambiar la vista</h1>
+    </div>
+    
+    <div class="cajas">
+      <div class="caja">💥 SALUD TOTAL</div>
+      <div class="caja">💥 SILENCIO ABSOLUTO</div>
+    </div>
+  </div>
+
+  <script>
+    // El interruptor mágico
+    document.getElementById('foto-michi').addEventListener('click', function() {
+      document.body.classList.toggle('vista-alternativa');
+    });
+  </script>
+
+</body>
+</html>
