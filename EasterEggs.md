@@ -6,9 +6,9 @@
 
 ## 🖱️ Interacciones Base & UI Diferente
 
-### 1. 🐾 Efecto Puntero & Rastro (Tracker 3D)
+### 1. 🐾 Rastro de Huellas (Tracker 3D)
 Michi nunca le quita el ojo de encima a las visitas.
-- **PC:** Tu cursor normal se ha transformado en un **puntero láser rojo**. Fíjate en la cabeza de Michi (el avatar principal): seguirá la posición de tu láser en 3D (`rotateX` / `rotateY`). Además, mientras mueves el ratón, irán apareciendo pequeñas **huellas de garritas** (🐾) que se desvanecen.
+- **PC:** Mientras mueves el ratón, irán apareciendo pequeñas **huellas de garritas** (🐾) que se desvanecen. Además, la cabeza de Michi (el avatar principal) seguirá tu movimiento en 3D (`rotateX` / `rotateY`).
 - **Móvil:** Si deslizas tu dedo por la pantalla (`touchmove`), verás aparecer el rastro de huellitas.
 
 ### 2. 👋 Spam de Caricias (El Límite de la Paciencia)
@@ -36,14 +36,14 @@ La oscuridad es el hábitat natural de Michi...
 
 ## ⌨️ Teclas Inmediatas
 
-### 5. 🔴 Modo Gatito con Láser (Tecla `L`)
+### 5. 🔴 Modo Gatito con Láser (Pulsar Tecla `L`)
 Activa el modo persecución extrema.
-- **Acción:** Pulsa la tecla **`L`**.
+- **Acción:** Pulsa la tecla **`L`** en tu teclado.
 - **Efecto:** Tu ratón se vuelve el puntero láser (y lo puedes apagar pulsándolo de nuevo). **Bonus interactivo:** Si pasas el láser por encima de las cajas *"Salud Total"* o *"Solvencia Humana"*, Michi arqueará mucho más el cuello hacia ellas, con un ligero zoom, como si fuera a saltar y cazarlas.
 
-### 6. 🌌 Efecto Gravedad Cero (Tecla `G`)
+### 6. 🌌 Efecto Gravedad Cero (Pulsar Tecla `G`)
 La física de Newton vs Michi tirando cosas.
-- **Acción:** Pulsa la tecla **`G`**.
+- **Acción:** Pulsa la tecla **`G`** en tu teclado.
 - **Efecto:** Se carga el motor *Matter.js*. De repente, todas las `.card` y módulos flotantes de la página caen de golpe bajo el efecto de la gravedad. ¡Usa el ratón para arrastrarlas y tirarlas por la pantalla! Arriba aparecerá un botón rojo para "Recargar para salir".
 
 ---
@@ -78,7 +78,8 @@ Michi odia el letargo y la inacción.
 - **Acción:** Deja el cursor de tu ratón **completamente quieto durante 5 segundos** posado sobre cualquiera de los botones importantes (EJ: "Contactar a mi humano" o "Ver perfil de LinkedIn"). 
 - **Efecto:** De golpe, una pata negra lateral saldrá disparada sobre la UI del botón empujándolo con fuerza (`shake`), e irá acompañado de un globo de pensamiento que exclama: *"¡Si no lo vas a pulsar tú, lo pulso yo!"*.
 
-### 12. � Traductor Michi-Humano (Toggle)
+### 12. 🌐 Traductor Michi-Humano (Toggle)
+
 La web no está solo para humanos.
 - **Acción:** Arriba a la izquierda, hay un elegante interruptor/deslizador estilo iOS llamado *"Miau Mode"*.
 - **Efecto:** Al encenderlo, literalmente **todos** los textos legibles, párrafos, subtítulos y celdas de tabla se reescriben a nivel script generativo en repetidos "Miau", "Prrr" y "Mraw". Todo sigue en su mismo formato pero en lenguaje felino puro. Puedes desactivarlo y la web restaurará y recordará lo que decía la versión en español de forma mágica.
