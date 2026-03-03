@@ -441,7 +441,7 @@
         /* DEAD GIFT (RETURN VISITOR) */
         .dead-gift { position: fixed; bottom: 20px; left: 20px; font-size: 3rem; cursor: pointer; z-index: 10000; transition: transform 0.2s; user-select: none; }
         .dead-gift:hover { transform: scale(1.1) rotate(5deg); }
-        .dead-gift-msg { position: absolute; bottom: 100%; left: 0; background: var(--text-primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .dead-gift-msg { position: absolute; bottom: 100%; left: 0; background: var(--text-primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; width: max-content; max-width: 250px; white-space: normal; line-height: 1.4; opacity: 0; transition: opacity 0.3s; pointer-events: none; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .dead-gift-msg::after { content: ''; position: absolute; top: 100%; left: 20px; border-width: 6px; border-style: solid; border-color: var(--text-primary) transparent transparent transparent; }
         .dead-gift:hover .dead-gift-msg { opacity: 1; }
         
