@@ -639,7 +639,7 @@
             let lastUpdate = 0;
             let lastShakeToggle = 0;
             let last_x, last_y, last_z;
-            const SHAKE_THRESHOLD = 50; 
+            const SHAKE_THRESHOLD = 1000; 
 
             if (window.DeviceMotionEvent) {
                 window.addEventListener('devicemotion', (e) => {
