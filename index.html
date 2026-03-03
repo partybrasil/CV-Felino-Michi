@@ -1027,7 +1027,7 @@
                 });
 
                 btn.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768 && !isTouched) {
+                    if (!isTouched) {
                         e.preventDefault(); // Intercept normal link
                         isTouched = true;
                         

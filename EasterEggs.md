@@ -75,9 +75,9 @@ Progreso amigable de validación.
 
 ### 11. 🐾 Ataque de Patita a los Botones
 Michi odia el letargo y la inacción.
-- **Acción en PC:** Deja el cursor de tu ratón **completamente quieto durante 0.5 segundos** posado sobre cualquiera de los botones importantes (EJ: "Contactar a mi humano" o "Ver perfil de LinkedIn"). 
-- **Acción en Móvil:** Como en táctil no existe "dejar el puntero quieto", hay dos opciones. Si tocas el botón normal, el enlace se frenará para mostrar una cómica cuenta atrás de "3... 2... 1..." antes de lanzar la patita. Si, en cambio, mantienes pulsado el botón (`long press`), activará la animación directa sin interrumpir con la cuenta atrás (similar a PC).
-- **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón, y en móvil **se abrirá el enlace deseado justo después del zarpazo**.
+- **Acción (Hover/Long Press):** Si mantienes el cursor quieto (o pulsas de forma prolongada en móvil) durante **0.5 segundos** sobre un botón importante (EJ: "Contactar a mi humano"), se lanzará el ataque inmediatamente.
+- **Acción (Click/Tap):** Si tocas o haces clic en el botón de forma normal, el enlace se interceptará mostrando una cómica cuenta atrás de "3... 2... 1...".
+- **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón. Si activaste el modo Click/Tap, **se abrirá el enlace deseado justo después del zarpazo**.
 
 ### 12. 🌐 Traductor Michi-Humano (Toggle)
 
