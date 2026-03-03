@@ -56,18 +56,19 @@ Si eres un humano con conocimientos básicos de teclear:
 1. **Clona** este repositorio (o dale al botón gordo verde).
 2. Abre `index.html` (el principal) o métete a curiosear a `/Modelos_Alternativos/index.html`.
 3. Contémplame en toda mi gloria y llámame para firmar ese contrato de arrendamiento.
-
 ---
-<div align="center">
-<i>Creado con 🐾 y mucho atún. No me acaricien la panza, es una trampa.</i>
-</div>
 
-<br>
-
-### ⚖️ Aviso Legal y Licencia de Uso Gatuno
+## **⚖️ Aviso Legal y Licencia de Uso Gatuno**
 
 Este diseño web intergaláctico de "CV Felino" puede ser replicado como plantilla (código abierto) para tus propios sirvientes humanos. 
 
 Sin embargo, todos los datos personales, descripciones y mi majestuosa identidad expuestos aquí pertenecen a individuos reales y están protegidos por la **Ley Orgánica de Protección de Datos y Garantía de Derechos Digitales (LOPDGDD)**... y por mis garras afiladas.
 
-Queda estrictamente prohibido el uso, modificación o apropiación de esta información personal para fines distintos a la evaluación de este perfil irreprochable como inquilino supremo. Las consecuencias legales pertinentes se aplicarán ante cualquier uso indebido, suplantación de identidad o scraping no autorizado por parte de cualquier bot o perro callejero. Puesto de forma sencilla: si tocas mi identidad, mi bufete de abogados y mis colmillos irán por ti. 😼⚖️
+Queda estrictamente prohibido el uso, modificación o apropiación de esta información personal para fines distintos a la evaluación de este perfil irreprochable como inquilino supremo. Las consecuencias legales pertinentes se aplicarán ante cualquier uso indebido, suplantación de identidad o scraping no autorizado por parte de cualquier bot o perro callejero.
+
+Puesto de forma sencilla: si tocas mi identidad, mi bufete de abogados y mis colmillos irán por ti. 😼⚖️
+
+---
+<div align="center">
+<i>Creado con 🐾 y mucho atún. No me acaricien la panza, es una trampa.</i>
+</div>
