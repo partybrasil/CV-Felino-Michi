@@ -16,7 +16,7 @@ Para no olvidar ningún poder secreto ni combinación, los humanos necesitan chu
 
 ### � La Caza del Puntero (Vibración de salto)
 El instinto cazador nunca duerme.
-- **Acción:** Deja el cursor quieto cerca de la foto de Michi (a unos centímetros).
+- **Acción:** Deja el cursor quieto cerca de la foto de Michi (a unos centímetros). **(Solo funciona si el Modo Gatito con Láser (Tecla L) está activado).**
 - **Efecto:** Michi empezará a "menear el pompis" (una vibración rápida y suave, típica de gatos calculando un salto). Si mueves el ratón de repente para "escapar", ¡Michi lanzará un zarpazo visual instantáneo que dejará un rasguño rojo y temporal en tu pantalla!
 
 ### �🐾 Rastro de Huellas (Tracker 3D)

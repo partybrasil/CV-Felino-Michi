@@ -1385,6 +1385,14 @@
                 const mouseY = e.clientY;
                 
                 if (avatarWrapper) {
+                    if (!laserActive) {
+                        clearTimeout(pounceTimer);
+                        isWiggling = false;
+                        avatarWrapper.classList.remove('wiggle-butt');
+                        lastPounceMouseX = mouseX;
+                        lastPounceMouseY = mouseY;
+                        return;
+                    }
                     const rect = avatarWrapper.getBoundingClientRect();
                     const avatarCenterX = rect.left + rect.width / 2;
                     const avatarCenterY = rect.top + rect.height / 2;
