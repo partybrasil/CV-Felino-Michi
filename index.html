@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+   /\_/\
+  ( o.o )  ¡Hola Dev! 
+   > ^ <   Si estás leyendo esto, deberías contratar a mi humano.
+-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     
     <style>
         :root {
@@ -342,8 +348,11 @@
         @keyframes fadePaw { 0% { opacity: 0.6; transform: scale(0.8); } 100% { opacity: 0; transform: scale(1.2); } }
         @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 10% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-3px, 0px) rotate(1deg); } 30% { transform: translate(3px, 2px) rotate(0deg); } 40% { transform: translate(1px, -1px) rotate(1deg); } 50% { transform: translate(-1px, 2px) rotate(-1deg); } 60% { transform: translate(-3px, 1px) rotate(0deg); } 70% { transform: translate(3px, 1px) rotate(-1deg); } 80% { transform: translate(-1px, -1px) rotate(1deg); } 90% { transform: translate(1px, 2px) rotate(0deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
         .shake-active { animation: shake 0.5s; animation-iteration-count: 3; }
-        .night-vision { filter: invert(1) hue-rotate(180deg) contrast(1.2) brightness(1.2); background: #000 !important; color: #0f0 !important; }
-        .night-vision img { filter: invert(1) hue-rotate(180deg); }
+        #night-vision-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998; opacity: 0; transition: opacity 0.5s; background: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%), transparent 0%, rgba(0,0,0,0.98) 100%); }
+        #night-vision-overlay.active { opacity: 1; pointer-events: none; }
+        .claw-marks { position: fixed; width: 300px; height: 300px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q 30 50 20 90 M40 5 Q 60 45 50 85 M70 15 Q 90 55 80 95" stroke="rgba(255,255,255,0.06)" stroke-width="3" fill="none"/></svg>'); z-index: 9997; pointer-events: none; opacity: 0; transition: opacity 0.5s; top: 20%; left: 10%; transform: rotate(-15deg); }
+        .claw-marks.c2 { top: 60%; left: 70%; transform: rotate(15deg) scale(0.8); }
+        #night-vision-overlay.active ~ .claw-marks { opacity: 1; }
         #purr-bar-container { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.1); z-index: 100000; pointer-events: none; }
         #purr-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ff9a9e 0%, #a18cd1 50%, #fecfef 100%); transition: width 0.1s; box-shadow: 0 0 5px rgba(255,154,158,0.5); }
         .purr-max { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ff9a9e; color: #fff; padding: 10px 20px; border-radius: 20px; font-weight: bold; z-index: 100000; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
@@ -368,10 +377,35 @@
         #not-found-modal img { max-width: 90%; max-height: 60vh; border-radius: 10px; margin-bottom: 20px; }
         #not-found-modal p { color: white; font-size: 24px; font-weight: bold; text-align: center; }
         #close-not-found { margin-top: 20px; padding: 10px 20px; background: #0071e3; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight:bold; }
+        /* SCHRODINGER BOX */
+        #schrodinger-box { font-size: 2.5rem; cursor: pointer; display: inline-block; transition: transform 0.2s; user-select: none; margin-top: 15px; }
+        #schrodinger-box:active { transform: scale(0.9); }
+        .schrodinger-result { position: fixed; font-size: 2.5rem; animation: floatUpResult 1.5s forwards; pointer-events: none; z-index: 10000; }
+        @keyframes floatUpResult { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-70px); } }
+        /* TRANSLATOR TOGGLE */
+        #michi-translator { position: fixed; top: 20px; left: 20px; z-index: 10000; background: var(--glass-bg); padding: 8px 12px; border-radius: 20px; border: 1px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--glass-shadow); backdrop-filter: blur(10px); color: var(--text-primary); font-weight: 500; font-size: 0.9rem; user-select: none; transition: transform 0.2s; }
+        #michi-translator:hover { transform: scale(1.05); }
+        #michi-translator input { display: none; }
+        .toggle-track { width: 36px; height: 20px; background: #ccc; border-radius: 10px; position: relative; transition: background 0.3s; }
+        .toggle-thumb { width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: transform 0.3s; }
+        #michi-translator input:checked + .toggle-track { background: var(--accent-blue); }
+        #michi-translator input:checked + .toggle-track .toggle-thumb { transform: translateX(16px); }
+        /* KNEADING PAWS */
+        #kneading-paws { position: fixed; right: 10px; top: 40%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 999; pointer-events: none; opacity: 0.6; }
+        .knead-paw { width: 40px; height: 40px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z"/></svg>'); background-size: contain; background-repeat: no-repeat; transform: scaleY(0.8); transition: transform 0.1s; }
+        .knead-paw.left { transform-origin: left center; }
+        .knead-paw.right { transform-origin: right center; }
+        body.matter-active .container { visibility: hidden; }
         /* END EASTER EGGS CSS */
     </style>
 </head>
 <body>
+    <!-- Traductor Toggle -->
+    <label id="michi-translator">
+        <input type="checkbox" id="michi-translator-checkbox">
+        <div class="toggle-track"><div class="toggle-thumb"></div></div>
+        <span>Miau Mode</span>
+    </label>
 
     <!-- Background Decoration -->
     <div class="bg-shapes">
@@ -519,6 +553,9 @@
                 Puesto de forma sencilla: si tocas mi identidad, mi bufete de abogados y mis colmillos irán por ti. 😼⚖️
             </p>
         </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <div id="schrodinger-box" title="Caja de Schrödinger (Prueba tu suerte)">📦❓</div>
+        </div>
         <p style="text-align: center; margin-top: 15px;">
             <span><a href="Modelos_Alternativos/index.html" style="color: inherit; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-blue)'" onmouseout="this.style.color='inherit'">&copy; 2026 - Michi & Humano en Málaga</a></span>
         </p>
@@ -536,6 +573,17 @@
     
     <div id="back-to-top">↑</div>
     <div id="cat-paw-attack"></div>
+
+    <!-- Night Vision Elements -->
+    <div id="night-vision-overlay"></div>
+    <div class="claw-marks"></div>
+    <div class="claw-marks c2"></div>
+
+    <!-- Kneading Paws -->
+    <div id="kneading-paws">
+        <div class="knead-paw left"></div>
+        <div class="knead-paw right"></div>
+    </div>
 
     <div id="sleep-mode-overlay"></div>
 
@@ -565,7 +613,7 @@
             fadeElements.forEach(el => observer.observe(el));
 
             // 1. Efecto Puntero (y rotación avatar)
-            document.body.classList.add('laser-cursor');
+            let laserActive = false;
 
             const avatar = document.querySelector('.avatar');
             const avatarWrapper = document.querySelector('.avatar-wrapper');
@@ -579,6 +627,9 @@
                 avatarWrapper.style.position = 'relative';
 
                 const handleMove = (clientX, clientY, pageX, pageY) => {
+                    document.documentElement.style.setProperty('--mouse-x', clientX + 'px');
+                    document.documentElement.style.setProperty('--mouse-y', clientY + 'px');
+
                     const rect = avatar.getBoundingClientRect();
                     const avatarX = rect.left + rect.width / 2;
                     const avatarY = rect.top + rect.height / 2;
@@ -590,6 +641,13 @@
                     
                     if (!avatar.classList.contains('avatar-turn')) {
                         avatar.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    }
+
+                    if (laserActive) {
+                        const elementsUnder = document.elementsFromPoint(clientX, clientY);
+                        if (elementsUnder.some(el => el.classList.contains('card') && (el.innerText.includes('Salud Total') || el.innerText.includes('Solvencia Humana')))) {
+                            avatar.style.transform = `perspective(500px) rotateX(${rotateX*2}deg) rotateY(${rotateY*2}deg) scale(1.1)`;
+                        }
                     }
 
                     // Huellas
@@ -657,7 +715,7 @@
             }
 
             function triggerNightVision() {
-                document.body.classList.toggle('night-vision');
+                document.getElementById('night-vision-overlay').classList.toggle('active');
             }
 
             // Teclado
@@ -666,8 +724,17 @@
             const konamiCodeArray = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
             
             document.addEventListener('keydown', (e) => {
-                // Miau check
                 const keyLower = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+                
+                if (keyLower === 'l' && !['INPUT','TEXTAREA'].includes(e.target.tagName)) {
+                    laserActive = !laserActive;
+                    document.body.classList.toggle('laser-cursor', laserActive);
+                }
+                if (keyLower === 'g' && !['INPUT','TEXTAREA'].includes(e.target.tagName)) {
+                    toggleZeroGravity();
+                }
+
+                // Miau check
                 typedKeys += keyLower;
 
                 if (typedKeys.includes('miau')) {
@@ -741,7 +808,34 @@
             
             let purrShown = false;
 
+            const leftPaw = document.querySelector('.knead-paw.left');
+            const rightPaw = document.querySelector('.knead-paw.right');
+            let lastScrollTop = 0;
+            let lastScrollTime = Date.now();
+            let kneadState = 0;
+
             window.addEventListener('scroll', () => {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                const now = Date.now();
+                const delta = Math.abs(st - lastScrollTop);
+                const timeDelta = now - lastScrollTime;
+                
+                if (timeDelta > 0 && delta > 0) {
+                    const speed = delta / timeDelta;
+                    if (speed > 0.5) {
+                        kneadState = (kneadState + speed) % 20;
+                        if (kneadState > 10) {
+                            leftPaw.style.transform = 'scaleY(1)';
+                            rightPaw.style.transform = 'scaleY(0.6)';
+                        } else {
+                            leftPaw.style.transform = 'scaleY(0.6)';
+                            rightPaw.style.transform = 'scaleY(1)';
+                        }
+                    }
+                }
+                lastScrollTop = st <= 0 ? 0 : st;
+                lastScrollTime = now;
+
                 const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
                 const scrolled = (window.scrollY / scrollHeight) * 100;
                 purrBar.style.width = Math.min(scrolled, 100) + '%';
@@ -879,6 +973,194 @@
             
             cleanBtn.addEventListener('click', cleanChaos);
             cleanBtn.addEventListener('touchstart', cleanChaos, { passive: false });
+
+            // Ataque de la Patita
+            let pawAttackTimer;
+            document.querySelectorAll('.btn-primary, .btn-linkedin').forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    pawAttackTimer = setTimeout(() => {
+                        const rect = btn.getBoundingClientRect();
+                        const attackPaw = document.createElement('div');
+                        attackPaw.style.cssText = `position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><path d='M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z'/></svg>"); background-size: contain; background-repeat: no-repeat; top: ${rect.top + rect.height/2}px; left: -100px; z-index: 10000; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none;`;
+                        document.body.appendChild(attackPaw);
+                        setTimeout(() => {
+                            attackPaw.style.left = (rect.left - 40) + 'px';
+                            btn.classList.add('shake-active');
+                            setTimeout(() => btn.classList.remove('shake-active'), 1500);
+                            const bubble = document.createElement('div');
+                            bubble.className = 'comic-bubble show';
+                            bubble.innerText = '¡Si no lo vas a pulsar tú, lo pulso yo!';
+                            bubble.style.top = (rect.top - 40) + 'px';
+                            bubble.style.left = (rect.left + rect.width/2) + 'px';
+                            bubble.style.position = 'fixed';
+                            document.body.appendChild(bubble);
+                            setTimeout(() => {
+                                attackPaw.style.left = '-100px';
+                                bubble.classList.remove('show');
+                                setTimeout(() => { attackPaw.remove(); bubble.remove(); }, 500);
+                            }, 2000);
+                        }, 50);
+                    }, 5000);
+                });
+                btn.addEventListener('mouseleave', () => clearTimeout(pawAttackTimer));
+            });
+
+            // Traductor Michi-Humano
+            const translatorToggle = document.getElementById('michi-translator-checkbox');
+            const translateNodes = document.querySelectorAll('h1, h2, h3, h4, p, li, th, td, a');
+            const meowWords = ['Miau', 'Prrr', 'Mraw', 'Miaaau', 'Mrrr'];
+            translatorToggle.addEventListener('change', (e) => {
+                const isMichi = e.target.checked;
+                translateNodes.forEach(node => {
+                    Array.from(node.childNodes).forEach(child => {
+                        if (child.nodeType === 3 && child.nodeValue.trim().length > 0) {
+                            if (isMichi) {
+                                if (!child.dataset) child.dataset = {};
+                                child.dataset.original = child.nodeValue;
+                                const wordsCount = child.nodeValue.trim().split(/\s+/).length;
+                                let translated = '';
+                                for(let i=0; i<wordsCount; i++) {
+                                    translated += meowWords[Math.floor(Math.random() * meowWords.length)] + ' ';
+                                }
+                                child.nodeValue = translated;
+                            } else {
+                                if (child.dataset && child.dataset.original) {
+                                    child.nodeValue = child.dataset.original;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Caja Schröndinger
+            const schroBox = document.getElementById('schrodinger-box');
+            if (schroBox) {
+                schroBox.addEventListener('click', (e) => {
+                    const rect = schroBox.getBoundingClientRect();
+                    const rand = Math.random();
+                    if (rand < 0.25) {
+                        const pez = document.createElement('div');
+                        pez.className = 'schrodinger-result';
+                        pez.innerText = '🐟';
+                        pez.style.left = (rect.left + 10) + 'px';
+                        pez.style.top = (rect.top - 20) + 'px';
+                        document.body.appendChild(pez);
+                        setTimeout(() => pez.remove(), 1500);
+                    } else if (rand < 0.5) {
+                        const hiss = new Audio('https://www.myinstants.com/media/sounds/cat-hiss.mp3');
+                        hiss.play().catch(e => console.log('Hiss audio blocked'));
+                    } else if (rand < 0.75) {
+                        window.open('https://www.youtube.com/watch?v=tpiyEe_CqB4', '_blank');
+                    } else {
+                        const nada = document.createElement('div');
+                        nada.className = 'schrodinger-result';
+                        nada.innerText = '💨';
+                        nada.style.left = (rect.left + 10) + 'px';
+                        nada.style.top = (rect.top - 20) + 'px';
+                        document.body.appendChild(nada);
+                        setTimeout(() => nada.remove(), 1500);
+                    }
+                });
+            }
+
+            // Gravedad Cero Function
+            function toggleZeroGravity() {
+                if (document.body.classList.contains('matter-active')) return;
+                
+                if (typeof Matter === 'undefined') {
+                    console.error('Matter.js not loaded');
+                    return;
+                }
+
+                document.body.classList.add('matter-active');
+                const scrollY = window.scrollY;
+                
+                const Engine = Matter.Engine,
+                      Render = Matter.Render,
+                      Runner = Matter.Runner,
+                      Bodies = Matter.Bodies,
+                      Composite = Matter.Composite,
+                      Mouse = Matter.Mouse,
+                      MouseConstraint = Matter.MouseConstraint;
+
+                const engine = Engine.create();
+                
+                let canvasContainer = document.createElement('div');
+                canvasContainer.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:99999; overflow:hidden; pointer-events:none;';
+                document.body.appendChild(canvasContainer);
+
+                const render = Render.create({
+                    element: canvasContainer,
+                    engine: engine,
+                    options: {
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                        wireframes: false,
+                        background: 'transparent'
+                    }
+                });
+                render.canvas.style.pointerEvents = 'auto'; // allow dragging on the canvas
+
+                const matterBodies = [];
+                const cards = document.querySelectorAll('.card, .avatar-wrapper, .glass-panel');
+                
+                const cardsToSync = Array.from(cards).map(el => {
+                    const rect = el.getBoundingClientRect();
+                    const body = Bodies.rectangle(
+                        rect.left + rect.width / 2, 
+                        rect.top + rect.height / 2, 
+                        rect.width, 
+                        rect.height, 
+                        {
+                            render: { opacity: 0 }, // invisible in canvas, HTML will show
+                            restitution: 0.8,
+                            frictionAir: 0.05
+                        }
+                    );
+                    matterBodies.push(body);
+
+                    el.style.position = 'fixed';
+                    el.style.left = '0px';
+                    el.style.top = '0px';
+                    el.style.width = rect.width + 'px';
+                    el.style.height = rect.height + 'px';
+                    el.style.margin = '0';
+                    return el;
+                });
+
+                const ground = Bodies.rectangle(window.innerWidth/2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
+                const leftWall = Bodies.rectangle(-50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
+                const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
+
+                Composite.add(engine.world, [...matterBodies, ground, leftWall, rightWall]);
+
+                const mouse = Mouse.create(render.canvas);
+                const mouseConstraint = MouseConstraint.create(engine, {
+                    mouse: mouse,
+                    constraint: { stiffness: 0.2, render: { visible: false } }
+                });
+                Composite.add(engine.world, mouseConstraint);
+                render.mouse = mouse;
+
+                Render.run(render);
+                Runner.run(Runner.create(), engine);
+                
+                Matter.Events.on(engine, 'afterUpdate', function() {
+                    matterBodies.forEach((body, i) => {
+                        const el = cardsToSync[i];
+                        if (el) {
+                            el.style.transform = `translate(${body.position.x - el.offsetWidth/2}px, ${body.position.y - el.offsetHeight/2}px) rotate(${body.angle}rad)`;
+                        }
+                    });
+                });
+
+                const chaosMsg = document.createElement('div');
+                chaosMsg.innerHTML = '¡Gravedad Cero! 🐾 Arrastra las cajas. <a href="#" style="color:white;text-decoration:underline;">Recargar para salir</a>';
+                chaosMsg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#ff3b30;color:white;padding:10px 20px;border-radius:20px;z-index:100000;font-weight:bold; pointer-events:auto;';
+                document.body.appendChild(chaosMsg);
+                chaosMsg.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); window.location.reload(); });
+            }
 
         });
     </script>
