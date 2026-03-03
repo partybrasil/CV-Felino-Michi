@@ -853,7 +853,8 @@
                 
                 const msg = document.createElement('div');
                 msg.innerText = '¡Súper Poder Activado! 🐱💥';
-                msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:min(3rem, 8vw);font-weight:bold;color:white;background:rgba(0,0,0,0.8);padding:20px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;width:90%;';
+                // Usamos absolute con el scroll actual para que sea relativo al body y tiemble con él sin romperse el layout
+                msg.style.cssText = `position:absolute;top:${window.scrollY + window.innerHeight/2}px;left:50%;transform:translate(-50%,-50%);font-size:min(3rem, 8vw);font-weight:bold;color:white;background:rgba(0,0,0,0.8);padding:20px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;width:90%;`;
                 document.body.appendChild(msg);
                 setTimeout(() => msg.remove(), 2000);
             }
