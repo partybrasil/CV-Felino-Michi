@@ -4,6 +4,14 @@
 
 ---
 
+## 📜 Grimorio Felino (Cheatsheet)
+Para no olvidar ningún poder secreto ni combinación, los humanos necesitan chuletas rápidas. Esta cubre todos los trucos de la página.
+- **Teclado (PC):** Pulsa la tecla **`Z`** en cualquier momento.
+- **Táctil (Móvil):** **Agita el teléfono** de lado a lado rápidamente (`DeviceMotionEvent`).
+- **Efecto:** Muestra un pergamino súper elegante en cristal (Glassmorphism) con todos los atajos descritos para que el reclutador humano no se olvide de ninguno.
+
+---
+
 ## 🖱️ Interacciones Base & UI Diferente
 
 ### 1. 🐾 Rastro de Huellas (Tracker 3D)
