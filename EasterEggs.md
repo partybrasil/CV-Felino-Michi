@@ -45,6 +45,11 @@ La oscuridad es el hábitat natural de Michi...
 - **Táctil (Móvil):** Toca 7 veces seguidas y rápido el título principal ("Michi: Inquilino Senior...").
 - **Efecto:** La pantalla entera se volverá negra. Tu cursor (o dedo) se convertirá en una linterna con radio luminoso que dejará ver el contenido. Además, la "linterna" revelará recortes de garras invisibles en el fondo.
 
+### 🌿 Modo Catnip (Filtro Psicodélico) [🖥️ SOLO PC]
+El gato ha encontrado la hierba mágica.
+- **Teclado (PC):** Escribe literalmente la palabra **`catnip`** en cualquier momento.
+- **Efecto:** La web se ondula y los colores se invierten/saturan en modo `hue-rotate` loco durante 5 segundos, simulando un colocón cósmico de hierba gatera. Aparecerá un cartel verde avisando del *"Viaje Astral por Hierba Gatera"*.
+
 ---
 
 ## ⌨️ Teclas Inmediatas
@@ -202,10 +207,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **17. "Inspector de Bigotes" (Zoom Level)**
 - **La idea:** Detectar uso masivo de `Ctrl + "+"` .
 - **El efecto:** Aparecen unos inmensos bigotes de gato desde los bordes del navegador tapando la pantalla con un mensaje: *"¡Vaya vista! Mis bigotes detectan a un reclutador sumamente perfeccionista"*.
-
-**18. "Modo Catnip" (Filtro Psicodélico)**
-- **La idea:** Un cheatcode escribiendo `catnip`.
-- **El efecto:** La web se ondula y los colores invierten/saturan en modo `hue-rotate` loco durante 10 segundos, simulando el colocón de la hierba gatera.
 
 **19. El "Efecto Impresora" (Print Mode)**
 - **La idea:** Regla `@media print` en el CSS para los despistados que intentan imprimir o pasar a PDF el CV digital.

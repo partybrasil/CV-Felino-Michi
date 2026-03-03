@@ -445,6 +445,12 @@
         .dead-gift-msg::after { content: ''; position: absolute; top: 100%; left: 20px; border-width: 6px; border-style: solid; border-color: var(--text-primary) transparent transparent transparent; }
         .dead-gift:hover .dead-gift-msg { opacity: 1; }
         
+        /* CATNIP TRIPPY MODE */
+        @keyframes catnipHue { 0% { filter: hue-rotate(0deg) saturate(2); } 50% { filter: hue-rotate(180deg) saturate(5) invert(0.3); } 100% { filter: hue-rotate(360deg) saturate(2); } }
+        @keyframes catnipWave { 0% { transform: scale(1) skew(0deg); } 25% { transform: scale(1.02) skew(2deg, 1deg); } 50% { transform: scale(0.98) skew(-1deg, -2deg); } 75% { transform: scale(1.01) skew(-2deg, 1deg); } 100% { transform: scale(1) skew(0deg); } }
+        body.catnip-trippy .bg-shapes { animation: catnipHue 1s infinite linear; }
+        body.catnip-trippy main.container { animation: catnipHue 1s infinite linear, catnipWave 1.5s infinite ease-in-out; }
+
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -675,6 +681,7 @@
             <ul class="cheatsheet-list">
                 <li><span class="cheatsheet-key">💻 L</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Activar/Desactivar Puntero Láser (Solo PC).</span></li>
                 <li><span class="cheatsheet-key">💻 Escribe "miau"</span> <span class="cheatsheet-key">📱 Mantén pulsado el avatar</span> <span class="cheatsheet-desc">Maullido.</span></li>
+                <li><span class="cheatsheet-key">💻 Escribe "catnip"</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Viaje Astral (Modo Catnip 5s).</span></li>
                 <li><span class="cheatsheet-key">💻 G</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Alternar Gravedad Cero y desatar el caos (Solo PC).</span></li>
                 <li><span class="cheatsheet-key">💻 Z</span> <span class="cheatsheet-key">📱 Agitar el dispositivo</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio.</span></li>
                 <li><span class="cheatsheet-key">💻 ↑ ↑ ↓ ↓ ← → ← → B A</span> <span class="cheatsheet-key">📱 Tap x 7 en el título principal</span> <span class="cheatsheet-desc">Visión Nocturna y Zarpazos.</span></li>
@@ -882,6 +889,20 @@
                     triggerMeow();
                     typedKeys = ''; 
                 }
+                
+                // Catnip check
+                if (typedKeys.includes('catnip')) {
+                    document.body.classList.add('catnip-trippy');
+                    setTimeout(() => document.body.classList.remove('catnip-trippy'), 5000);
+                    typedKeys = '';
+                    
+                    const msg = document.createElement('div');
+                    msg.innerText = '🌿 ¡Viaje Astral por Hierba Gatera! 🌿';
+                    msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:min(2.5rem, 6vw);font-weight:bold;color:#fff;background:rgba(46,204,113,0.9);padding:20px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;width:90%;box-shadow:0 0 30px #2ecc71;';
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 5000);
+                }
+
                 if (typedKeys.length > 50) typedKeys = typedKeys.slice(-20);
 
                 // Konami Check (necesita verificación exacta de la secuencia para funcionar bien)
