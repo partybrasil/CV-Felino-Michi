@@ -438,7 +438,13 @@
         .wiggle-butt { animation: wiggleButt 0.15s infinite; }
         .scratch-mark-pounce { position: fixed; width: 150px; height: 150px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 20 Q 40 50 20 80 M50 10 Q 70 45 40 90 M80 20 Q 95 55 70 85" stroke="%23ff3b30" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8"/></svg>'); background-size: contain; background-repeat: no-repeat; pointer-events: none; z-index: 100000; animation: scratchFade 1s forwards; }
         @keyframes scratchFade { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); } }
-
+        /* DEAD GIFT (RETURN VISITOR) */
+        .dead-gift { position: fixed; bottom: 20px; left: 20px; font-size: 3rem; cursor: pointer; z-index: 10000; transition: transform 0.2s; user-select: none; }
+        .dead-gift:hover { transform: scale(1.1) rotate(5deg); }
+        .dead-gift-msg { position: absolute; bottom: 100%; left: 0; background: var(--text-primary); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .dead-gift-msg::after { content: ''; position: absolute; top: 100%; left: 20px; border-width: 6px; border-style: solid; border-color: var(--text-primary) transparent transparent transparent; }
+        .dead-gift:hover .dead-gift-msg { opacity: 1; }
+        
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -1445,6 +1451,19 @@
                 }
                 // Mark the cards visually
                 document.querySelectorAll('.card').forEach(card => card.classList.add('marked-territory'));
+                
+                // Dead Gift Emoji
+                const gift = document.createElement('div');
+                gift.className = 'dead-gift';
+                gift.innerText = Math.random() > 0.5 ? '🐭' : '🐦';
+                
+                const giftMsg = document.createElement('div');
+                giftMsg.className = 'dead-gift-msg';
+                giftMsg.innerText = 'Te he traído un regalo por volver. No me des las gracias.';
+                
+                gift.appendChild(giftMsg);
+                document.body.appendChild(gift);
+
             } else {
                 // Mark as visited for next time
                 localStorage.setItem('michi_has_visited', 'true');
@@ -1553,24 +1572,18 @@
         });
     </script>
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    Tawk_API.customStyle = {
-        visibility : {
-            desktop : { position : 'bl', xOffset : '20px', yOffset : '20px' },
-            mobile : { position : 'bl', xOffset : '10px', yOffset : '10px' }
-        }
-    };
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69a71c58b0555e1c3f0bba3b/1jiqcdeg9';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69a71c58b0555e1c3f0bba3b/1jiqcdeg9';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
 

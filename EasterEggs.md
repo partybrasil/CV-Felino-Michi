@@ -116,6 +116,11 @@ Michi sabe si eres nuevo por aquí o un viejo amigo que vuelve.
 - **La idea:** Usar `localStorage` para recordar silenciosamente si el candidato / reclutador ya ha visitado este CV felino antes.
 - **El efecto:** Si ya habías entrado a la web en sesiones anteriores, al volver, Michi te recibirá con un mensaje modificado bajo su foto: *"Veo que has vuelto a mi territorio... ¿Has traído chuches? 😼"*. Además, todas las cajas de sus características se habrán teñido permanentemente de un muy sutil tono azul, como prueba de que el territorio "ya está marcado".
 
+### 🎁 Regalo en la Puerta (Retorno a la web) {🖥️📱 AMBOS}
+Michi es un cazador orgulloso que comparte sus trofeos.
+- **La idea:** Interacción combinada con `localStorage` en cada vuelta.
+- **El efecto:** Al volver a entrar o actualizar la página, hay un emoji gigante de un ratón muerto 🐭 o pájaro 🐦 tirado abajo a la izquierda de la pantalla. Mensaje flotante: *"Te he traído un regalo por volver. No me des las gracias"*.
+
 ---
 
 ## 🛠️ Extras para Desarrolladores & Debugging
@@ -185,9 +190,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **La idea:** Al sombrear texto con el ratón.
 - **El efecto:** Aparece un tooltip "traduciendo" al gatuno. Si selecciona "Experiencia en JavaScript", el tooltip dice *"Experiencia en cazar bichos (bugs) rojos"*.
 
-**14. "Regalo en la Puerta" (Retorno a la web)**
-- **La idea:** Otra interacción con `localStorage` tras unas horas.
-- **El efecto:** Al volver a entrar, hay un emoji gigante de un ratón muerto 🐭 o pájaro 🐦 tirado abajo a la izquierda. Mensaje: *"Te he traído un regalo por volver. No me des las gracias"*.
 
 **15. "El Gato de Cheshire" (Page Visibility API)**
 - **La idea:** El usuario se va a otra pestaña y olvida el CV abierto.
