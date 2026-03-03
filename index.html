@@ -624,6 +624,7 @@
     <!-- EASTER EGGS -->
     <!-- Audio Elements -->
     <audio id="meow-sound" src="https://www.myinstants.com/media/sounds/cat-meow-1.mp3"></audio>
+    <audio id="crazy-meow-sound" src="https://www.myinstants.com/media/sounds/nononono-cat-mp3cut.mp3"></audio>
 
     <!-- HTML Elements -->
     <div id="purr-bar-container"><div id="purr-bar"></div></div>
@@ -895,6 +896,12 @@
                     document.body.classList.add('catnip-trippy');
                     setTimeout(() => document.body.classList.remove('catnip-trippy'), 5000);
                     typedKeys = '';
+                    
+                    const crazyAudio = document.getElementById('crazy-meow-sound');
+                    if (crazyAudio) {
+                        crazyAudio.currentTime = 0;
+                        crazyAudio.play().catch(e => console.log('Audio autoplay blocked'));
+                    }
                     
                     const msg = document.createElement('div');
                     msg.innerText = '🌿 ¡Viaje Astral por Hierba Gatera! 🌿';
