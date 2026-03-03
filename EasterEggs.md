@@ -96,7 +96,12 @@ La estática es real en esta página web.
 
 ## 🎭 UI Dinámica (Sorpresas Inesperadas)
 
-### 🐾 Ataque de Patita a los Botones {🖥️📱 AMBOS}
+### � El Ladrón de Cursores [🖥️ SOLO PC]
+Michi es un cazador sigiloso e impaciente.
+- **Acción:** Deja el cursor de tu ratón completamente quieto en cualquier zona inactiva de la pantalla durante más de **5 segundos**.
+- **Efecto:** Una rápida pata negra surgirá a escondidas desde el borde derecho de la web, atrapará físicamente el puntero del ratón y se lo llevará fuera de la pantalla. Unos segundos después, dejará caer un cartel en el pie de página diciendo *"Estaba jugando con él..."* y tu cursor será devuelto a la normalidad.
+
+### �🐾 Ataque de Patita a los Botones {🖥️📱 AMBOS}
 Michi odia el letargo y la inacción.
 - **Acción (Hover/Long Press):** Si mantienes el cursor quieto (o pulsas de forma prolongada en móvil) durante **0.5 segundos** sobre un botón importante (EJ: "Contactar a mi humano"), se lanzará el ataque inmediatamente.
 - **Acción (Click/Tap):** Si tocas o haces clic en el botón de forma normal, el enlace se interceptará mostrando una cómica cuenta atrás de "3... 2... 1...".
@@ -215,10 +220,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **20. El "Termómetro de Ronroneo" (Battery API)**
 - **La idea:** Usar la API nativa de batería del portátil/móvil.
 - **El efecto:** Si tienes un 100% o carga, el Michi tiene rayos alrededor (`box-shadow` dinámica). Si queda menos del 20%, sale cansado y un letrero avisa: *"Me queda poca energía... Necesito mi siesta (y tú un cargador de pared)"*.
-
-**21. "El Ladrón de Cursores" (Persecución y Robo)**
-- **La idea:** Al dejar el cursor quieto más de 5 segundos.
-- **El efecto:** Una pata rápida sale del borde de la pantalla, "atrapa" el puntero del ratón y se lo lleva fuera del viewport. Reaparece unos segundos después con un cartel *"Estaba jugando con él..."*.
 
 **22. "Ataque a la Bola de Lana" (Colisión 2D)**
 - **La idea:** Escribiendo la palabra "lana" en cualquier parte.

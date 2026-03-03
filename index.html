@@ -451,6 +451,13 @@
         body.catnip-trippy .bg-shapes { animation: catnipHue 1s infinite linear; }
         body.catnip-trippy main.container { animation: catnipHue 1s infinite linear, catnipWave 1.5s infinite ease-in-out; }
 
+        /* LADRÓN DE CURSORES */
+        body.cursor-stolen, body.cursor-stolen * { cursor: none !important; }
+        #stolen-cursor { position: fixed; width: 20px; height: 30px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 36"><path fill="black" stroke="white" stroke-width="2" d="M1 1l16 16h-7l5 11-4 2-5-11-6 6z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100002; pointer-events: none; display: none; }
+        #thief-paw { position: fixed; width: 120px; height: 120px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M495.9 166.6c-3.2-8.5-12.7-12.7-21.2-9.4L337.5 208v-96c0-8.8-7.2-16-16-16h-48v59.9l121.2-46c8.5-3.2 12.7-12.7 9.4-21.2-3.1-8.5-12.6-12.7-21.1-9.4L208 145.4v-40.8A38.4 38.4 0 0 0 169.6 66h-24C124.4 66 107 83.4 107 104.5V208l-69.5-25.9c-8.5-3.2-18 1.1-21.2 9.6-3.2 8.5 1.1 18 9.6 21.2l61.5 22.9C36.7 274.6 15 329.8 15 391.2A96.3 96.3 0 0 0 111.4 488H401c53 0 96-43.1 96-96 0-61.9-22-117.6-72.9-155.6l62.4-23.2c8.5-3.2 12.7-12.7 9.4-21.2z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100001; pointer-events: none; display: none; }
+        #thief-message { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; font-weight: bold; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-primary); box-shadow: var(--glass-shadow); z-index: 100000; opacity: 0; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; pointer-events: none; }
+        #thief-message.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -687,10 +694,16 @@
                 <li><span class="cheatsheet-key">💻 Z</span> <span class="cheatsheet-key">📱 Agitar el dispositivo</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio.</span></li>
                 <li><span class="cheatsheet-key">💻 ↑ ↑ ↓ ↓ ← → ← → B A</span> <span class="cheatsheet-key">📱 Tap x 7 en el título principal</span> <span class="cheatsheet-desc">Visión Nocturna y Zarpazos.</span></li>
                 <li><span class="cheatsheet-key">💻 Click x 5</span> <span class="cheatsheet-key">📱 Tap x 5</span> <span class="cheatsheet-desc">Clic/Tap rápido en el avatar para enfadar a Michi.</span></li>
+                <li><span class="cheatsheet-key">💻 Quieto 5s</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Robo de cursor por inactividad.</span></li>
             </ul>
             <button id="close-cheatsheet-btn" class="close-cheatsheet">Entendido, miau.</button>
         </div>
     </div>
+
+    <!-- Ladrón de Cursores -->
+    <div id="stolen-cursor"></div>
+    <div id="thief-paw"></div>
+    <div id="thief-message">Estaba jugando con él... 🐾</div>
 
     <!-- JS LOGIC -->
     <script>
@@ -1597,6 +1610,85 @@
                 document.body.appendChild(chaosMsg);
                 chaosMsg.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); window.location.reload(); });
             }
+
+            // 7. El Ladrón de Cursores
+            const stolenCursor = document.getElementById('stolen-cursor');
+            const thiefPaw = document.getElementById('thief-paw');
+            const thiefMessage = document.getElementById('thief-message');
+            let thiefTimer;
+            let cursorStolen = false;
+            let thiefCooldown = false;
+
+            const resetThiefTimer = (e) => {
+                if (cursorStolen || thiefCooldown) return;
+                
+                clearTimeout(thiefTimer);
+                
+                // No en móvil y no si no conocemos la posicion
+                if (window.innerWidth <= 768 || lastMouseX === 0) return; 
+                
+                thiefTimer = setTimeout(() => {
+                    if (cursorStolen || thiefCooldown) return;
+                    
+                    // Comprobar si está haciendo hover a un interactivo
+                    const hoveredNodes = document.querySelectorAll(':hover');
+                    for (const node of hoveredNodes) {
+                        if (['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT'].includes(node.tagName) || node.classList.contains('card')) return;
+                    }
+                    
+                    cursorStolen = true;
+                    document.body.classList.add('cursor-stolen');
+                    
+                    stolenCursor.style.left = lastMouseX + 'px';
+                    stolenCursor.style.top = lastMouseY + 'px';
+                    stolenCursor.style.display = 'block';
+                    
+                    thiefPaw.style.top = (lastMouseY - 60) + 'px';
+                    thiefPaw.style.left = (window.innerWidth + 50) + 'px';
+                    thiefPaw.style.transform = 'rotate(-90deg)';
+                    thiefPaw.style.display = 'block';
+                    thiefPaw.style.transition = 'left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    
+                    // Force reflow and move
+                    setTimeout(() => {
+                        thiefPaw.style.left = (lastMouseX - 20) + 'px';
+                    }, 50);
+                    
+                    // Retirada
+                    setTimeout(() => {
+                        thiefPaw.style.transition = 'left 0.4s ease-in';
+                        stolenCursor.style.transition = 'left 0.4s ease-in';
+                        
+                        thiefPaw.style.left = (window.innerWidth + 50) + 'px';
+                        stolenCursor.style.left = (window.innerWidth + 50) + 'px';
+                        
+                        // Mensaje y restauración
+                        setTimeout(() => {
+                            thiefMessage.classList.add('show');
+                            
+                            setTimeout(() => {
+                                thiefMessage.classList.remove('show');
+                                document.body.classList.remove('cursor-stolen');
+                                stolenCursor.style.display = 'none';
+                                stolenCursor.style.transition = 'none';
+                                thiefPaw.style.display = 'none';
+                                thiefPaw.style.transition = 'none';
+                                
+                                cursorStolen = false;
+                                thiefCooldown = true;
+                                setTimeout(() => { thiefCooldown = false; }, 15000); 
+                            }, 3000);
+                            
+                        }, 500);
+                    }, 600); 
+
+                }, 5000);
+            };
+
+            document.addEventListener('mousemove', resetThiefTimer, {passive: true});
+            document.addEventListener('keydown', resetThiefTimer, {passive: true});
+            document.addEventListener('scroll', resetThiefTimer, {passive: true});
+            resetThiefTimer();
 
         });
     </script>
