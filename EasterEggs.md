@@ -106,6 +106,11 @@ Un botón misterio al más puro estilo de física cuántica y gatos.
   3. ¡Puff! Aparece el ícono de viento ráfaga/humo de la nada (`💨`); estabas equivocado, no hay gato dentro de la caja.
   4. La caja ha derivado a otro universo web, y lanza en una pestaña nueva un famoso video gracioso en YouTube sobre clips gatunos. 
 
+### 🏷️ Marcado de Territorio (Visitas Recurrentes)
+Michi sabe si eres nuevo por aquí o un viejo amigo que vuelve.
+- **La idea:** Usar `localStorage` para recordar silenciosamente si el candidato / reclutador ya ha visitado este CV felino antes.
+- **El efecto:** Si ya habías entrado a la web en sesiones anteriores, al volver, Michi te recibirá con un mensaje modificado bajo su foto: *"Veo que has vuelto a mi territorio... ¿Has traído chuches? 😼"*. Además, todas las cajas de sus características se habrán teñido permanentemente de un muy sutil tono azul, como prueba de que el territorio "ya está marcado".
+
 ---
 
 ## 🛠️ Extras para Desarrolladores & Debugging
@@ -146,10 +151,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **La idea:** Si el usuario intenta escribir o pulsa teclas al azar en cualquier parte del CV.
 - **El efecto:** Se bloquea visualmente la interacción y aparece una pata de gato "dormida" tapando el puntero o una cola cruzando la pantalla. 
 - **Mensaje:** *"Lo siento, el gato se ha sentado sobre el teclado. Vuelve a intentarlo cuando se despierte"*.
-
-**5. "Marcado de Territorio" (Local Storage)**
-- **La idea:** Usar el `localStorage` del navegador para recordar.
-- **El efecto:** Si el usuario vuelve a visitar la web al día siguiente, Michi le recibe diferente: *"Veo que has vuelto a mi territorio... ¿Has traído chuches?"*. El color de las cajas del CV podría cambiar permanentemente según alguna interacción previa.
 
 **6. "La Caza del Puntero" (Vibración de salto)**
 - **La idea:** Al dejar el cursor quieto cerca del avatar.

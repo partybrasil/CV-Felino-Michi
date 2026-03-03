@@ -428,6 +428,11 @@
         /* CAT HAIRS */
         .cat-hair { position: fixed; pointer-events: none; z-index: 99999; stroke: rgba(180, 180, 180, 0.9); stroke-width: 2.5; fill: none; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2)); transition: transform 1s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 1s ease-out; }
         .cat-hair.fly { transform: translate(var(--fly-x), var(--fly-y)) rotate(var(--fly-rot)) scale(1.5); opacity: 0; }
+        
+        /* TERRITORY MARKED */
+        .card.marked-territory { background: rgba(0, 113, 227, 0.03); border-color: rgba(0, 113, 227, 0.2); }
+        .card.marked-territory:hover { box-shadow: 0 20px 40px rgba(0, 113, 227, 0.12); }
+        
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -1363,6 +1368,20 @@
                 if (e.touches.length > 0) updatePointerVelocity(e.touches[0].clientX, e.touches[0].clientY);
             }, { passive: true });
 
+            // Territory Marked Logic (Local Storage)
+            const hasVisited = localStorage.getItem('michi_has_visited');
+            if (hasVisited) {
+                // If returning visitor
+                const subtitle = document.querySelector('.hero .subtitle');
+                if (subtitle) {
+                    subtitle.innerHTML = '<strong>Veo que has vuelto a mi territorio... ¿Has traído chuches? 😼</strong><br>' + subtitle.innerHTML;
+                }
+                // Mark the cards visually
+                document.querySelectorAll('.card').forEach(card => card.classList.add('marked-territory'));
+            } else {
+                // Mark as visited for next time
+                localStorage.setItem('michi_has_visited', 'true');
+            }
 
             // Gravedad Cero Function
             function toggleZeroGravity() {
