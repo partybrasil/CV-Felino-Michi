@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Neumorphism Pulse</title>
+    <!-- Clean geometric sans for neumorphic ui -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #e0e5ec;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --accent: #4a90e2;
+            --text-main: #4d5b6b;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px; width: 100%;
+        }
+
+        /* Neumorphic Base Box with Pulsing Animation */
+        .neu-box {
+            background: var(--bg-color);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
+            /* Static baseline shadows */
+            box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+            animation: pulse-shadow 6s infinite alternate ease-in-out;
+        }
+        
+        .neu-box-inner {
+             background: var(--bg-color);
+            border-radius: 20px;
+            padding: 30px;
+            /* Inset baseline shadows */
+            box-shadow: inset 6px 6px 10px 0 rgba(163,177,198,0.5), inset -6px -6px 10px 0 rgba(255,255,255, 0.8);
+            animation: pulse-shadow-inner 6s infinite alternate ease-in-out;
+        }
+
+        /* The Breathing Animations */
+        @keyframes pulse-shadow {
+            0% { box-shadow: 5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255, 0.4); }
+            100% { box-shadow: 20px 20px 40px rgb(163,177,198,0.8), -20px -20px 40px rgba(255,255,255, 0.9); }
+        }
+
+        @keyframes pulse-shadow-inner {
+            0% { box-shadow: inset 4px 4px 5px 0 rgba(163,177,198,0.3), inset -4px -4px 5px 0 rgba(255,255,255, 0.5); }
+            100% { box-shadow: inset 10px 10px 20px 0 rgba(163,177,198,0.7), inset -10px -10px 20px 0 rgba(255,255,255, 1); }
+        }
+
+        .header { text-align: center; position: relative; }
+        
+        /* Animated Avatar container */
+        .avatar-ring {
+            width: 200px; height: 200px; margin: 0 auto 30px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
+            display: flex; align-items: center; justify-content: center;
+            animation: spin-pulse 8s infinite alternate ease-in-out;
+        }
+        
+        @keyframes spin-pulse {
+            0% { transform: scale(0.95); box-shadow: 5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255, 0.4); }
+            100% { transform: scale(1.05); box-shadow: 15px 15px 30px rgb(163,177,198,0.8), -15px -15px 30px rgba(255,255,255, 0.9); }
+        }
+
+        .avatar {
+            width: 170px; height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        h1 { font-size: 3.5rem; margin: 0; color: #2d3748; letter-spacing: 2px; font-weight: 900; }
+        .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;}
+        
+        .pill {
+            display: inline-block; padding: 10px 25px; border-radius: 50px;
+            background: var(--bg-color); font-weight: bold; color: var(--text-main);
+            box-shadow: 5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255, 0.8);
+            margin: 5px;
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;}
+        
+        h2 { color: var(--accent); font-size: 1.8rem; text-align: center; }
+        h3 { color: #2d3748; font-size: 1.3rem; margin-top: 0; }
+        
+        .progress-track {
+            height: 15px; border-radius: 10px; background: var(--bg-color);
+            box-shadow: inset 3px 3px 5px rgba(163,177,198,0.5), inset -3px -3px 5px rgba(255,255,255, 1);
+            margin-top: 15px; overflow: hidden; position: relative;
+        }
+        .progress-fill {
+            height: 100%; width: 100%; border-radius: 10px;
+            background: linear-gradient(90deg, #4a90e2, #63b3ed);
+            /* Slide animation for the bar */
+            animation: loadBar 2s ease-out;
+        }
+        @keyframes loadBar { 0% { width: 0; } 100% { width: 100%; } }
+
+        p { font-size: 1.1rem; line-height: 1.6; }
+        
+        /* Interactive Soft Button */
+        button {
+            border: none; outline: none; background: var(--bg-color); cursor: pointer;
+            padding: 15px 40px; border-radius: 30px; font-size: 1.2rem; font-weight: bold;
+            color: var(--accent); font-family: 'Nunito', sans-serif;
+            box-shadow: 6px 6px 12px rgba(163,177,198,0.6), -6px -6px 12px rgba(255,255,255, 0.8);
+            transition: all 0.2s ease;
+            display: block; margin: 40px auto 0;
+        }
+        button:hover {
+            box-shadow: 2px 2px 5px rgba(163,177,198,0.6), -2px -2px 5px rgba(255,255,255, 0.8);
+            transform: scale(0.98);
+        }
+        button:active {
+            box-shadow: inset 4px 4px 8px rgba(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255, 0.8);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="neu-box header">
+            <div class="avatar-ring">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+            <h1>MICHI</h1>
+            <div class="subtitle">Inquilino Senior / Especialista Silencioso</div>
+            
+            <div style="margin-top:20px;">
+                <div class="pill">5 Años</div>
+                <div class="pill">Castrado</div>
+                <div class="pill">Vacunado</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="neu-box-inner">
+                <h3>Respeto al Entorno</h3>
+                <p>Cero colisiones con cortinas o sillones. Uñas inoperantes en mobiliario ajeno.</p>
+                <div class="progress-track"><div class="progress-fill"></div></div>
+            </div>
+            
+            <div class="neu-box-inner">
+                <h3>Acústica Nocturna</h3>
+                <p>Hipersensible al ruido. Jamás rompe el silencio nocturno (Sleep 100%).</p>
+                <div class="progress-track"><div class="progress-fill"></div></div>
+            </div>
+        </div>
+
+        <div class="neu-box">
+            <h2>Porcentaje de Diferencia frente a Cachorros</h2>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; margin-top:20px;">
+                <span>Michi (Zen Mode)</span> <span>Vs</span> <span>Cachorro (Chaos Mode)</span>
+            </div>
+            <p>Los cachorros carecen de protocolos de comportamiento. Destruyen, rasguñan y emiten ruidos aleatorios. Mi sistema operativo lleva 5 años funcionando sin una sola queja. Mi humano, empleado fijo, garantiza mis provisiones e impuestos.</p>
+        </div>
+        
+        <button onclick="alert('Sistema de Michi cargado correctamente. Listo para habitar.');">Requisitos Validado</button>
+    </div>
+
+</body>
+</html>

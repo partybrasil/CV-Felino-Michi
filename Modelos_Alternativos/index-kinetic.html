@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Kinetic Typography</title>
+    <!-- Brutalist/Geometric font -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #111;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Huge animated background text */
+        .kinetic-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            z-index: -1;
+            overflow: hidden;
+            white-space: nowrap;
+            opacity: 0.08; /* Super faint in background */
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            font-size: 15vw;
+            line-height: 0.9;
+        }
+
+        .marquee-left { animation: slide-left 20s linear infinite; color: #ff3333; }
+        .marquee-right { animation: slide-right 25s linear infinite; color: #3333ff; }
+
+        @keyframes slide-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes slide-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        .container {
+            max-width: 900px; margin: 0 auto; padding: 60px 20px;
+        }
+
+        /* Brutalist solid blocks */
+        .solid-block {
+            background: #fff;
+            border: 4px solid #111;
+            box-shadow: 15px 15px 0 #111;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .solid-block:hover { transform: translate(-5px, -5px); box-shadow: 20px 20px 0 #ff3333; }
+
+        .avatar {
+            width: 100%; max-width: 250px; height: 250px;
+            object-fit: cover;
+            border: 4px solid #111;
+            filter: grayscale(100%);
+            box-shadow: 10px 10px 0 #3333ff;
+            display: block; margin: 0 auto 30px;
+            transition: filter 0.3s;
+        }
+        .avatar:hover { filter: none; }
+
+        h1 {
+            font-family: 'Anton', sans-serif; font-size: 6rem; text-transform: uppercase;
+            text-align: center; margin: 0; line-height: 1; letter-spacing: -2px;
+        }
+        .tagline {
+            text-align: center; font-size: 1.5rem; font-weight: 700;
+            background: #111; color: #fff; display: inline-block; padding: 10px 20px;
+            margin: 20px auto; display: block; width: fit-content; text-transform: uppercase;
+        }
+
+        .attributes-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+        }
+
+        .brutalist-card {
+            border: 3px solid #111; padding: 20px;
+            background: #e6e6e6; position: relative;
+            overflow: hidden;
+        }
+
+        /* Active highlight on hover */
+        .brutalist-card::before {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: #ffec00; transform: scaleY(0); transform-origin: bottom;
+            transition: transform 0.3s ease-in-out; z-index: 1;
+        }
+        .brutalist-card:hover::before { transform: scaleY(1); }
+        .brutalist-card > * { position: relative; z-index: 2; } /* text over background */
+
+        .brutalist-card h3 {
+            font-family: 'Anton', sans-serif; font-size: 2rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .brutalist-card p { font-size: 1.1rem; line-height: 1.5; font-weight: 700; margin: 0; }
+
+        .paragraph { font-size: 1.5rem; line-height: 1.6; font-weight: 700; text-align: justify; margin: 40px 0; border-left: 10px solid #ff3333; padding-left: 20px; }
+
+        table { width: 100%; border-collapse: collapse; border: 4px solid #111; margin-top: 30px; background: #fff; }
+        th, td { border: 2px solid #111; padding: 15px; font-size: 1.2rem; }
+        th { font-family: 'Anton', sans-serif; font-size: 1.8rem; background: #111; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
+        .highlight { background: #3333ff; color: #fff; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+    <div class="kinetic-bg">
+        <div class="marquee-left">MICHI CV MICHI CV MICHI CV MICHI CV MICHI CV MICHI CV MICHI CV</div>
+        <div class="marquee-right">SILENCIO ABSOLUTO SILENCIO ABSOLUTO SILENCIO ABSOLUTO SILENCIO ABSOLUTO</div>
+        <div class="marquee-left">INQUILINO SENIOR INQUILINO SENIOR INQUILINO SENIOR INQUILINO SENIOR</div>
+        <div class="marquee-right">0% ARAÑAZOS 0% ARAÑAZOS 0% ARAÑAZOS 0% ARAÑAZOS 0% ARAÑAZOS</div>
+    </div>
+
+    <div class="container">
+        <div class="solid-block" style="text-align: center;">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>MICHI</h1>
+            <div class="tagline">INQUILINO SENIOR & EXPERTO EN SILENCIO</div>
+            <p style="font-size: 1.2rem; font-weight: 700; max-width: 600px; margin: 0 auto;">GATO 5 AÑOS • CASTRADO • SEGURO INCLUIDO • HUMANO CON CONTRATO FIJO (7 AÑOS ANTIGÜEDAD)</p>
+        </div>
+
+        <div class="attributes-grid">
+            <div class="brutalist-card">
+                <h3>[1] SALUD TOTAL</h3>
+                <p>Castrado. Altamente vacunado. Protocolo de microchip activo. 100% Sano.</p>
+            </div>
+            <div class="brutalist-card">
+                <h3>[2] MUEBLES SAFE</h3>
+                <p>Sin arañazos. Cero daños reportables a tapicerías e inmuebles circundantes.</p>
+            </div>
+            <div class="brutalist-card">
+                <h3>[3] MOD. SILENCIO</h3>
+                <p>Molestias Cero. Hipersensible al ruido; se retira pacíficamente.</p>
+            </div>
+            <div class="brutalist-card">
+                <h3>[4] FINANZAS</h3>
+                <p>Soporte vitalicio de traductor senior humano. Garantía de lujos de lata.</p>
+            </div>
+        </div>
+
+        <div class="solid-block">
+            <h2 style="font-family: 'Anton'; font-size: 3rem; margin:0 0 20px 0; text-transform: uppercase;">DECLARACIÓN JURADA</h2>
+            <div class="paragraph">
+                "¡Saludos! Soy Michi. A diferencia de esos cachorros inmaduros, mi caos es cero. Busco un recinto brutalista y zen donde mi humano liquide el alquiler trabajando, mientras yo presido desde una silla alta comprobando la durabilidad y silencio del entorno.
+            </div>
+        </div>
+
+        <div class="solid-block">
+            <h2 style="font-family: 'Anton'; font-size: 3rem; margin:0; text-transform: uppercase;">MÉTRICAS OFICIALES</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ATRIBUTO</th>
+                        <th>CANDIDATO (MICHI)</th>
+                        <th>PROMEDIO (CACHORRO)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ENERGÍA</strong></td>
+                        <td class="highlight">BAJO CONSUMO (IDLE)</td>
+                        <td>ALTA (TORNADO)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BAÑO</strong></td>
+                        <td class="highlight">PRECISIÓN TOTAL</td>
+                        <td>ERRORES FORMATIVOS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TAPICES</strong></td>
+                        <td class="highlight">RESPETO EXTREMO</td>
+                        <td>DESGARRO MASIVO</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HORA 03:00</strong></td>
+                        <td class="highlight">SUSPENSIÓN</td>
+                        <td>PARKOUR VIOLENTO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

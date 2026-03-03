@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Newspaper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4eaec;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 10px 10px;
+            color: #2b2b2b;
+            font-family: 'Old Standard TT', serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .page {
+            max-width: 1000px;
+            background: #fdfaf6;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            border: 1px solid #d3cdc1;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #111;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .masthead {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin: 0;
+            line-height: 1;
+        }
+        .date {
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+            padding: 5px 0;
+            margin-top: 20px;
+            font-style: italic;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+        }
+        
+        .vol { font-weight: bold; }
+
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.1;
+            margin: 30px 0;
+            border-bottom: 2px solid #111;
+            padding-bottom: 20px;
+        }
+
+        .content-columns {
+            columns: 3;
+            column-gap: 30px;
+            column-rule: 1px solid #d3cdc1;
+        }
+
+        .img-container {
+            width: 100%;
+            margin-bottom: 20px;
+            display: inline-block; /* Prevent column break */
+            break-inside: avoid;
+        }
+        .img-container img {
+            width: 100%;
+            border: 2px solid #111;
+            filter: grayscale(100%) contrast(1.2);
+        }
+        .caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        p {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            text-align: justify;
+            margin-bottom: 20px;
+            break-inside: avoid;
+        }
+        .drop-cap {
+            float: left;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .box {
+            border: 2px solid #111;
+            padding: 15px;
+            margin-bottom: 20px;
+            break-inside: avoid;
+            background: #f7f3ed;
+        }
+
+        /* Stats Table formatting */
+        .stats-section {
+            width: 100%;
+            margin-top: 40px;
+            border-top: 4px double #111;
+            padding-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.15rem;
+        }
+        th, td {
+            border: 1px solid #111;
+            padding: 12px;
+            text-align: center;
+        }
+        th { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+        .michi { font-weight: bold; background: #eee; }
+
+        @media (max-width: 800px) {
+            .content-columns { columns: 2; }
+            .masthead { font-size: 3rem; }
+        }
+        @media (max-width: 500px) {
+            .content-columns { columns: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1 class="masthead">The Daily Purr</h1>
+            <div class="date">
+                <span class="vol">VOL. CXIV... No. 39,281</span>
+                <span>EDICIÓN ESPECIAL INMOBILIARIA</span>
+                <span>DOS CENTAVOS</span>
+            </div>
+        </div>
+
+        <h2 class="headline">MICHI DECLARA: "EL SILENCIO ES ORO, NO HABRÁ ARAÑAZOS"</h2>
+
+        <div class="content-columns">
+            <div class="img-container">
+                <img src="../michi.jpg" alt="Retrato de Michi" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                <div class="caption">Arriba: Michi, 5 años, especialista en silencio y contemplación. Fotografía de archivo.</div>
+            </div>
+
+            <p><span class="drop-cap">¡H</span>ola! Soy Michi. A diferencia de esos cachorros caóticos modernos, yo ya he superado esa fase de inmadurez. Busco un hogar tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo superviso la calidad acústica de las majestuosas siestas vespertinas.</p>
+            
+            <p>Gato varón de 5 años de edad, castrado debidamente, y portador de seguro de hogar. Su representante legal humano posee un contrato de carácter indefinido (con 7 años de probada antigüedad).</p>
+
+            <div class="box">
+                <h3>Salud Garantizada</h3>
+                <p style="text-align: center; margin-bottom: 0;">Reportes médicos confirman que el sujeto se encuentra castrado, rigurosamente vacunado en sus plazos y provisto de microchip de identificación.</p>
+            </div>
+
+            <p>Expertos inmobiliarios sugieren que los índices de destrozos se mantienen en un asombroso 0%. El historial inmaculado de arañazos asegura que el mobiliario de las propiedades de alquiler se mantendrá intacto bajo la estricta guardia del felino.</p>
+
+            <div class="box">
+                <h3>El Veredicto</h3>
+                <p style="text-align: center; margin-bottom: 0;">Hipersensibilidad al ruido comprobada. Su silencio extremo lo certifica como el inquilino definitivo y perfecto.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 20px;">ANÁLISIS DE RENDIMIENTO COMPARATIVO</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría Estudiada</th>
+                        <th>El Candidato Michi</th>
+                        <th>Competencia Cachorro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Índice de Vitalidad</td>
+                        <td class="michi">Absolutamente Zen</td>
+                        <td>Alerta de Huracán</td>
+                    </tr>
+                    <tr>
+                        <td>Registro Sanitario (Arenero)</td>
+                        <td class="michi">100% de Eficacia Probada</td>
+                        <td>Altas Probabilidades de Fallo</td>
+                    </tr>
+                    <tr>
+                        <td>Impacto en Tapicería</td>
+                        <td class="michi">Contemplación Pasiva</td>
+                        <td>Destrucción Recreativa</td>
+                    </tr>
+                    <tr>
+                        <td>Actividad Diurna/Nocturna</td>
+                        <td class="michi">Letargo Prolongado</td>
+                        <td>Gimnasia a Altas Horas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

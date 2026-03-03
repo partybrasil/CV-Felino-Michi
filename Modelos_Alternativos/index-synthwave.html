@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Synthwave</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0c10;
+            color: #0ff;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 100px;
+        }
+        /* The Grid */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: -50%;
+            width: 200%;
+            height: 50vh;
+            background-image: 
+                linear-gradient(transparent 65%, rgba(255, 0, 255, 0.8) 70%, transparent 75%),
+                linear-gradient(90deg, transparent 65%, rgba(0, 255, 255, 0.8) 70%, transparent 75%);
+            background-size: 50px 50px;
+            transform: perspective(600px) rotateX(60deg);
+            z-index: -1;
+            animation: gridScan 4s linear infinite;
+        }
+        @keyframes gridScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        h1 {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+            margin: 40px 0;
+            letter-spacing: 5px;
+        }
+        .header-content {
+            text-align: center;
+            background: rgba(11, 12, 16, 0.8);
+            border: 2px solid #ff00ff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255,0,255,0.4);
+            backdrop-filter: blur(5px);
+        }
+        .profile-img {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 4px solid #0ff;
+            box-shadow: 0 0 15px #0ff, inset 0 0 15px #0ff;
+            object-fit: cover;
+            filter: contrast(1.2) saturate(1.5) hue-rotate(-20deg);
+        }
+        p { font-size: 1.3rem; line-height: 1.5; color: #fff; text-shadow: 0 0 5px #ff00ff; text-align: center; }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .card {
+            flex: 1 1 200px;
+            background: rgba(20, 0, 40, 0.7);
+            border: 1px solid #0ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(0,255,255,0.2), 0 0 10px rgba(0,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: inset 0 0 20px rgba(255,0,255,0.4), 0 0 20px rgba(255,0,255,0.6); border-color: #ff00ff; }
+        .card h3 { color: #ffff00; text-shadow: 0 0 8px #ffff00; font-size: 1.2rem; }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(0,0,0,0.6);
+            border: 2px solid #ff00ff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255,0,255,0.3);
+        }
+        th, td { padding: 15px; text-align: left; font-size: 1.2rem; border-bottom: 1px solid rgba(0,255,255,0.3); }
+        th { background: rgba(255,0,255,0.2); color: #fff; text-shadow: 0 0 5px #fff; }
+        tr:last-child td { border-bottom: none; }
+        .michi-stat { color: #0ff; font-weight: bold; text-shadow: 0 0 5px #0ff; }
+        .puppy-stat { color: #888; text-shadow: none; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header-content">
+            <img src="../michi.jpg" alt="Michi" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>MICHI</h1>
+            <h3 style="color:#0ff; text-shadow: 0 0 5px #0ff; margin-top:5px;">[ INQUILINO SENIOR & ESPECIALISTA EN SILENCIO ]</h3>
+            <p style="margin-top:20px;">Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo (7 años de antigüedad).</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>// SALUD_TOTAL</h3>
+                <p>Castrado, vacunado, microchip.</p>
+            </div>
+            <div class="card">
+                <h3>// SEGURIDAD</h3>
+                <p>0% historial de arañazos.</p>
+            </div>
+            <div class="card">
+                <h3>// MODO_SILENCIO</h3>
+                <p>Experto en no molestar.</p>
+            </div>
+            <div class="card">
+                <h3>// SOLVENCIA</h3>
+                <p>Contrato indefinido (humano).</p>
+            </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.7); border-left: 5px solid #ff00ff; padding: 30px; margin: 40px 0; border-radius: 0 15px 15px 0;">
+            <h2 style="text-align: left; margin-top:0;">/// ABOUT_ME</h2>
+            <p style="text-align: left;">¡Hola! Soy Michi. A diferencia de esos cachorros caóticos, yo ya he superado esa fase de inmadurez. Busco un hogar tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo superviso la calidad acústica de las siestas.</p>
+        </div>
+
+        <h2>/// STATS_COMPARISON</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>FEATURE</th>
+                    <th>MICHI_V5.0</th>
+                    <th>PUPPY_BETA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nivel de Energía</td>
+                    <td class="michi-stat">Chill / Zen</td>
+                    <td class="puppy-stat">Huracán Categoría 5</td>
+                </tr>
+                <tr>
+                    <td>Arenero Sync</td>
+                    <td class="michi-stat">100% Precisión</td>
+                    <td class="puppy-stat">Errores del Sistema</td>
+                </tr>
+                <tr>
+                    <td>Horario Nocturno</td>
+                    <td class="michi-stat">Hibernación</td>
+                    <td class="puppy-stat">Parkour 3:00 AM</td>
+                </tr>
+                <tr>
+                    <td>Riesgo General</td>
+                    <td class="michi-stat">0.00%</td>
+                    <td class="puppy-stat">ALTO</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

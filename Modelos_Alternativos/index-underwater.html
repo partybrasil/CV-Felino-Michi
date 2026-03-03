@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Underwater Enigma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(180deg, #001f3f 0%, #001124 100%);
+            color: #d8f3ec;
+            font-family: 'Comfortaa', cursive;
+            margin: 0;
+            padding: 50px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Underwater Light Beams */
+        .light-beams {
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(from 180deg at 50% -20%, transparent 40%, rgba(20, 180, 255, 0.1) 45%, rgba(60, 220, 255, 0.2) 50%, rgba(20, 180, 255, 0.1) 55%, transparent 60%);
+            animation: sway 15s ease-in-out infinite alternate;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        @keyframes sway { 0% { transform: rotate(-5deg); } 100% { transform: rotate(5deg); } }
+
+        /* Animated Bubbles */
+        .bubbles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;
+        }
+        .bubble {
+            position: absolute; bottom: -50px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: rise infinite ease-in;
+        }
+        /* CSS Generated Bubbles */
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 10s; animation-delay: 2s; }
+        .bubble:nth-child(4) { width: 15px; height: 15px; left: 50%; animation-duration: 6s; animation-delay: 0.5s; }
+        .bubble:nth-child(5) { width: 35px; height: 35px; left: 65%; animation-duration: 9s; animation-delay: 3s; }
+        .bubble:nth-child(6) { width: 25px; height: 25px; left: 80%; animation-duration: 7s; animation-delay: 1.5s; }
+        .bubble:nth-child(7) { width: 45px; height: 45px; left: 90%; animation-duration: 11s; animation-delay: 4s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            50% { transform: translateY(-50vh) translateX(20px) scale(1.1); }
+            100% { transform: translateY(-120vh) translateX(-20px) scale(1.2); opacity: 0; }
+        }
+
+        .container {
+            max-width: 900px; margin: 0 auto; position: relative; z-index: 10;
+        }
+
+        /* Glass / Refractive Containers */
+        .glass-box {
+            background: rgba(10, 50, 90, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(150, 220, 255, 0.2);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 2px 10px rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .glass-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5), inset 0 2px 15px rgba(255,255,255,0.2);
+            border-color: rgba(150, 220, 255, 0.4);
+        }
+
+        .avatar {
+            width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+            border: 4px solid rgba(100, 200, 255, 0.5);
+            box-shadow: 0 0 20px rgba(100,200,255,0.3);
+            margin: 0 auto 20px; display: block;
+            /* Wavy animation on hover to simulate water distortion */
+            transition: all 0.5s;
+        }
+        .avatar:hover {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            transform: scale(1.05);
+        }
+
+        h1 {
+            text-align: center; color: #fff; font-size: 3.5rem; margin: 0 0 10px 0;
+            text-shadow: 0 4px 15px rgba(0,180,255,0.8);
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            text-align: center; font-size: 1.2rem; color: #8adbfb; font-weight: bold;
+            text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px;
+        }
+
+        .feature-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, rgba(20,80,130,0.5) 0%, rgba(10,40,70,0.5) 100%);
+            padding: 25px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .feature-card h3 { color: #66e0ff; margin-top: 0; font-size: 1.3rem; }
+        .feature-card p { font-size: 1.05rem; line-height: 1.6; color: #bfe5eb; margin-bottom: 0; }
+
+        .about-text {
+            font-size: 1.3rem; line-height: 1.8; text-align: center; color: #dfedf1; margin: 20px 0; padding: 0 20px;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; border-radius: 15px; overflow: hidden; }
+        th, td { padding: 18px; text-align: left; }
+        th { background: rgba(20, 150, 220, 0.3); color: #fff; font-size: 1.2rem; }
+        td { background: rgba(10, 50, 90, 0.4); border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 1.1rem; }
+        tr:last-child td { border-bottom: none; }
+        .win { color: #66e0ff; font-weight: bold; text-shadow: 0 0 5px rgba(102,224,255,0.5); }
+    </style>
+</head>
+<body>
+    <div class="light-beams"></div>
+    <div class="bubbles">
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <div class="glass-box">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>MICHI</h1>
+            <div class="subtitle">Submarino Inquilino Senior & Profundidad del Silencio</div>
+            <p style="text-align:center; color:#a1cdda; max-width:600px; margin:0 auto;">Gato de 5 años | Ecosistema equilibrado (Castrado, Vacunado) | Seguro Inmueble | Humano Flotante Fijo (7 años).</p>
+        </div>
+
+        <div class="glass-box">
+            <h2 style="text-align:center; color:#fff; border-bottom:2px solid rgba(102,224,255,0.3); padding-bottom:15px; margin-top:0;">Presión Adaptativa</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🌊 Biología Intacta</h3>
+                    <p>Castrado, vacunado rígidamente. Microchip interno guiando las corrientes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ Barrera Coral</h3>
+                    <p>0% historiales de erosión por garras. Decoración abisal bajo resguardo nulo contacto.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🤫 Sónar Silente</h3>
+                    <p>Audición hipersensible. Modulado para extinguir ruidos y flotar sin salpicar.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💎 Recursos Fijos</h3>
+                    <p>Corrientes de ingreso continuo vía contrato indefinido de traductor senior humano.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-box">
+            <div class="about-text">
+                "¡Saludos desde el Abismo! Soy Michi. A diferencia de esos cardúmenes infantiles y torbellinos caninos, mi navegación ha alcanzado la tranquilidad de lo profundo. Busco un estuario sereno donde mi anclaje humano genere sustento, mientras yo presido la calidad meditativa del ambiente durante las siestas oceánicas."
+            </div>
+        </div>
+
+        <div class="glass-box">
+            <h2 style="text-align:center; color:#66e0ff; margin-top:0;">Mareas Comparadas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Criterio Marino</th>
+                        <th>Navegación Michi</th>
+                        <th>Cachorro de Superficie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Olas de Energía</td>
+                        <td class="win">Corriente Pacífica (Relax zen)</td>
+                        <td>Tifón Constante Categoría 5</td>
+                    </tr>
+                    <tr>
+                        <td>Limpieza del Estanque</td>
+                        <td class="win">Manejo Purificador Inmaculado</td>
+                        <td>Filtración Deficiente (Aprende)</td>
+                    </tr>
+                    <tr>
+                        <td>Roce Geológico (Muebles)</td>
+                        <td class="win">Intacto (Desinterés Total)</td>
+                        <td>Erosión Agresiva Generalizada</td>
+                    </tr>
+                    <tr>
+                        <td>Abisales Nocturnas</td>
+                        <td class="win">Suspensión Silenciosa Infinita</td>
+                        <td>Marejada a las 3:00 de la Mañana</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

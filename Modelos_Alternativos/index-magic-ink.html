@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Magic Ink Vintage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Charm:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #dfcdb3;
+            background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
+            color: #2b1c0d;
+            font-family: 'Charm', cursive;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scroll {
+            max-width: 800px;
+            width: 100%;
+            background: #fdf5e6;
+            box-shadow: 10px 10px 40px rgba(0,0,0,0.5), inset 0 0 60px rgba(139,69,19,0.2);
+            padding: 60px;
+            position: relative;
+            border-radius: 3px;
+            /* Animated Reveal of the whole paper */
+            animation: unfold 2s ease-out forwards;
+            transform-origin: top;
+            opacity: 0;
+        }
+        
+        @keyframes unfold {
+            0% { transform: scaleY(0); opacity: 0; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Burned Edges using multiple inset shadows */
+        .scroll::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 0 0 30px #8b4513, inset 0 0 10px #5c2c09;
+            pointer-events: none;
+            border-radius: 3px;
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; text-align: center; }
+        
+        /* Ink reveal animations */
+        .ink-fade {
+            opacity: 0;
+            filter: blur(10px);
+            animation: inkReveal 2.5s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 1.5s; }
+        .delay-2 { animation-delay: 2.5s; }
+        .delay-3 { animation-delay: 3.5s; }
+
+        @keyframes inkReveal {
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        h1 { font-size: 3.5rem; border-bottom: 2px solid #5c2c09; padding-bottom: 10px; margin-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 1.5rem; font-style: italic; margin-bottom: 40px; }
+
+        .ink-blot-image {
+            width: 200px; height: 200px;
+            margin: 0 auto 30px;
+            display: block;
+            border-radius: 10px;
+            /* Simulating an ink transfer picture */
+            filter: sepia(1) contrast(1.5) brightness(0.8) blur(0.5px);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+            border: 2px solid #5c2c09;
+            opacity: 0;
+            animation: inkReveal 4s ease-out forwards 1s;
+        }
+
+        .attributes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+            border-top: 1px dashed #8b4513;
+            border-bottom: 1px dashed #8b4513;
+            padding: 30px 0;
+        }
+        .attr-item { flex: 1 1 200px; text-align: center; }
+        .attr-item h3 { font-size: 1.3rem; margin-bottom: 5px; color: #5c2c09; }
+        .attr-item p { font-size: 1.2rem; margin: 0; line-height: 1.4; }
+
+        .prose {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            text-align: justify;
+            text-indent: 40px;
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+        .initial {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            float: left;
+            line-height: 0.8;
+            padding-right: 10px;
+            color: #5c2c09;
+        }
+
+        .tome-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.3rem;
+        }
+        .tome-table th, .tome-table td { padding: 15px; text-align: left; }
+        .tome-table th { border-bottom: 3px double #5c2c09; font-family: 'Cinzel'; }
+        .tome-table td { border-bottom: 1px dotted #8b4513; }
+        .verdict-good { font-weight: bold; color: #1e4513; }
+
+    </style>
+</head>
+<body>
+    <div class="scroll">
+        
+        <div class="ink-fade">
+            <h1>Michi</h1>
+            <div class="subtitle">Tratado del Inquilino Senior y el Arte del Silencio</div>
+        </div>
+
+        <img src="../michi.jpg" alt="Retrato en tinta de Michi" class="ink-blot-image" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+
+        <div class="ink-fade delay-1" style="text-align:center; font-size:1.3rem;">
+            Ejemplar Felino de Cinco Inviernos. Castrado. Seguro de Hogar amparado. Humano con Pacto Fijo de Siete Años.
+        </div>
+
+        <div class="attributes ink-fade delay-2">
+            <div class="attr-item">
+                <h3>Vigor y Salud</h3>
+                <p>Castrado, purgado y vacunado según ritos antiguos. Microchip insertado.</p>
+            </div>
+            <div class="attr-item">
+                <h3>Armonía Doméstica</h3>
+                <p>Carencia total de instintos destructivos sobre tapices (0% rasguños).</p>
+            </div>
+            <div class="attr-item">
+                <h3>El Canto del Silencio</h3>
+                <p>Ente hipersensible a estruendos; maestro en no emitir sonidos indebidos.</p>
+            </div>
+            <div class="attr-item">
+                <h3>Voto de Solvencia</h3>
+                <p>Acompañado por un escriba traductor senior con contrato inquebrantable.</p>
+            </div>
+        </div>
+
+        <div class="prose ink-fade delay-3">
+            <span class="initial">S</span>aludos, buen custodio de moradas. Soy Michi. Aléjome de los cachorros impetuosos cuyas travesuras asolan castillos. Habiendo superado la inmadurez pueril, busco refugio apacible donde mi humano labore y liquide puntualmente el tributo mensual, en tanto yo velo meticulosamente por la calidad acústica durante las sagradas horas de siesta.
+        </div>
+
+        <div class="ink-fade delay-3">
+            <h2 style="margin-top: 50px;">Estudio Comparativo en Pergamino</h2>
+            <table class="tome-table">
+                <thead>
+                    <tr>
+                        <th>Cualidad Observada</th>
+                        <th>Naturaleza de Michi</th>
+                        <th>Naturaleza de Cachorro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Espíritu Vital</td>
+                        <td class="verdict-good">Contemplación y Letargo</td>
+                        <td>Tempestad Desatada</td>
+                    </tr>
+                    <tr>
+                        <td>Uso de Letrinas</td>
+                        <td class="verdict-good">Maestría Absoluta</td>
+                        <td>Bajo Instrucción Frágil</td>
+                    </tr>
+                    <tr>
+                        <td>Respeto al Entorno</td>
+                        <td class="verdict-good">Total Indiferencia a Cortinas</td>
+                        <td>Atracción Fatal</td>
+                    </tr>
+                    <tr>
+                        <td>Conducta en las Sombras</td>
+                        <td class="verdict-good">Sueño Profundo Garantizado</td>
+                        <td>Exploración Estruendosa (3:00 AM)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

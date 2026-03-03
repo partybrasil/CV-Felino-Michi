@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - CRT Terminal</title>
+    <!-- Monospace terminal font -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%; background: #000;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* The Box representing the physical monitor */
+        .monitor-case {
+            width: 90vw; height: 90vh;
+            max-width: 1000px;
+            background: #111;
+            border-radius: 40px; /* Highly curved outer box */
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        /* The actual screen with strong border radius representing the convex tube */
+        .crt-screen {
+            width: 100%; height: 100%;
+            background-color: #0d1a0d;
+            border-radius: 40px / 30px; /* Elliptical border */
+            border: 1px solid #333;
+            box-shadow: inset 0 0 40px #000, 0 0 20px rgba(0,255,0,0.2) ;
+            position: relative;
+            overflow: hidden;
+            font-family: 'VT323', monospace;
+            color: #3f3; /* Phosphor green */
+            padding: 40px;
+            box-sizing: border-box;
+            /* Turn on animation */
+            animation: turn-on 1s ease-out;
+        }
+
+        @keyframes turn-on {
+            0% { transform: scale(1, 0.001) translate3d(0, 0, 0); filter: brightness(10); }
+            50% { transform: scale(1, 0.001) translate3d(0, 0, 0); filter: brightness(10); }
+            100% { transform: scale(1, 1) translate3d(0, 0, 0); filter: brightness(1); }
+        }
+
+        /* Scanlines and flicker */
+        .crt-screen::before {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10; background-size: 100% 2px, 3px 100%; pointer-events: none;
+        }
+        
+        .crt-screen::after {
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: rgba(0, 255, 0, 0.02); opacity: 0; z-index: 10; pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+        @keyframes flicker { 0% { opacity: 0.1; } 50% { opacity: 0; } 100% { opacity: 0.05; } }
+
+        /* Monitor Glass glare/reflection */
+        .glare {
+            position: absolute; top: 0; left: -20%; width: 140%; height: 100%;
+            background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08) 0%, transparent 60%);
+            z-index: 5; pointer-events: none;
+            border-radius: 40px / 30px;
+        }
+
+        .content {
+            position: relative; z-index: 2; height: 100%; overflow-y: auto; text-shadow: 0 0 5px #3f3;
+        }
+
+        /* Scrollbar hiding for terminal feel */
+        .content::-webkit-scrollbar { display: none; }
+        .content { -ms-overflow-style: none; scrollbar-width: none; }
+
+        h1 { font-size: 4rem; margin: 0 0 10px 0; border-bottom: 2px solid #3f3; display: inline-block;}
+        .prompt::before { content: "root@michi-cv:~$ "; }
+        
+        p { font-size: 1.5rem; line-height: 1.4; margin-bottom: 20px;}
+        
+        .avatar {
+            width: 15rem; height: auto; float: right; margin-left: 20px;
+            filter: sepia(100%) hue-rotate(80deg) saturate(300%) contrast(150%);
+            border: 2px solid #3f3;
+        }
+
+        .typing {
+            overflow: hidden; white-space: nowrap; margin: 0; 
+            border-right: .15em solid #3f3;
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #3f3; } }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 1.4rem; }
+        th, td { padding: 5px; text-align: left; }
+        th { border-bottom: 1px dashed #3f3; }
+        .ok { color: #fff; text-shadow: 0 0 5px #fff; }
+        .err { color: #f33; text-shadow: 0 0 5px #f33;}
+    </style>
+</head>
+<body>
+    <div class="monitor-case">
+        <div class="crt-screen">
+            <div class="glare"></div>
+            <div class="content">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                <h1>MICHI.SYS v5.0</h1>
+                <p class="prompt"><span class="typing">cat resume.txt</span></p>
+                
+                <p>
+                    >> INITIALIZING PROFILE VERIFICATION... [ <span class="ok">OK</span> ]<br>
+                    >> NAME: MICHI<br>
+                    >> UPTIME: 5 YEARS<br>
+                    >> MODULE_NEUTERED: [ <span class="ok">TRUE</span> ]<br>
+                    >> MODULE_VACCINATED: [ <span class="ok">TRUE</span> ]<br>
+                    >> INSURANCE_ACTIVE: [ <span class="ok">TRUE</span> ]
+                </p>
+
+                <br><br>
+                <p class="prompt">./run_comparison.sh</p>
+                <table>
+                    <thead>
+                        <tr><th>VARIABLE</th><th>MICHI_STABLE</th><th>PUPPY_BETA</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>PROCESS_NOISE</td><td class="ok">0.02% (SILENCE MGR)</td><td class="err">99.9% (BARK LOOP)</td></tr>
+                        <tr><td>FURNITURE_DMG</td><td class="ok">0 BYTES</td><td class="err">FATAL CRASH</td></tr>
+                        <tr><td>FINANCIAL_SUPPORT</td><td class="ok">HUMAN(TRADUCTOR_SNR)</td><td class="err">UNCERTAIN</td></tr>
+                    </tbody>
+                </table>
+
+                <br><br>
+                <p class="prompt">echo $SYSTEM_MESSAGE</p>
+                <p style="text-align:justify; max-width:600px;">
+                    "Estimado Administrador: A diferencia de procesos infantiles que desgastan el hardware de tu inmueble, mi código ha madurado. Necesito un servidor estable donde mi periférico humano pueda laborar y pagar el ancho de banda, mientras yo administro el reposo absoluto."
+                </p>
+                <p class="prompt">_</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

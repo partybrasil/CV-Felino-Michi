@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Outrun Sunset</title>
+    <!-- 80s aesthetics fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0114;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+            perspective: 500px; /* For 3D grid */
+        }
+
+        /* The Synthwave Sun */
+        .sun {
+            position: fixed;
+            top: 10vh; left: 50%;
+            transform: translateX(-50%);
+            width: 50vh; height: 50vh;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #fce043 0%, #fb7ba2 40%, #bf0a62 80%);
+            box-shadow: 0 0 100px #fb7ba2;
+            z-index: -3;
+            animation: sun-pulse 4s infinite alternate;
+        }
+        @keyframes sun-pulse {
+            0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 80px #fb7ba2;}
+            100% { transform: translateX(-50%) scale(1.05); box-shadow: 0 0 120px #fce043;}
+        }
+
+        /* Sliced lines in the sun typically seen in outrun */
+        .sun-lines {
+            position: absolute; width: 100%; height: 100%;
+            background: repeating-linear-gradient(180deg, transparent, transparent 15px, #0b0114 15px, #0b0114 20px);
+            z-index: -2; border-radius: 50%; mix-blend-mode: overlay;
+        }
+
+        /* 3D Moving Floor Grid */
+        .grid-floor {
+            position: fixed;
+            bottom: -50%; left: -50%;
+            width: 200%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(224, 0, 144, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(224, 0, 144, 0.4) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(75deg);
+            z-index: -1;
+            /* Animation creates forward movement illusion */
+            animation: move-grid 2s linear infinite;
+        }
+        @keyframes move-grid {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+
+        /* Content UI Windows */
+        .glass-window {
+            background: rgba(11, 1, 20, 0.7);
+            backdrop-filter: blur(5px);
+            border: 2px solid #e00090;
+            box-shadow: 0 0 20px rgba(224, 0, 144, 0.5), inset 0 0 20px rgba(224, 0, 144, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px; width: 90%;
+            margin: 20px 0;
+            position: relative; z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 5rem; text-align: center; margin: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px #0ff;
+            text-shadow: 0 0 10px #0ff, 4px 4px 0px #e00090;
+            transform: skew(-10deg);
+        }
+
+        .avatar {
+            width: 150px; height: 150px; object-fit: cover; border-radius: 50%;
+            border: 4px solid #0ff; box-shadow: 0 0 20px #0ff;
+            display: block; margin: -80px auto 20px;
+            background: #000;
+        }
+
+        h2 { font-size: 2rem; color: #fce043; border-bottom: 2px dashed #e00090; padding-bottom: 10px; text-transform: uppercase;}
+        p { font-size: 1.2rem; line-height: 1.6; color: #e1bee7;}
+        
+        .list-tech { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+        .tech-item {
+            background: #e00090; color: #fff; padding: 10px 20px; border-radius: 5px; font-weight: bold;
+            box-shadow: 0 0 10px #e00090; font-size: 1.1rem;
+        }
+        .tech-item:nth-child(even) { background: #0ff; color: #000; box-shadow: 0 0 10px #0ff;}
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px;}
+        th, td { border: 1px solid #e00090; padding: 15px; text-align: center; font-size: 1.1rem;}
+        th { background: rgba(224,0,144,0.3); color: #0ff;}
+        tr:hover { background: rgba(0,255,255,0.1); }
+    </style>
+</head>
+<body>
+    <div class="sun"><div class="sun-lines"></div></div>
+    <div class="grid-floor"></div>
+
+    <div class="glass-window" style="margin-top: 15vh;">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>MICHI RADICAL</h1>
+        <p style="text-align: center; font-size: 1.5rem; text-transform: uppercase; color:#0ff; letter-spacing: 2px; margin-top:0;">Inquilino Senior ( Nivel 5 )</p>
+        
+        <div style="text-align:center; padding: 20px 0;">
+             A diferencia de los nubs (*Cachorros*), mi sistema corre suave. Castrado, full vacunas, sin bugs de muebles rayados. Solo vibras chill y silence-mode al 100%. Mi bro (Traductor Senior) cubre los gastos. Pura estética.
+        </div>
+    </div>
+
+    <div class="glass-window">
+        <h2>Atributos Acelerados</h2>
+        <div class="list-tech">
+            <div class="tech-item">Sanidad 100%</div>
+            <div class="tech-item">Cero Ruidos</div>
+            <div class="tech-item">Respeta Muebles</div>
+            <div class="tech-item">Humano Contrato Indefinido</div>
+        </div>
+    </div>
+
+    <div class="glass-window">
+        <h2>Comparativa VS Beta Pups</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stats</th>
+                    <th>Michi (Pro)</th>
+                    <th>Cachorro (Beta)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Energy Drain</td>
+                    <td style="color:#0ff">Low (Idle Master)</td>
+                    <td style="color:#f00">Max Dump</td>
+                </tr>
+                <tr>
+                    <td>Property Damage</td>
+                    <td style="color:#0ff">0.00%</td>
+                    <td style="color:#f00">Critical</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

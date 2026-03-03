@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Comic Book</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7da16;
+            background-image: radial-gradient(#d3403a 15%, transparent 16%);
+            background-size: 20px 20px;
+            font-family: 'Comic Neue', cursive;
+            margin: 0;
+            padding: 40px;
+            color: #000;
+        }
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border: 8px solid #000;
+            box-shadow: 15px 15px 0px #000;
+            padding: 30px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+        }
+        .panel {
+            border: 6px solid #000;
+            background: #fff;
+            padding: 20px;
+            position: relative;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .panel:hover { transform: scale(1.02); }
+        .hero-panel {
+            grid-column: 1 / -1;
+            background: #4ab3f4;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            overflow: hidden;
+        }
+        .hero-panel::after {
+            content: 'BAM!';
+            font-family: 'Bangers', cursive;
+            font-size: 8rem;
+            color: rgba(255,255,255,0.2);
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            transform: rotate(-15deg);
+        }
+        h1, h2, h3 {
+            font-family: 'Bangers', cursive;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        h1 { font-size: 4rem; color: #f7da16; text-shadow: 4px 4px 0px #000; line-height: 1; }
+        h2 { font-size: 2.5rem; color: #d3403a; text-shadow: 2px 2px 0px #000; border-bottom: 4px solid #000; padding-bottom: 5px; }
+        h3 { font-size: 1.8rem; background: #000; color: #fff; display: inline-block; padding: 5px 10px; transform: rotate(-2deg); }
+        .avatar-wrap {
+            position: relative;
+            width: 200px; height: 200px;
+            flex-shrink: 0;
+        }
+        .avatar {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border: 6px solid #000;
+            border-radius: 50%;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+        }
+        .speech-bubble {
+            position: absolute;
+            background: #fff;
+            border: 4px solid #000;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            top: -20px; right: -80px;
+            z-index: 3;
+            box-shadow: 4px 4px 0px #000;
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px; left: 20px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #000 transparent transparent transparent;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -9px; left: 22px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+        }
+        p { font-size: 1.2rem; line-height: 1.5; font-weight: 700; margin-bottom: 0; }
+        .text-box { background: #ffffaa; border: 4px solid #000; padding: 15px; box-shadow: 4px 4px 0px #000; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 4px solid #000;
+            margin-top: 15px;
+        }
+        th, td { border: 3px solid #000; padding: 10px; font-size: 1.2rem; font-weight: bold; }
+        th { background: #f7da16; font-family: 'Bangers', cursive; font-size: 1.5rem; letter-spacing: 1px; }
+        tr:nth-child(even) { background: #eee; }
+        .highlight { color: #d3403a; font-size: 1.3rem; }
+        
+        .full-width { grid-column: 1 / -1; }
+        @media (max-width: 768px) {
+            .page { grid-template-columns: 1fr; }
+            .hero-panel { flex-direction: column; text-align: center; }
+            .speech-bubble { right: 0; top: -40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="panel hero-panel">
+            <div class="avatar-wrap">
+                <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+                <div class="speech-bubble">¡MIAU!</div>
+            </div>
+            <div>
+                <h1>MICHI!</h1>
+                <div class="text-box">
+                    <p>Inquilino Senior & Especialista en Silencio. Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo (7 años de antigüedad).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" style="background:#f4a261;">
+            <h3>SÚPER SALUD</h3>
+            <p>Castrado, rigurosamente vacunado y con microchip. ¡Totalmente invencible a las plagas!</p>
+        </div>
+        <div class="panel" style="background:#2a9d8f; color:#fff;">
+            <h3 style="background:#fff; color:#000;">GARRAS PACÍFICAS</h3>
+            <p>0% historial de arañazos. ¡El mobiliario está a salvo bajo mi guardia!</p>
+        </div>
+        <div class="panel" style="background:#e76f51; color:#fff;">
+            <h3 style="background:#fff; color:#000;">SIGILO TOTAL</h3>
+            <p>Hipersensible al ruido, opero en las sombras. ¡Experto en no molestar!</p>
+        </div>
+        <div class="panel" style="background:#e9c46a;">
+            <h3>BILLETES SEGUROS</h3>
+            <p>Solvencia humana garantizada. Contrato indefinido de traductor senior. ¡Poder adquisitivo!</p>
+        </div>
+
+        <div class="panel full-width text-box">
+            <h2>EL ORIGEN</h2>
+            <p>¡Hola! Soy Michi. A diferencia de esos cachorros caóticos, yo ya he superado esa fase de inmadurez. Busco un hogar tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo superviso la calidad acústica de las siestas con precisión láser.</p>
+        </div>
+
+        <div class="panel full-width">
+            <h2>BATALLA DE STATS!</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>PODER / ATRIBUTO</th>
+                        <th>MICHI</th>
+                        <th>VILLANO CACHORRO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nivel de Energía</td>
+                        <td class="highlight">Maestro Zen</td>
+                        <td>Tornado Destructivo</td>
+                    </tr>
+                    <tr>
+                        <td>Precisión Arenero</td>
+                        <td class="highlight">100% Certero</td>
+                        <td>Totalmente Random</td>
+                    </tr>
+                    <tr>
+                        <td>Horario Nocturno</td>
+                        <td class="highlight">Descanso de Héroe</td>
+                        <td>Parkour Oscuro</td>
+                    </tr>
+                    <tr>
+                        <td>Peligro para la Base</td>
+                        <td class="highlight">CERO</td>
+                        <td>Nivel Vengador Nivel Peligro</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

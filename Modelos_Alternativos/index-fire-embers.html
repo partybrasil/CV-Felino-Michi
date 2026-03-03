@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Fire Embers</title>
+    <!-- Dark fantasy font style -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(to top, #210000 0%, #000000 100%);
+            color: #ffccaa;
+            font-family: 'Cinzel', serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ember Particles using pure CSS box-shadows */
+        .embers {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            width: 100%; height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .ember {
+            position: absolute;
+            bottom: -20px;
+            width: 6px; height: 6px;
+            background: #ff5500;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff3300, 0 0 20px #ff0000;
+            animation: floatUp infinite ease-in;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; box-shadow: 0 0 10px #ff5500; }
+            50% { opacity: 0.8; box-shadow: 0 0 20px #ffaa00; }
+            100% { transform: translateY(-110vh) scale(0) translateX(30px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 800px; margin: 0 auto; position: relative; z-index: 10;
+        }
+
+        h1 {
+            font-size: 5rem; text-align: center; color: #ffaa00; margin: 0;
+            text-shadow: 0 0 20px #ff5500, 0 0 40px #ff0000, 0 0 80px #880000;
+            letter-spacing: 5px;
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px #ff5500, 0 0 20px #ff0000; }
+            100% { text-shadow: 0 0 30px #ffaa00, 0 0 60px #ff3300, 0 0 100px #aa0000; }
+        }
+
+        .subtitle {
+            text-align: center; font-size: 1.5rem; color: #ff5500; border-bottom: 2px solid #550000; padding-bottom: 20px; margin-bottom: 40px; letter-spacing: 2px;
+        }
+
+        /* Flame Bordered panels */
+        .panel {
+            background: rgba(20, 0, 0, 0.7);
+            border: 1px solid #ff3300;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 30px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 50, 0, 0.2);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: inset 0 0 40px rgba(255, 50, 0, 0.2), 0 10px 30px rgba(255, 80, 0, 0.4);
+        }
+
+        .avatar {
+            width: 180px; height: 180px;
+            border-radius: 50%; object-fit: cover;
+            border: 4px solid #ff5500;
+            box-shadow: 0 0 30px #ff0000;
+            display: block; margin: 0 auto 30px;
+            filter: contrast(1.2) brightness(0.9);
+            transition: all 0.5s ease;
+        }
+        
+        .avatar:hover {
+            box-shadow: 0 0 50px #ffaa00; filter: contrast(1.3) brightness(1.2); border-color: #ffaa00;
+        }
+
+        .grid-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        
+        h2 { color: #ffaa00; border-left: 4px solid #ff0000; padding-left: 15px; margin-top: 0; font-size: 2rem; }
+        h3 { color: #ff5500; margin: 0 0 10px 0; font-size: 1.3rem; }
+        
+        .stat-item {
+            position: relative; padding-left: 20px; margin-bottom: 15px; line-height: 1.5; font-family: sans-serif; font-size: 1.1rem; color: #eeddcc;
+        }
+        .stat-item::before {
+            content: '🔥'; position: absolute; left: 0; top: 0; font-size: 1rem;
+        }
+
+        blockquote {
+            font-size: 1.4rem; font-style: italic; text-align: center; border-top: 1px dashed #ff3300; border-bottom: 1px dashed #ff3300; padding: 30px 0; margin: 40px 0; color: #ffccaa;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="embers" id="ember-container"></div>
+
+    <div class="container">
+        <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        <h1>Michi</h1>
+        <div class="subtitle">Guardián del Hogar & Inquilino Inmortal (5 Años)</div>
+
+        <div class="panel">
+            <h2>Pacto de Convivencia</h2>
+            <div class="grid-stats">
+                <div>
+                    <h3>I. Sanidad Absoluta</h3>
+                    <div class="stat-item">Ceremonia de castración completada.</div>
+                    <div class="stat-item">Protección de vacunas vigente.</div>
+                    <div class="stat-item">Microchip anclado al alma del traductor humano.</div>
+                </div>
+                <div>
+                    <h3>II. Entorno Intacto</h3>
+                    <div class="stat-item">Uso de garras en telares = 0%.</div>
+                    <div class="stat-item">Desplazamiento silente como sombra.</div>
+                    <div class="stat-item">Control sonoro: Ausencia total de ruido molestoso.</div>
+                </div>
+            </div>
+        </div>
+
+        <blockquote>
+            "No temáis al Gato veterano. He dejado atrás el fuego errático de la juventud. Ahora mi llama es constante, cálida, y jamás quemará vuestro mobiliario. Busco un reino tranquilo forjado en tranquilidad y alimento constante."
+        </blockquote>
+
+        <div class="panel">
+            <h2>Juicio Comparativo</h2>
+            <div style="font-family: sans-serif; line-height: 1.8; color: #ddd; font-size: 1.1rem;">
+                A diferencia de los iniciados <em>(Cachorros)</em> cuyo comportamiento errático invoca la destrucción de alfombras y decibeles alocados a horas impías... mi existencia transcurre en estado de letargo profundo (*Zen Idle*). Estoy atado a un Contrato Humano Fijo (Senior) que provee abundancia, asegurando que los deberes de inquilinato sean inmaculados.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('ember-container');
+        for (let i = 0; i < 50; i++) {
+            let e = document.createElement('div');
+            e.className = 'ember';
+            e.style.left = Math.random() * 100 + '%';
+            e.style.animationDuration = Math.random() * 3 + 2 + 's';
+            e.style.animationDelay = Math.random() * 5 + 's';
+            
+            // Random sizes
+            const size = Math.random() * 4 + 2;
+            e.style.width = size + 'px';
+            e.style.height = size + 'px';
+            container.appendChild(e);
+        }
+    </script>
+</body>
+</html>

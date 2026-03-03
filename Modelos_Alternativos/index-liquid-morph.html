@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Liquid Morphing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 50px 20px;
+            background-color: #0b0f19;
+            font-family: 'Quicksand', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Abstract Liquid Background Shapes */
+        .blob {
+            position: fixed;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.7;
+            animation: morph 20s ease-in-out infinite both alternate, drift 25s infinite linear;
+        }
+        
+        .blob-1 {
+            width: 600px; height: 600px;
+            background: linear-gradient(180deg, #ff00a0 0%, #ff5200 100%);
+            top: -100px; left: -100px;
+        }
+        .blob-2 {
+            width: 700px; height: 500px;
+            background: linear-gradient(180deg, #00f0ff 0%, #0022ff 100%);
+            bottom: -200px; right: -100px;
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            width: 400px; height: 400px;
+            background: linear-gradient(180deg, #b200ff 0%, #ff0055 100%);
+            top: 40%; left: 30%;
+            animation-delay: -10s;
+            animation-direction: reverse;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+        @keyframes drift {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Front UI Elements */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .liquid-avatar {
+            width: 200px; height: 200px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            animation: morph 8s ease-in-out infinite both;
+            box-shadow: 0 0 30px rgba(0,240,255,0.4);
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        .liquid-avatar img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        h1 { font-size: 3.5rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .subtitle { font-size: 1.3rem; margin-top: 5px; opacity: 0.8; font-weight: 300; }
+        
+        .description-box {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            animation: pulse-border 4s infinite alternate;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(255,255,255,0.1); }
+            100% { border-color: rgba(0,240,255,0.4); }
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+        .card:hover { 
+            transform: translateY(-10px); 
+            background: rgba(255,255,255,0.1); 
+            border-color: #ff00a0; 
+            border-radius: 50% 20% / 10% 40%;
+        }
+
+        .card h3 { color: #00f0ff; margin-top: 0; font-size: 1.3rem; }
+        .card p { margin-bottom: 0; opacity: 0.8; line-height: 1.5; }
+
+        .table-wrap {
+            margin-top: 60px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 15px; text-align: left; }
+        th { border-bottom: 2px solid rgba(0,240,255,0.5); font-weight: 700; font-size: 1.2rem; color: #ff00a0; }
+        td { border-bottom: 1px dotted rgba(255,255,255,0.2); font-size: 1.1rem; }
+        .win { color: #00f0ff; font-weight: 700; }
+        .lose { opacity: 0.5; }
+        tr:last-child td { border-bottom: none; }
+
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="liquid-avatar">
+                <img src="../michi.jpg" alt="Michi" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            </div>
+            <h1>MICHI</h1>
+            <div class="subtitle">Inquilino Senior & Especialista en Silencio fluido</div>
+            <p style="opacity: 0.7; margin-top:10px;">Gato de 5 años, castrado, seguro propio, humano traductor (contrato fijo 7 años).</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Salud Flow</h3>
+                <p>Castrado, rigurosamente vacunado. Microchip incluido.</p>
+            </div>
+            <div class="card">
+                <h3>Defensa Eco</h3>
+                <p>0% historial de arañazos. Preserva orgánicamente el mobiliario.</p>
+            </div>
+            <div class="card">
+                <h3>Aura Silente</h3>
+                <p>Hipersensible al ruido. Ondas de calma absolutas.</p>
+            </div>
+            <div class="card">
+                <h3>Flujo Constante</h3>
+                <p>Humano asociado provee flujo monetario indefinido.</p>
+            </div>
+        </div>
+
+        <div class="description-box" style="margin-top: 40px;">
+            ¡Hola! Soy Michi. A diferencia de esos cachorros caóticos, yo fluyo tranquilamente por la vida. Ya superé esa etapa ríspida. Busco un hogar zen donde mi humano trabaje y fluya económicamente, mientras yo adapto mi forma al sillón para supervisar la calidad de las siestas.
+        </div>
+
+        <div class="table-wrap">
+            <h2 style="margin-top:0; text-align:center;">Análisis Viscoso Comparativo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Estado Michi</th>
+                        <th>Estado Cachorro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ondas de Energía</td>
+                        <td class="win">Ondas Alpha / Zen relajado</td>
+                        <td class="lose">Fluctuación Violenta</td>
+                    </tr>
+                    <tr>
+                        <td>Disposición de Residuos</td>
+                        <td class="win">Adaptación perfecta (100%)</td>
+                        <td class="lose">Fugas detectadas</td>
+                    </tr>
+                    <tr>
+                        <td>Fricción Decorativa</td>
+                        <td class="win">Corriente Pacífica (Nula)</td>
+                        <td class="lose">Erosión Masiva</td>
+                    </tr>
+                    <tr>
+                        <td>Marea Nocturna</td>
+                        <td class="win">Reposo del Océano</td>
+                        <td class="lose">Tsunami de Madrugada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

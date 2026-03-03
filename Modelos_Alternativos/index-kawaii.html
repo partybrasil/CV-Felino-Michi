@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Kawaii UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe6f2;
+            background-image: radial-gradient(#ffcce6 20%, transparent 20%), radial-gradient(#ffcce6 20%, transparent 20%);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            font-family: 'Nunito', sans-serif;
+            color: #664d66;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .kawaii-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 15px 0 #ffb3d9, 0 15px 30px rgba(255,102,178,0.3);
+            text-align: center;
+        }
+        .header h1 {
+            color: #ff66b2;
+            font-size: 3rem;
+            margin: 10px 0;
+            font-weight: 900;
+        }
+        .subtitle {
+            background: #ffb3d9;
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .avatar {
+            width: 160px; height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #ccf5ff;
+            box-shadow: 0 8px 0 #99ebff;
+            margin-bottom: 10px;
+        }
+        
+        .bubble-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .bubble-card {
+            background: #fff0f5;
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 8px 0 #ffe0eb;
+            transition: transform 0.2s;
+        }
+        .bubble-card:hover { transform: translateY(-5px); }
+        .bubble-card h3 { color: #ff66b2; font-size: 1.4rem; margin-top: 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .bubble-card p { font-size: 1.1rem; line-height: 1.5; font-weight: 700; color: #806080; }
+
+        .about {
+            background: #e6f9ff;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 8px 0 #b3f0ff;
+            margin: 40px 0;
+        }
+        .about h2 { color: #00bfff; font-size: 2rem; margin-top: 0; }
+        .about p { font-size: 1.2rem; font-weight: 700; color: #4080bf; line-height: 1.7; }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px; /* Space between rows */
+        }
+        th, td { padding: 15px; text-align: center; font-size: 1.1rem; }
+        th { color: #ff99cc; font-size: 1.3rem; font-weight: 900; }
+        tr td { background: #fff5fa; font-weight: 700; }
+        tr td:first-child { border-radius: 20px 0 0 20px; color: #cc6699; }
+        tr td:last-child { border-radius: 0 20px 20px 0; }
+        td.winner { color: #ff66b2; font-size: 1.2rem; background: #ffe6f2; }
+        
+        /* Sparkles */
+        .sparkle { position: absolute; font-size: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="kawaii-box" style="position:relative;">
+        <span class="sparkle" style="top: -20px; left: 20px;">✨</span>
+        <span class="sparkle" style="top: -10px; right: 40px;">🌸</span>
+        <span class="sparkle" style="bottom: 50%; left: -30px;">⭐</span>
+
+        <div class="header">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>Michi! 🐾</h1>
+            <div class="subtitle">Inquilino Senior & Especialista en Silencio 💤</div>
+            <p style="font-weight: 700; font-size: 1.1rem;">Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo (7 añitos de antigüedad). 🏡</p>
+        </div>
+
+        <div class="bubble-grid">
+            <div class="bubble-card">
+                <h3>💖 Salud 100%</h3>
+                <p>Castrado, rigurosamente vacunado y con su microchip. ¡Un chico sano!</p>
+            </div>
+            <div class="bubble-card">
+                <h3>🛋️ Cero Arañazos</h3>
+                <p>0% historial de arañazos. ¡Tu sofá estará perfectamente a salvo conmigo!</p>
+            </div>
+            <div class="bubble-card">
+                <h3>🤫 Mushito Silencioso</h3>
+                <p>Hipersensible al ruido, experto en no molestar y dormir pacíficamente.</p>
+            </div>
+            <div class="bubble-card">
+                <h3>💼 Humano Responsable</h3>
+                <p>Mi humano tiene contrato indefinido de traductor senior. ¡Las latitas están aseguradas!</p>
+            </div>
+        </div>
+
+        <div class="about">
+            <h2>☁️ Sobre Mí ☁️</h2>
+            <p>¡Holi! Soy Michi. A diferencia de esos perritos traviesos 🐶, yo ya he superado mi fase de caos. Busco un pisito tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo vigilo que las siestas sean súper acogedoras y calentitas. ☀️</p>
+        </div>
+
+        <h2 style="color:#ff66b2; font-size:2rem;">🐾 Michi vs Perrito 🐾</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>¿Qué es?</th>
+                    <th>¡Michi! 😸</th>
+                    <th>Perrito Cachorro 🐶</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nivel de Energía</td>
+                    <td class="winner">Super Chill / Zen ~</td>
+                    <td>Tornado 🌪️</td>
+                </tr>
+                <tr>
+                    <td>Baño</td>
+                    <td class="winner">100% Limpito ✨</td>
+                    <td>Aún aprendiendo 💦</td>
+                </tr>
+                <tr>
+                    <td>Deco de Casa</td>
+                    <td class="winner">Las cortinas son aburridas</td>
+                    <td>¡Toy Story! 🎾</td>
+                </tr>
+                <tr>
+                    <td>De Noche</td>
+                    <td class="winner">A mimir mucho 💤</td>
+                    <td>Zoomies 3:00 AM 🏃</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Claymorphism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e8e8ed;
+            font-family: 'Fredoka', sans-serif;
+            color: #555c6e;
+            margin: 0;
+            padding: 50px 20px;
+        }
+        .clay-card {
+            background-color: #f1f1f5;
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 
+                30px 30px 60px rgba(166, 171, 189, 0.4),
+                -30px -30px 60px rgba(255, 255, 255, 0.9),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.8),
+                inset -10px -10px 20px rgba(166, 171, 189, 0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .clay-btn {
+            background-color: #f1f1f5;
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 
+                15px 15px 30px rgba(166, 171, 189, 0.4),
+                -15px -15px 30px rgba(255, 255, 255, 0.9),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.8),
+                inset -5px -5px 10px rgba(166, 171, 189, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .clay-btn:hover {
+            transform: scale(0.98);
+            box-shadow: 
+                inset 15px 15px 30px rgba(166, 171, 189, 0.4),
+                inset -15px -15px 30px rgba(255, 255, 255, 0.9);
+        }
+
+        .clay-avatar {
+            width: 170px; height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 
+                15px 15px 30px rgba(166, 171, 189, 0.5),
+                -15px -15px 30px rgba(255, 255, 255, 0.8),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.5),
+                inset -5px -5px 10px rgba(166, 171, 189, 0.3);
+            border: 8px solid #f1f1f5;
+        }
+
+        h1 { color: #fe7298; text-align: center; font-size: 3.2rem; margin: 10px 0; text-shadow: 2px 2px 4px rgba(254,114,152,0.2); }
+        h2 { color: #8a6cff; text-align: center; font-size: 2rem; }
+        .subtitle { text-align: center; font-size: 1.3rem; color: #a4abbd; font-weight: 600; margin-bottom: 30px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .clay-btn h3 { color: #00d2ff; font-size: 1.5rem; margin-top: 0; }
+        .clay-btn p { font-size: 1.1rem; color: #6e768e; line-height: 1.5; margin-bottom: 0; }
+
+        .about {
+            background-color: #8a6cff;
+            color: #fff;
+            border-radius: 40px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 
+                20px 20px 40px rgba(138, 108, 255, 0.4),
+                -20px -20px 40px rgba(255, 255, 255, 0.8),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.3),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+        .about h2 { color: #fff; margin-top: 0; }
+        .about p { font-size: 1.3rem; line-height: 1.6; }
+
+        .clay-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+        .clay-table th { padding: 15px; font-size: 1.2rem; color: #fe7298; }
+        .clay-table td { padding: 20px; text-align: center; font-size: 1.1rem; }
+        
+        .row-bg {
+            background-color: #f1f1f5;
+            box-shadow: 
+                10px 10px 20px rgba(166, 171, 189, 0.3),
+                -10px -10px 20px rgba(255, 255, 255, 0.8),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.8),
+                inset -5px -5px 10px rgba(166, 171, 189, 0.1);
+            border-radius: 20px;
+        }
+        .row-bg td:first-child { border-radius: 20px 0 0 20px; font-weight: 600; color: #8a6cff; }
+        .row-bg td:last-child { border-radius: 0 20px 20px 0; color: #a4abbd; }
+        .highlight-td { color: #fe7298; font-weight: 600; font-size: 1.2rem !important; }
+    </style>
+</head>
+<body>
+    <div class="clay-card">
+        <header>
+            <img src="../michi.jpg" alt="Michi" class="clay-avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+            <h1>Michi</h1>
+            <div class="subtitle">Inquilino Senior & Especialista en Silencio</div>
+        </header>
+
+        <p style="text-align:center; font-size:1.2rem; max-width:600px; margin: 0 auto;">Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo (7 años de antigüedad).</p>
+
+        <div class="grid">
+            <div class="clay-btn">
+                <h3>🩺 Salud 10/10</h3>
+                <p>Castrado, rigurosamente vacunado y con microchip instalado.</p>
+            </div>
+            <div class="clay-btn">
+                <h3>🛋️ Guardia Muebles</h3>
+                <p>0% historial de arañazos. Decoración totalmente a salvo.</p>
+            </div>
+            <div class="clay-btn">
+                <h3>🤫 Modo Avión</h3>
+                <p>Hipersensible al ruido, experto en no molestar en absoluto.</p>
+            </div>
+            <div class="clay-btn">
+                <h3>💼 Solvencia Real</h3>
+                <p>Contrato indefinido de traductor senior garantizando gastos.</p>
+            </div>
+        </div>
+
+        <div class="about">
+            <h2>Mi Declaración</h2>
+            <p>¡Hola! Soy Michi. A diferencia de esos cachorros caóticos, yo ya he superado esa fase de inmadurez. Busco un hogar tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo superviso la calidad acústica de las siestas y embellezco el entorno con mis formas redondeadas y suaves.</p>
+        </div>
+
+        <h2>Tabla Comparativa 3D</h2>
+        <table class="clay-table">
+            <thead>
+                <tr>
+                    <th>Atributo</th>
+                    <th>Michi (Versión Pro)</th>
+                    <th>Cachorro (Beta)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-bg">
+                    <td>Nivel de Energía</td>
+                    <td class="highlight-td">Chill & Relaxed</td>
+                    <td>Tornado Infinito</td>
+                </tr>
+                <tr class="row-bg">
+                    <td>Sistema Sanitario</td>
+                    <td class="highlight-td">100% Autónomo</td>
+                    <td>Parches Requeridos</td>
+                </tr>
+                <tr class="row-bg">
+                    <td>Fijación en Textiles</td>
+                    <td class="highlight-td">Nulo Interés</td>
+                    <td>Obsesión Total</td>
+                </tr>
+                <tr class="row-bg">
+                    <td>Actividad Noche</td>
+                    <td class="highlight">Apagado Programado</td>
+                    <td>Reinicio Inesperado</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

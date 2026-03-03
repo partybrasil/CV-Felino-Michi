@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi - Zen Minimalist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f1ea;
+            color: #4a5d4e;
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 80px 20px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fffaf0;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            border: 1px solid #e8e4d9;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif', serif;
+            color: #2c3e30;
+            font-weight: 700;
+            text-align: center;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 5px; }
+        .subtitle {
+            text-align: center;
+            font-style: italic;
+            color: #7a8b7c;
+            margin-bottom: 40px;
+            font-family: 'Noto Serif', serif;
+        }
+        .avatar-wrap {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #dde3de;
+            padding: 8px;
+            background: #fff;
+        }
+        p {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #5c6b5e;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 60px 0;
+            justify-content: center;
+        }
+        .feature {
+            flex: 1 1 200px;
+            text-align: center;
+            padding: 20px;
+        }
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .feature h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background-color: #a3b1a5;
+        }
+        .feature p {
+            font-size: 1rem;
+            margin: 0;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, #dde3de, transparent);
+            margin: 60px 0;
+        }
+        .stats {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+        .stats th, .stats td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #f0eee8;
+        }
+        .stats th {
+            font-family: 'Noto Serif', serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8c9b8e;
+        }
+        .stats td { font-size: 1.05rem; }
+        .stats .strong { font-weight: 400; color: #3d4f40; }
+        .stats tr:hover { background-color: #faf8f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar-wrap">
+            <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
+        </div>
+        <h1>Michi</h1>
+        <div class="subtitle">Inquilino Senior & Especialista en Silencio</div>
+        
+        <p>Gato de 5 años, castrado, con seguro de hogar y humano con contrato fijo (7 años de antigüedad).</p>
+        
+        <hr>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Salud Total</h3>
+                <p>Castrado, rigurosamente vacunado<br>y con microchip.</p>
+            </div>
+            <div class="feature">
+                <h3>Manto Intacto</h3>
+                <p>0% historial de arañazos<br>en mobiliario.</p>
+            </div>
+            <div class="feature">
+                <h3>Paz Absoluta</h3>
+                <p>Hipersensible al ruido,<br>experto en no molestar.</p>
+            </div>
+            <div class="feature">
+                <h3>Solvencia</h3>
+                <p>Contrato indefinido de<br>traductor senior.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Sobre Mi Esencia</h2>
+        <p>¡Hola! Soy Michi. A diferencia de esos cachorros caóticos, yo ya he superado esa fase de inmadurez. Busco un hogar tranquilo donde mi humano pueda trabajar y pagar el alquiler, mientras yo superviso la calidad acústica de las siestas.</p>
+
+        <hr>
+
+        <h2>Equilibrio y Estadísticas</h2>
+        <table class="stats">
+            <thead>
+                <tr>
+                    <th>Cualidad</th>
+                    <th>Michi</th>
+                    <th>Cachorro Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Energía vital</td>
+                    <td class="strong">Flujo Zen</td>
+                    <td>Caos desbordado</td>
+                </tr>
+                <tr>
+                    <td>Hábitos higiénicos</td>
+                    <td class="strong">Inmaculado (100%)</td>
+                    <td>En proceso de aprendizaje</td>
+                </tr>
+                <tr>
+                    <td>Interacción material</td>
+                    <td class="strong">Contemplativa</td>
+                    <td>Física y destructiva</td>
+                </tr>
+                <tr>
+                    <td>Horario nocturno</td>
+                    <td class="strong">Descanso profundo</td>
+                    <td>Actividad impredecible</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
