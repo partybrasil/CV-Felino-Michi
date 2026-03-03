@@ -14,7 +14,12 @@ Para no olvidar ningún poder secreto ni combinación, los humanos necesitan chu
 
 ## 🖱️ Interacciones Base & UI Diferente
 
-### 🐾 Rastro de Huellas (Tracker 3D)
+### � La Caza del Puntero (Vibración de salto)
+El instinto cazador nunca duerme.
+- **Acción:** Deja el cursor quieto cerca de la foto de Michi (a unos centímetros).
+- **Efecto:** Michi empezará a "menear el pompis" (una vibración rápida y suave, típica de gatos calculando un salto). Si mueves el ratón de repente para "escapar", ¡Michi lanzará un zarpazo visual instantáneo que dejará un rasguño rojo y temporal en tu pantalla!
+
+### �🐾 Rastro de Huellas (Tracker 3D)
 Michi nunca le quita el ojo de encima a las visitas.
 - **PC:** Mientras mueves el ratón, irán apareciendo pequeñas **huellas de garritas** (🐾) que se desvanecen. Además, la cabeza de Michi (el avatar principal) seguirá tu movimiento en 3D (`rotateX` / `rotateY`).
 - **Móvil:** Si deslizas tu dedo por la pantalla (`touchmove`), verás aparecer el rastro de huellitas.
@@ -151,10 +156,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **La idea:** Si el usuario intenta escribir o pulsa teclas al azar en cualquier parte del CV.
 - **El efecto:** Se bloquea visualmente la interacción y aparece una pata de gato "dormida" tapando el puntero o una cola cruzando la pantalla. 
 - **Mensaje:** *"Lo siento, el gato se ha sentado sobre el teclado. Vuelve a intentarlo cuando se despierte"*.
-
-**6. "La Caza del Puntero" (Vibración de salto)**
-- **La idea:** Al dejar el cursor quieto cerca del avatar.
-- **El efecto:** Michi empieza a "menear el pompis" (animación CSS de vibración suave preparándose para saltar). Si el usuario mueve el ratón de repente, lanza un zarpazo visual que deja un rasguño temporal en la pantalla.
 
 **7. "El Escáner de Rayos X" (Hover Técnico)**
 - **La idea:** Un botón oculto o atajo.

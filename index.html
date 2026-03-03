@@ -433,6 +433,12 @@
         .card.marked-territory { background: rgba(0, 113, 227, 0.03); border-color: rgba(0, 113, 227, 0.2); }
         .card.marked-territory:hover { box-shadow: 0 20px 40px rgba(0, 113, 227, 0.12); }
         
+        /* WIGGLE BUTT POUNCE */
+        @keyframes wiggleButt { 0%, 100% { transform: rotate(0deg) translateY(0); } 25% { transform: rotate(-2deg) translateY(2px); } 75% { transform: rotate(2deg) translateY(2px); } }
+        .wiggle-butt { animation: wiggleButt 0.15s infinite; }
+        .scratch-mark-pounce { position: fixed; width: 150px; height: 150px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 20 Q 40 50 20 80 M50 10 Q 70 45 40 90 M80 20 Q 95 55 70 85" stroke="%23ff3b30" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8"/></svg>'); background-size: contain; background-repeat: no-repeat; pointer-events: none; z-index: 100000; animation: scratchFade 1s forwards; }
+        @keyframes scratchFade { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); } }
+
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -1367,6 +1373,59 @@
             document.addEventListener('touchmove', (e) => {
                 if (e.touches.length > 0) updatePointerVelocity(e.touches[0].clientX, e.touches[0].clientY);
             }, { passive: true });
+
+            // La Caza del Puntero
+            let pounceTimer;
+            let isWiggling = false;
+            let lastPounceMouseX = 0;
+            let lastPounceMouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                if (avatarWrapper) {
+                    const rect = avatarWrapper.getBoundingClientRect();
+                    const avatarCenterX = rect.left + rect.width / 2;
+                    const avatarCenterY = rect.top + rect.height / 2;
+                    const distToAvatar = Math.sqrt(Math.pow(mouseX - avatarCenterX, 2) + Math.pow(mouseY - avatarCenterY, 2));
+
+                    if (isWiggling) {
+                        const mouseSpeed = Math.sqrt(Math.pow(mouseX - lastPounceMouseX, 2) + Math.pow(mouseY - lastPounceMouseY, 2));
+                        if (mouseSpeed > 30) {
+                            isWiggling = false;
+                            avatarWrapper.classList.remove('wiggle-butt');
+                            
+                            const scratch = document.createElement('div');
+                            scratch.className = 'scratch-mark-pounce';
+                            scratch.style.left = mouseX + 'px';
+                            scratch.style.top = mouseY + 'px';
+                            // Save original random rotation to override base CSS transform properly
+                            const randomRot = (Math.random() - 0.5) * 60;
+                            scratch.style.transform = `translate(-50%, -50%) rotate(${randomRot}deg)`;
+                            document.body.appendChild(scratch);
+
+                            setTimeout(() => {
+                                if (scratch.parentNode) scratch.parentNode.removeChild(scratch);
+                            }, 1000);
+                        }
+                    }
+
+                    clearTimeout(pounceTimer);
+                    if (distToAvatar < 250) {
+                        pounceTimer = setTimeout(() => {
+                            isWiggling = true;
+                            avatarWrapper.classList.add('wiggle-butt');
+                        }, 500); 
+                    } else {
+                        isWiggling = false;
+                        avatarWrapper.classList.remove('wiggle-butt');
+                    }
+                }
+                
+                lastPounceMouseX = mouseX;
+                lastPounceMouseY = mouseY;
+            });
 
             // Territory Marked Logic (Local Storage)
             const hasVisited = localStorage.getItem('michi_has_visited');
