@@ -114,6 +114,11 @@ Solo para inspectores curiosos y devs perspicaces.
 - **Código Fuente (HTML):** Presionando Ctrl+U en PC, se verá de inmediato en la cabecera un ASCII enorme y bonito de Michi saludando a los curiosos del front-end.
 - **Consola JS (F12):** La consola imprime un mensaje en azul corporativo bien grande: *"¿Buscando bugs? Aquí solo hay pulgas y código limpio. ¡Contrátame miau!"*.
 
+### 📈 Auditoría "Purr-formance Score" (Falsa Métrica)
+Solo para humanos obsesionados con Lighthouse y Web Vitals.
+- **Acción:** En el pie de página, hay un texto de "Métricas de carga: 0.04s". Si haces clic en el enlace en línea punteada "Auditoría Purr-formance"...
+- **Efecto:** Aparece un widget flotante estilo Chrome Lighthouse, pero rebautizado a "Purr-formance". Muestra que Michi tiene un `100/100` en Ronroneos por segundo, excelente First Contentful Tuna y `0` Zarpazos de Layout Shift.
+
 ---
 
 ## 🚀 Futuros Easter Eggs (Backlog de Ideas)
@@ -284,10 +289,6 @@ Solo para inspectores curiosos y devs perspicaces.
 **41. "Cámara Gatuna Ojo de Pez" (Filtro CSS de Lente)**
 - **La idea:** Teclear `fisheye`.
 - **El efecto:** Todo el CV se curva y arquea en el centro simulando cómo un gato vería el mundo o a través de una mirilla súper convexa.
-
-**42. "Purr-formance Score" (Falsa Métrica)**
-- **La idea:** Un enlace oculto con texto flotante en las métricas de carga web.
-- **El efecto:** Aparece un widget estilo Chrome Lighthouse pero llamado "Purr-formance". Métrica principal: `100/100 Ronroneos por segundo (RPS)`.
 
 **43. "El Toque Sanador" (Clics Reparadores)**
 - **La idea:** Introducir pequeños "bugs" estéticos (letras de lado, rayas) al azar.

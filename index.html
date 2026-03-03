@@ -408,6 +408,23 @@
         .cheatsheet-desc { opacity: 0.9; }
         .close-cheatsheet { display: block; margin: 2rem auto 0; padding: 10px 24px; background: var(--accent-blue); color: white; border: none; border-radius: 980px; font-weight: bold; cursor: pointer; transition: background 0.2s; font-size: 1rem; }
         .close-cheatsheet:hover { background: var(--accent-blue-hover); }
+        /* PURR-FORMANCE WIDGET */
+        #purr-formance-widget { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); z-index: 100000; width: 340px; text-align: center; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-radius: 16px; padding: 1.5rem; }
+        #purr-formance-widget.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+        .score-row { display: flex; justify-content: space-around; width: 100%; margin-bottom: 1rem; }
+        .score-circle { display: flex; flex-direction: column; align-items: center; width: 80px; }
+        .score-circle svg { width: 70px; height: 70px; margin-bottom: 5px; }
+        .circle-bg { fill: none; stroke: rgba(12, 206, 107, 0.2); stroke-width: 3; }
+        .circle { fill: none; stroke: #0cce6b; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 0, 100; }
+        #purr-formance-widget.show .circle { animation: progress 1.5s ease-out forwards; }
+        .percentage { fill: #0cce6b; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: bold; text-anchor: middle; }
+        @keyframes progress { 0% { stroke-dasharray: 0, 100; } 100% { stroke-dasharray: 100, 100; } }
+        .purr-metric { text-align: left; font-size: 0.9rem; margin-top: 1rem; color: var(--text-primary); border-top: 1px solid var(--glass-border); padding-top: 1rem; }
+        .purr-metric p { margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.85rem; }
+        .purr-metric strong { font-weight: 500; }
+        .purr-value { color: #0cce6b; font-family: monospace; font-weight: bold; font-size: 0.95rem; }
+        #close-purr-widget { margin-top: 1.5rem; padding: 8px 20px; border-radius: 20px; border: none; background: rgba(12, 206, 107, 0.1); color: #0cce6b; font-weight: bold; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; }
+        #close-purr-widget:hover { background: rgba(12, 206, 107, 0.2); }
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -568,6 +585,9 @@
         <div style="text-align: center; margin-top: 20px;">
             <div id="schrodinger-box" title="Caja de Schrödinger (Prueba tu suerte)">📦❓</div>
         </div>
+        <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; color: var(--text-secondary);">
+            Métricas de carga: 0.04s | <span id="purr-formance-link" style="cursor: help; text-decoration: underline dotted; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-blue)'" onmouseout="this.style.color='inherit'">Auditoría Purr-formance</span>
+        </p>
         <p style="text-align: center; margin-top: 15px;">
             <span><a href="Modelos_Alternativos/index.html" style="color: inherit; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-blue)'" onmouseout="this.style.color='inherit'">&copy; 2026 - Michi & Humano en Málaga</a></span>
         </p>
@@ -585,6 +605,26 @@
     
     <div id="back-to-top">↑</div>
     <div id="cat-paw-attack"></div>
+
+    <!-- Purr-formance Widget -->
+    <div id="purr-formance-widget">
+        <div class="score-row">
+            <div class="score-circle">
+                <svg viewBox="0 0 36 36"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><text x="18" y="20.35" class="percentage">100</text></svg>
+                <span style="font-size: 0.85rem; font-weight: 600; color: #0cce6b;">Purr-formance</span>
+            </div>
+            <div class="score-circle">
+                <svg viewBox="0 0 36 36"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><text x="18" y="20.35" class="percentage">100</text></svg>
+                <span style="font-size: 0.85rem; font-weight: 600; color: #0cce6b;">Cuteness</span>
+            </div>
+        </div>
+        <div class="purr-metric">
+            <p>🐾 <strong>Ronroneos por segundo</strong> <span class="purr-value">100 RPS</span></p>
+            <p>🐟 <strong>First Contentful Tuna</strong> <span class="purr-value">0.1s</span></p>
+            <p>🧶 <strong>Cumulative Layout Zarpazos</strong> <span class="purr-value">0</span></p>
+        </div>
+        <button id="close-purr-widget">Cerrar Auditoría</button>
+    </div>
 
     <!-- Night Vision Elements -->
     <div id="night-vision-overlay"></div>
@@ -1195,6 +1235,21 @@
                         document.body.appendChild(nada);
                         setTimeout(() => nada.remove(), 1500);
                     }
+                });
+            }
+
+            // Purr-formance Widget Logic
+            const purrLink = document.getElementById('purr-formance-link');
+            const purrWidget = document.getElementById('purr-formance-widget');
+            const closePurrBtn = document.getElementById('close-purr-widget');
+            
+            if (purrLink && purrWidget && closePurrBtn) {
+                purrLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    purrWidget.classList.add('show');
+                });
+                closePurrBtn.addEventListener('click', () => {
+                    purrWidget.classList.remove('show');
                 });
             }
 
