@@ -425,6 +425,9 @@
         .purr-value { color: #0cce6b; font-family: monospace; font-weight: bold; font-size: 0.95rem; }
         #close-purr-widget { margin-top: 1.5rem; padding: 8px 20px; border-radius: 20px; border: none; background: rgba(12, 206, 107, 0.1); color: #0cce6b; font-weight: bold; cursor: pointer; transition: background 0.2s; font-family: 'Inter', sans-serif; }
         #close-purr-widget:hover { background: rgba(12, 206, 107, 0.2); }
+        /* CAT HAIRS */
+        .cat-hair { position: fixed; pointer-events: none; z-index: 99999; stroke: rgba(180, 180, 180, 0.9); stroke-width: 2.5; fill: none; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2)); transition: transform 1s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 1s ease-out; }
+        .cat-hair.fly { transform: translate(var(--fly-x), var(--fly-y)) rotate(var(--fly-rot)) scale(1.5); opacity: 0; }
         /* END EASTER EGGS CSS */
     </style>
 </head>
@@ -1252,6 +1255,114 @@
                     purrWidget.classList.remove('show');
                 });
             }
+
+            // Virtual Cat Hairs Logic
+            const hairsContainer = document.createElement('div');
+            hairsContainer.id = 'cat-hairs-container';
+            hairsContainer.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:99999; overflow:hidden;';
+            document.body.appendChild(hairsContainer);
+
+            let lastMouseX = 0, lastMouseY = 0;
+            const targetTriggerSection = document.querySelector('.comparison'); // "Proyectos" alternative
+            let hairSpawned = 0;
+            const MAX_HAIRS = 40;
+
+            // Generate a random bezier curve that looks like a cat hair
+            function createCatHair() {
+                if (hairSpawned >= MAX_HAIRS) return;
+                
+                const hair = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                hair.setAttribute("class", "cat-hair");
+                
+                // Randomize hair length and curve
+                const length = 20 + Math.random() * 40;
+                const curve = (Math.random() - 0.5) * 30;
+                
+                hair.setAttribute("width", Math.max(length, Math.abs(curve)) + 10);
+                hair.setAttribute("height", Math.max(length, Math.abs(curve)) + 10);
+                hair.style.overflow = 'visible';
+                
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", `M 5 5 Q ${5 + curve} ${5 + length/2} ${5 + curve/2} ${5 + length}`);
+                
+                // Random initial position on the screen borders/center
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                const rotation = Math.random() * 360;
+                
+                hair.style.left = startX + 'px';
+                hair.style.top = startY + 'px';
+                hair.style.transform = `rotate(${rotation}deg)`;
+                
+                hair.appendChild(path);
+                hairsContainer.appendChild(hair);
+                hairSpawned++;
+
+                // Give it dataset properties for physics
+                hair.dataset.x = startX;
+                hair.dataset.y = startY;
+            }
+
+            // Spawn hairs when scrolling over target section
+            if (targetTriggerSection) {
+                window.addEventListener('scroll', () => {
+                    const rect = targetTriggerSection.getBoundingClientRect();
+                    // If target section is somewhat in viewport (or above it so user is scrolling near it)
+                    if (rect.top < window.innerHeight + 500 && rect.bottom > -500) {
+                         // Higher spawn chance
+                         if (Math.random() < 0.4) {
+                             createCatHair();
+                         }
+                    }
+                }, { passive: true });
+            }
+
+            // Calculate pointer velocity and blow hairs away
+            function updatePointerVelocity(x, y) {
+                const dx = x - lastMouseX;
+                const dy = y - lastMouseY;
+                const speed = Math.sqrt(dx*dx + dy*dy);
+                
+                lastMouseX = x;
+                lastMouseY = y;
+
+                if (speed > 25) { // Threshold for "fast movement"
+                    const hairs = document.querySelectorAll('.cat-hair:not(.fly)');
+                    hairs.forEach(hair => {
+                        const hx = parseFloat(hair.dataset.x);
+                        const hy = parseFloat(hair.dataset.y);
+                        
+                        // Distance from mouse to hair
+                        const dist = Math.sqrt(Math.pow(hx - x, 2) + Math.pow(hy - y, 2));
+                        
+                        // If mouse is moving fast near the hair
+                        if (dist < 150) {
+                            hair.classList.add('fly');
+                            
+                            // Fly direction based on mouse direction + some randomness
+                            const flyX = (dx * 5) + (Math.random() - 0.5) * 200;
+                            const flyY = (dy * 5) + (Math.random() - 0.5) * 200;
+                            const flyRot = (Math.random() - 0.5) * 720;
+                            
+                            hair.style.setProperty('--fly-x', `${flyX}px`);
+                            hair.style.setProperty('--fly-y', `${flyY}px`);
+                            hair.style.setProperty('--fly-rot', `${flyRot}deg`);
+                            
+                            // Remove element after animation
+                            setTimeout(() => {
+                                if (hair.parentNode) hair.parentNode.removeChild(hair);
+                                hairSpawned--;
+                            }, 1500);
+                        }
+                    });
+                }
+            }
+
+            document.addEventListener('mousemove', (e) => updatePointerVelocity(e.clientX, e.clientY), { passive: true });
+            document.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) updatePointerVelocity(e.touches[0].clientX, e.touches[0].clientY);
+            }, { passive: true });
+
 
             // Gravedad Cero Function
             function toggleZeroGravity() {

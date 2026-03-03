@@ -77,6 +77,11 @@ Contador de velocidad visual de tus dedos.
 Progreso amigable de validación.
 - **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción humana: Máximo"*.
 
+### 🐈‍⬛ Pelos de Gato Virtuales (Generador de Partículas)
+La estática es real en esta página web.
+- **La idea:** Cada vez que el visitante hace scroll sobre la caja de "Por qué un gato adulto es la mejor inversión" (Comparación).
+- **El efecto:** Se generan pequeños vectores en forma de pelitos blancos que se quedan semi-pegados a la pantalla. Si pasas el ratón o el dedo rápido por encima de ellos, "vuelan" por la estática de la pantalla y terminan desapareciendo.
+
 ---
 
 ## 🎭 UI Dinámica (Sorpresas Inesperadas)
@@ -249,10 +254,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **31. "Amasando el DOM" (Efectos SVG)**
 - **La idea:** Pulsar Shift repetidas veces sobre el CV.
 - **El efecto:** Se aplica un filtro SVG de distorsión sobre toda la página que emula el ritmo de amasar pan. Toda la web "respira" suavemente de arriba a abajo.
-
-**32. "Pelos de Gato Virtuales" (Generador de Partículas)**
-- **La idea:** Cada vez que el visitante hace scroll sobre la caja de "Proyectos".
-- **El efecto:** Se generan pequeños vectores en forma de pelitos blancos que se quedan semi-pegados a la pantalla. Si pasas el ratón rápido por encima de ellos, "vuelan" por la estática.
 
 **33. "La Paradoja de la Puerta" (Alertas en Bucle)**
 - **La idea:** Al pulsar el botón "Salir de la página" o si va a cerrar pestaña (BeforeUnloadEvent).
