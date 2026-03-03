@@ -400,14 +400,20 @@
         /* CHEATSHEET OVERLAY */
         #cheatsheet-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 100000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(5px); }
         #cheatsheet-overlay.show { opacity: 1; pointer-events: auto; }
-        .cheatsheet-content { background: var(--glass-bg); padding: 2.5rem; border-radius: var(--radius-lg); max-width: 600px; width: 90%; color: var(--text-primary); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Inter', sans-serif; }
-        .cheatsheet-content h2 { font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center; color: var(--text-primary); }
-        .cheatsheet-list { list-style: none; padding: 0; }
-        .cheatsheet-list li { margin-bottom: 1rem; display: flex; align-items: baseline; gap: 10px; font-size: 0.95rem; line-height: 1.4; }
-        .cheatsheet-key { background: #333; color: #fff; padding: 4px 10px; border-radius: 6px; font-family: monospace; font-weight: bold; font-size: 0.9rem; border-bottom: 2px solid #111; display: inline-block; }
-        .cheatsheet-desc { opacity: 0.9; }
-        .close-cheatsheet { display: block; margin: 2rem auto 0; padding: 10px 24px; background: var(--accent-blue); color: white; border: none; border-radius: 980px; font-weight: bold; cursor: pointer; transition: background 0.2s; font-size: 1rem; }
-        .close-cheatsheet:hover { background: var(--accent-blue-hover); }
+        .cheatsheet-content { position: relative; background: var(--glass-bg); padding: 2.5rem 1.5rem 1.5rem 2.5rem; border-radius: var(--radius-lg); max-width: 700px; width: 90%; color: var(--text-primary); border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Inter', sans-serif; }
+        .cheatsheet-content h2 { font-size: 1.6rem; margin-top: 0; margin-bottom: 1.5rem; text-align: center; color: var(--text-primary); padding-right: 30px; }
+        .close-x-btn { position: absolute; top: 15px; right: 20px; background: transparent; border: none; font-size: 1.5rem; color: var(--text-secondary); cursor: pointer; transition: color 0.2s, transform 0.2s; padding: 5px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+        .close-x-btn:hover { color: #ff3b30; transform: scale(1.1) rotate(90deg); }
+        .cheatsheet-list { list-style: none; padding: 0; margin: 0; max-height: 65vh; overflow-y: auto; overflow-x: hidden; padding-right: 15px; }
+        .cheatsheet-list::-webkit-scrollbar { width: 6px; }
+        .cheatsheet-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+        .cheatsheet-list::-webkit-scrollbar-thumb { background: rgba(0, 113, 227, 0.4); border-radius: 4px; }
+        .cheatsheet-list::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
+        .cheatsheet-list li { margin-bottom: 0.8rem; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.95rem; line-height: 1.4; padding-bottom: 0.8rem; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+        .cheatsheet-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cheatsheet-icon { font-size: 1.5rem; min-width: 45px; text-align: center; white-space: nowrap; line-height: 1; }
+        .cheatsheet-key { background: #333; color: #fff; padding: 4px 10px; border-radius: 6px; font-family: monospace; font-weight: bold; font-size: 0.85rem; border-bottom: 2px solid #111; display: inline-block; white-space: nowrap; }
+        .cheatsheet-desc { opacity: 0.9; margin-left: 5px; flex: 1 1 200px; }
         /* PURR-FORMANCE WIDGET */
         #purr-formance-widget { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); z-index: 100000; width: 340px; text-align: center; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.15); border-radius: 16px; padding: 1.5rem; }
         #purr-formance-widget.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
@@ -685,18 +691,30 @@
 
     <div id="cheatsheet-overlay">
         <div class="cheatsheet-content">
+            <button id="close-cheatsheet-btn" class="close-x-btn" aria-label="Cerrar el Grimorio">✖</button>
             <h2>📜 Grimorio Felino (Secretos)</h2>
             <ul class="cheatsheet-list">
-                <li><span class="cheatsheet-key">💻 L</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Activar/Desactivar Puntero Láser (Solo PC).</span></li>
-                <li><span class="cheatsheet-key">💻 Escribe "miau"</span> <span class="cheatsheet-key">📱 Mantén pulsado el avatar</span> <span class="cheatsheet-desc">Maullido.</span></li>
-                <li><span class="cheatsheet-key">💻 Escribe "catnip"</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Viaje Astral (Modo Catnip 5s).</span></li>
-                <li><span class="cheatsheet-key">💻 G</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Alternar Gravedad Cero y desatar el caos (Solo PC).</span></li>
-                <li><span class="cheatsheet-key">💻 Z</span> <span class="cheatsheet-key">📱 Agitar el dispositivo</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio.</span></li>
-                <li><span class="cheatsheet-key">💻 ↑ ↑ ↓ ↓ ← → ← → B A</span> <span class="cheatsheet-key">📱 Tap x 7 en el título principal</span> <span class="cheatsheet-desc">Visión Nocturna y Zarpazos.</span></li>
-                <li><span class="cheatsheet-key">💻 Click x 5</span> <span class="cheatsheet-key">📱 Tap x 5</span> <span class="cheatsheet-desc">Clic/Tap rápido en el avatar para enfadar a Michi.</span></li>
-                <li><span class="cheatsheet-key">💻 Quieto 5s</span> <span class="cheatsheet-key">📱 N/A</span> <span class="cheatsheet-desc">Robo de cursor por inactividad.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Z</span> / <span class="cheatsheet-key">Agitar móvil</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio de secretos.</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">L</span> <span class="cheatsheet-desc">Modo Gatito con Láser. Caza el punto rojo.</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">G</span> <span class="cheatsheet-desc">Efecto Gravedad Cero. Arrastra las cajas.</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">catnip</span> <span class="cheatsheet-desc">Activar el Modo Catnip (Viaje Psicodélico 5s).</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">Quieto 5s</span> <span class="cheatsheet-desc">Dejar el cursor quieto para que Michi te lo robe.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">miau</span> / <span class="cheatsheet-key">Tap 2s Avatar</span> <span class="cheatsheet-desc">Activar Súper Maullido con terremoto de pantalla.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">↑↑↓↓←→←→BA</span> / <span class="cheatsheet-key">Tap x7 Título</span> <span class="cheatsheet-desc">Visión Nocturna y zarpazos fluorescentes.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click/Tap x5 Foto</span> <span class="cheatsheet-desc">Spam de caricias para enfadar a Michi.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Ratón en Foto</span> <span class="cheatsheet-desc">(Con Láser) La Caza del Puntero. ¡Vibración!</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Mover cursor/dedo</span> <span class="cheatsheet-desc">Rastro de huellas y rotación de avatar en 3D.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click ⚠️ Modo Caos</span> <span class="cheatsheet-desc">Destrucción estética. Limpia después.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Quieto 10s</span> <span class="cheatsheet-desc">Modo Siesta. La web duerme y aparecen Zzz.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Scroll rápido</span> <span class="cheatsheet-desc">Amasadores laterales según tu velocidad.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Scroll Fondo</span> <span class="cheatsheet-desc">Completar la Barra Constante de Ronroneo (Footer).</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Scroll Comparación</span> <span class="cheatsheet-desc">Aparecen vectores interactivos de pelos sueltos.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Hover 0.5s Botones</span> <span class="cheatsheet-desc">Ataque de patita rápida lateral de Michi.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Traductor iOS</span> <span class="cheatsheet-desc">Miau Mode. Todo el texto al gatuno puro.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click 📦❓ Logo</span> <span class="cheatsheet-desc">Animaciones en la Caja de Schrödinger (Footer).</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Link Secreto</span> <span class="cheatsheet-desc">Cerca de LinkedIn. Culpa de la Gravedad.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Purr-formance</span> <span class="cheatsheet-desc">Métricas estilo Lighthouse versión felina.</span></li>
             </ul>
-            <button id="close-cheatsheet-btn" class="close-cheatsheet">Entendido, miau.</button>
         </div>
     </div>
 
