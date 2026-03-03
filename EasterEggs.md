@@ -75,8 +75,8 @@ Progreso amigable de validación.
 
 ### 11. 🐾 Ataque de Patita a los Botones
 Michi odia el letargo y la inacción.
-- **Acción:** Deja el cursor de tu ratón **completamente quieto durante 5 segundos** posado sobre cualquiera de los botones importantes (EJ: "Contactar a mi humano" o "Ver perfil de LinkedIn"). 
-- **Efecto:** De golpe, una pata negra lateral saldrá disparada sobre la UI del botón empujándolo con fuerza (`shake`), e irá acompañado de un globo de pensamiento que exclama: *"¡Si no lo vas a pulsar tú, lo pulso yo!"*.
+- **Acción:** Deja el cursor de tu ratón **completamente quieto durante 0.5 segundos** posado sobre cualquiera de los botones importantes (EJ: "Contactar a mi humano" o "Ver perfil de LinkedIn"). 
+- **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón.
 
 ### 12. 🌐 Traductor Michi-Humano (Toggle)
 

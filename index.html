@@ -360,10 +360,9 @@
         #back-to-top.visible { bottom: 20px; opacity: 1; }
         #cat-paw-attack { position: fixed; bottom: -120px; right: 5px; width: 70px; height: 100px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M495.9 166.6c-3.2-8.5-12.7-12.7-21.2-9.4L337.5 208v-96c0-8.8-7.2-16-16-16h-48v59.9l121.2-46c8.5-3.2 12.7-12.7 9.4-21.2-3.1-8.5-12.6-12.7-21.1-9.4L208 145.4v-40.8A38.4 38.4 0 0 0 169.6 66h-24C124.4 66 107 83.4 107 104.5V208l-69.5-25.9c-8.5-3.2-18 1.1-21.2 9.6-3.2 8.5 1.1 18 9.6 21.2l61.5 22.9C36.7 274.6 15 329.8 15 391.2A96.3 96.3 0 0 0 111.4 488H401c53 0 96-43.1 96-96 0-61.9-22-117.6-72.9-155.6l62.4-23.2c8.5-3.2 12.7-12.7 9.4-21.2z"/></svg>'); background-size: contain; background-repeat: no-repeat; transition: bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1001; pointer-events: none; }
         #cat-paw-attack.attack { bottom: 60px; }
-        .comic-bubble { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #fff; border: 2px solid #000; color:#000; border-radius: 10px; padding: 10px; font-weight: bold; font-size: 13px; white-space: pre-wrap; text-align: center; width: 140px; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 10; box-shadow: 2px 2px 0 #000; margin-bottom: 5px; }
-        .comic-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #000 transparent transparent transparent; }
-        .comic-bubble.show { opacity: 1; }
         .avatar-turn { transform: rotateY(180deg) !important; transition: transform 0.5s !important; }
+        .michi-msg { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); color: var(--text-primary); font-weight: bold; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity 0.3s; text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.9); white-space: nowrap; margin-bottom: 15px; z-index: 100; }
+        .michi-msg.show { opacity: 1; }
         #sleep-mode-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9900; opacity: 0; pointer-events: none; transition: opacity 1s; }
         #sleep-mode-overlay.sleeping { opacity: 1; }
         .zzz { position: absolute; color: #fff; font-weight: bold; font-size: 24px; text-shadow: 0 0 5px #000; animation: zzzAnimation 2s infinite; opacity: 0; z-index: 9901; pointer-events: none; }
@@ -621,7 +620,7 @@
                 avatar.style.transition = 'transform 0.1s';
                 
                 const bubble = document.createElement('div');
-                bubble.className = 'comic-bubble';
+                bubble.className = 'michi-msg';
                 bubble.innerText = '¡Basta de mimos, estoy ocupado cazando moscas!';
                 avatarWrapper.appendChild(bubble);
                 avatarWrapper.style.position = 'relative';
@@ -987,20 +986,19 @@
                             attackPaw.style.left = (rect.left - 40) + 'px';
                             btn.classList.add('shake-active');
                             setTimeout(() => btn.classList.remove('shake-active'), 1500);
-                            const bubble = document.createElement('div');
-                            bubble.className = 'comic-bubble show';
-                            bubble.innerText = '¡Si no lo vas a pulsar tú, lo pulso yo!';
-                            bubble.style.top = (rect.top - 40) + 'px';
-                            bubble.style.left = (rect.left + rect.width/2) + 'px';
-                            bubble.style.position = 'fixed';
-                            document.body.appendChild(bubble);
+                            
+                            const textMsg = document.createElement('div');
+                            textMsg.innerText = '¡Si no lo vas a pulsar tú, lo pulso yo!';
+                            textMsg.style.cssText = `position: fixed; top: ${rect.top - 25}px; left: ${rect.left + rect.width/2}px; transform: translateX(-50%); color: var(--text-primary); font-weight: bold; font-size: 14px; opacity: 1; transition: opacity 0.5s; z-index: 100000; pointer-events: none; text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.9); white-space: nowrap;`;
+                            document.body.appendChild(textMsg);
+
                             setTimeout(() => {
                                 attackPaw.style.left = '-100px';
-                                bubble.classList.remove('show');
-                                setTimeout(() => { attackPaw.remove(); bubble.remove(); }, 500);
-                            }, 2000);
+                                textMsg.style.opacity = '0';
+                                setTimeout(() => { attackPaw.remove(); textMsg.remove(); }, 500);
+                            }, 1500);
                         }, 50);
-                    }, 5000);
+                    }, 500);
                 });
                 btn.addEventListener('mouseleave', () => clearTimeout(pawAttackTimer));
             });
