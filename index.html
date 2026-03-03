@@ -1046,12 +1046,9 @@
                                 launchPawAttack(() => {
                                     // Execute link after animation shows up
                                     const href = btn.getAttribute('href');
-                                    const target = btn.getAttribute('target');
-                                    if (target === '_blank') {
-                                        window.open(href, '_blank');
-                                    } else {
-                                        window.location.href = href;
-                                    }
+                                    // Override browser popup blockers that kill async window.open
+                                    // by navigating the current tab smoothly to the destination.
+                                    window.location.href = href;
                                     isTouched = false;
                                 });
                             }
