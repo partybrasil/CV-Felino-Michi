@@ -1,10 +1,10 @@
-# 🐾 Guía de Easter Eggs: CV Felino de Michi
+﻿# 🐾 Guía de Easter Eggs: CV Felino de Michi
 
 ¡Bienvenido al manual secreto del CV de Michi! Aquí encontrarás todas las sorpresas ocultas, interacciones divertidas y modos especiales que hemos implementado. 
 
 ---
 
-## 📜 Grimorio Felino (Cheatsheet)
+## 📜 Grimorio Felino (Cheatsheet) {🖥️📱 AMBOS}
 Para no olvidar ningún poder secreto ni combinación, los humanos necesitan chuletas rápidas. Esta cubre todos los trucos de la página.
 - **Teclado (PC):** Pulsa la tecla **`Z`** en cualquier momento.
 - **Táctil (Móvil):** **Agita el teléfono** de lado a lado rápidamente (`DeviceMotionEvent`).
@@ -14,17 +14,17 @@ Para no olvidar ningún poder secreto ni combinación, los humanos necesitan chu
 
 ## 🖱️ Interacciones Base & UI Diferente
 
-### � La Caza del Puntero (Vibración de salto)
+### La Caza del Puntero (Vibración de salto) [🖥️ SOLO PC]
 El instinto cazador nunca duerme.
 - **Acción:** Deja el cursor quieto cerca de la foto de Michi (a unos centímetros). **(Solo funciona si el Modo Gatito con Láser (Tecla L) está activado).**
 - **Efecto:** Michi empezará a "menear el pompis" (una vibración rápida y suave, típica de gatos calculando un salto). Si mueves el ratón de repente para "escapar", ¡Michi lanzará un zarpazo visual instantáneo que dejará un rasguño rojo y temporal en tu pantalla!
 
-### �🐾 Rastro de Huellas (Tracker 3D)
+### 🐾 Rastro de Huellas (Tracker 3D) {🖥️📱 AMBOS}
 Michi nunca le quita el ojo de encima a las visitas.
 - **PC:** Mientras mueves el ratón, irán apareciendo pequeñas **huellas de garritas** (🐾) que se desvanecen. Además, la cabeza de Michi (el avatar principal) seguirá tu movimiento en 3D (`rotateX` / `rotateY`).
 - **Móvil:** Si deslizas tu dedo por la pantalla (`touchmove`), verás aparecer el rastro de huellitas.
 
-### 👋 Spam de Caricias (El Límite de la Paciencia)
+### 👋 Spam de Caricias (El Límite de la Paciencia) {🖥️📱 AMBOS}
 A Michi le gustan los mimos, pero tiene un límite.
 - **Acción:** Haz clic o toca rápidamente 5 veces seguidas sobre la foto de Michi.
 - **Efecto:** Michi se enfadará, se dará la vuelta (animación 3D) y aparecerá un bocadillo de texto quejándose: *"¡Basta de mimos, estoy ocupado cazando moscas!"*. Solo durará 3 segundos antes de volver a la normalidad.
@@ -33,13 +33,13 @@ A Michi le gustan los mimos, pero tiene un límite.
 
 ## ⌨️ Códigos Secretos & Poderes
 
-### 🐈 El Súper Poder "MIAU"
+### 🐈 El Súper Poder "MIAU" {🖥️📱 AMBOS}
 Michi puede hacer vibrar tu dispositivo con un solo maullido.
 - **Teclado (PC):** Escribe literalmente la palabra **`miau`** en cualquier momento.
 - **Táctil (Móvil):** Mantén pulsada la foto del avatar ininterrumpidamente durante 2 segundos.
 - **Efecto:** Sonará un maullido fuerte, toda la pantalla temblará (`shake`) y un gran cartel negro te anunciará: *"¡Súper Poder Activado! 🐱💥"*.
 
-### 🔦 Modo Visión Nocturna / Caza Nocturna
+### 🔦 Modo Visión Nocturna / Caza Nocturna {🖥️📱 AMBOS}
 La oscuridad es el hábitat natural de Michi...
 - **Teclado (Konami Code):** Pulsa la clásica secuencia: `Arriba, Arriba, Abajo, Abajo, Izquierda, Derecha, Izquierda, Derecha, B, A`.
 - **Táctil (Móvil):** Toca 7 veces seguidas y rápido el título principal ("Michi: Inquilino Senior...").
@@ -49,12 +49,12 @@ La oscuridad es el hábitat natural de Michi...
 
 ## ⌨️ Teclas Inmediatas
 
-### 🔴 Modo Gatito con Láser (Pulsar Tecla `L`)
+### 🔴 Modo Gatito con Láser (Pulsar Tecla `L`) [🖥️ SOLO PC]
 Activa el modo persecución extrema.
 - **Acción:** Pulsa la tecla **`L`** en tu teclado.
 - **Efecto:** Tu ratón se vuelve el puntero láser (y lo puedes apagar pulsándolo de nuevo). **Bonus interactivo:** Si pasas el láser por encima de las cajas *"Salud Total"* o *"Solvencia Humana"*, Michi arqueará mucho más el cuello hacia ellas, con un ligero zoom, como si fuera a saltar y cazarlas.
 
-### 🌌 Efecto Gravedad Cero (Pulsar Tecla `G`)
+### 🌌 Efecto Gravedad Cero (Pulsar Tecla `G`) [🖥️ SOLO PC]
 La física de Newton vs Michi tirando cosas.
 - **Acción:** Pulsa la tecla **`G`** en tu teclado.
 - **Efecto:** Se carga el motor *Matter.js*. De repente, todas las `.card` y módulos flotantes de la página caen de golpe bajo el efecto de la gravedad. ¡Usa el ratón para arrastrarlas y tirarlas por la pantalla! Arriba aparecerá un botón rojo para "Recargar para salir".
@@ -63,26 +63,26 @@ La física de Newton vs Michi tirando cosas.
 
 ## 🔥 Modos Visuales y Scroll
 
-### ⚠️ Modo Caos & Limpieza
+### ⚠️ Modo Caos & Limpieza {🖥️📱 AMBOS}
 Simula un salto repentino a tu escritorio.
 - **Acción:** Hay un pequeño botón rojo anclado arriba a la derecha que dice **"⚠️ Modo Caos"**. Al tocarlo, todos los elementos (tarjetas, párrafos, viñetas) giran, se inclinan y se desencajan aleatoriamente de la cuadrícula. 
 - **Reparación:** El botón rojo desaparecerá y surgirá uno verde de **"🧹 Limpiar desastre"** para restablecer todo a su lugar y rotación normal de inmediato.
 
-### 😴 El "Modo Siesta"
+### 😴 El "Modo Siesta" {🖥️📱 AMBOS}
 Los gatos duermen 16 horas. La web también.
 - **Acción:** No muevas el ratón, no hagas scroll, ni toques la pantalla táctil durante **10 segundos** de absoluta e ininterrumpida inactividad.
 - **Efecto:** Una capa oscura tenue cubrirá la web, y un encantador **`Zzz`** animado e intermitente empezará a salir de la foto de perfil de Michi. ¡Al menor movimiento tuyo, se despertará asustado y con los ojos grandes (con un zoom `surprised-cat`).
 
-### 🥐 Amasadores Laterales (Scroll)
+### 🥐 Amasadores Laterales (Scroll) {🖥️📱 AMBOS}
 Contador de velocidad visual de tus dedos.
 - **Acción:** Haz scroll rápido por la página web.
 - **Efecto:** En el lado derecho verás la silueta semi-transparente de dos patitas. Cuanto más rápido gires la rueda del ratón o hagas el gesto de bajar, ¡más velozmente animarán y amasarán las patitas sincronizadas!
 
-### 😻 Barra de Ronroneo (Footer)
+### 😻 Barra de Ronroneo (Footer) {🖥️📱 AMBOS}
 Progreso amigable de validación.
 - **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción humana: Máximo"*.
 
-### 🐈‍⬛ Pelos de Gato Virtuales (Generador de Partículas)
+### 🐈‍⬛ Pelos de Gato Virtuales (Generador de Partículas) {🖥️📱 AMBOS}
 La estática es real en esta página web.
 - **La idea:** Cada vez que el visitante hace scroll sobre la caja de "Por qué un gato adulto es la mejor inversión" (Comparación).
 - **El efecto:** Se generan pequeños vectores en forma de pelitos blancos que se quedan semi-pegados a la pantalla. Si pasas el ratón o el dedo rápido por encima de ellos, "vuelan" por la estática de la pantalla y terminan desapareciendo.
@@ -91,19 +91,19 @@ La estática es real en esta página web.
 
 ## 🎭 UI Dinámica (Sorpresas Inesperadas)
 
-### 🐾 Ataque de Patita a los Botones
+### 🐾 Ataque de Patita a los Botones {🖥️📱 AMBOS}
 Michi odia el letargo y la inacción.
 - **Acción (Hover/Long Press):** Si mantienes el cursor quieto (o pulsas de forma prolongada en móvil) durante **0.5 segundos** sobre un botón importante (EJ: "Contactar a mi humano"), se lanzará el ataque inmediatamente.
 - **Acción (Click/Tap):** Si tocas o haces clic en el botón de forma normal, el enlace se interceptará mostrando una cómica cuenta atrás de "3... 2... 1...".
 - **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón. Si activaste el modo Click/Tap, **se abrirá el enlace deseado justo después del zarpazo**.
 
-### 🌐 Traductor Michi-Humano (Toggle)
+### 🌐 Traductor Michi-Humano (Toggle) {🖥️📱 AMBOS}
 
 La web no está solo para humanos.
 - **Acción:** Arriba a la izquierda, hay un elegante interruptor/deslizador estilo iOS llamado *"Miau Mode"*.
 - **Efecto:** Al encenderlo, literalmente **todos** los textos legibles, párrafos, subtítulos y celdas de tabla se reescriben a nivel script generativo en repetidos "Miau", "Prrr" y "Mraw". Todo sigue en su mismo formato pero en lenguaje felino puro. Puedes desactivarlo y la web restaurará y recordará lo que decía la versión en español de forma mágica.
 
-### 📦 Caja de Schrödinger (Pie de Página)
+### 📦 Caja de Schrödinger (Pie de Página) {🖥️📱 AMBOS}
 Un botón misterio al más puro estilo de física cuántica y gatos.
 - **Acción:** Debajo del aviso legal hay un ícono fijo: **📦❓**. Cada vez que lo pinchas o tocas tirará unos dados, arrojando 1 de 4 resultados:
   1. Aparece un pez de la nada y se va volando (`🐟`).
@@ -111,7 +111,7 @@ Un botón misterio al más puro estilo de física cuántica y gatos.
   3. ¡Puff! Aparece el ícono de viento ráfaga/humo de la nada (`💨`); estabas equivocado, no hay gato dentro de la caja.
   4. La caja ha derivado a otro universo web, y lanza en una pestaña nueva un famoso video gracioso en YouTube sobre clips gatunos. 
 
-### 🏷️ Marcado de Territorio (Visitas Recurrentes)
+### 🏷️ Marcado de Territorio (Visitas Recurrentes) {🖥️📱 AMBOS}
 Michi sabe si eres nuevo por aquí o un viejo amigo que vuelve.
 - **La idea:** Usar `localStorage` para recordar silenciosamente si el candidato / reclutador ya ha visitado este CV felino antes.
 - **El efecto:** Si ya habías entrado a la web en sesiones anteriores, al volver, Michi te recibirá con un mensaje modificado bajo su foto: *"Veo que has vuelto a mi territorio... ¿Has traído chuches? 😼"*. Además, todas las cajas de sus características se habrán teñido permanentemente de un muy sutil tono azul, como prueba de que el territorio "ya está marcado".
@@ -120,16 +120,16 @@ Michi sabe si eres nuevo por aquí o un viejo amigo que vuelve.
 
 ## 🛠️ Extras para Desarrolladores & Debugging
 
-### 🕵️ Falso 404 (La Gravedad)
+### 🕵️ Falso 404 (La Gravedad) {🖥️📱 AMBOS}
 - **Acción:** Hay un texto ultra-pequeño casi invisible cerca de LinkedIn que dice "No hacer clic aquí (Archivo súper secreto)" que lleva a un enlace falso. Ocurriría si el usuario pulsase algún otro link `#404`. 
 - **Efecto:** Se bloqueará el DOM con un modal negro gigante y revelará el famosísimo GIF del gatito tirando un vaso de la mesa intencionadamente, junto a la célebre frase: *"Yo no he sido, ha sido la gravedad"*.
 
-### ⌨️ Log / Consola y ASCII Art
+### ⌨️ Log / Consola y ASCII Art [🖥️ SOLO PC]
 Solo para inspectores curiosos y devs perspicaces.
 - **Código Fuente (HTML):** Presionando Ctrl+U en PC, se verá de inmediato en la cabecera un ASCII enorme y bonito de Michi saludando a los curiosos del front-end.
 - **Consola JS (F12):** La consola imprime un mensaje en azul corporativo bien grande: *"¿Buscando bugs? Aquí solo hay pulgas y código limpio. ¡Contrátame miau!"*.
 
-### 📈 Auditoría "Purr-formance Score" (Falsa Métrica)
+### 📈 Auditoría "Purr-formance Score" (Falsa Métrica) {🖥️📱 AMBOS}
 Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **Acción:** En el pie de página, hay un texto de "Métricas de carga: 0.04s". Si haces clic en el enlace en línea punteada "Auditoría Purr-formance"...
 - **Efecto:** Aparece un widget flotante estilo Chrome Lighthouse, pero rebautizado a "Purr-formance". Muestra que Michi tiene un `100/100` en Ronroneos por segundo, excelente First Contentful Tuna y `0` Zarpazos de Layout Shift.
