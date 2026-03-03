@@ -34,7 +34,7 @@
             width: 80%; max-width: 800px;
             transform-origin: 50% 100%;
             /* The perspective rotation and upward translation */
-            transform: rotateX(25deg) translateY(100vh) translateZ(0); 
+            transform: rotateX(25deg) translateY(100%) translateZ(0); 
             animation: crawl-anim 60s linear infinite;
             text-align: justify;
             color: #ffcc00; /* Classic crawl yellow */
@@ -42,9 +42,9 @@
         }
 
         @keyframes crawl-anim {
-            0% { transform: rotateX(25deg) translateY(100vh); opacity: 1;}
+            0% { transform: rotateX(25deg) translateY(100%); opacity: 1;}
             95% { opacity: 0;}
-            100% { transform: rotateX(25deg) translateY(-2500px); opacity: 0; }
+            100% { transform: rotateX(25deg) translateY(calc(-100% - 50vh)); opacity: 0; }
         }
 
         .episode { text-align: center; font-size: 3rem; margin-bottom: 20px;}
@@ -52,9 +52,18 @@
 
         p { font-size: 2.5rem; line-height: 1.5; font-weight: 700; margin-bottom: 40px; }
 
-        .image-block { text-align: center; margin: 60px 0; }
+        .image-block { text-align: center; margin: 20px 0 60px 0; }
         .avatar { width: 300px; height: 300px; border-radius: 50%; border: 5px solid #ffcc00; display: inline-block;}
-
+        
+        /* Mobile responsiveness adjustments */
+        @media (max-width: 768px) {
+            .crawl { width: 90%; }
+            .episode { font-size: 1.5rem; margin-bottom: 10px; }
+            h1 { font-size: 3rem; margin-bottom: 30px; }
+            p { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.4; }
+            .avatar { width: 150px; height: 150px; border-width: 3px; }
+            .image-block { margin: 10px 0 30px 0; }
+        }
     </style>
 </head>
 <body>
@@ -62,12 +71,12 @@
 
     <div class="scene">
         <div class="crawl">
-            <div class="episode">EPISODIO V</div>
-            <h1>EL RETORNO<br>DE MICHI</h1>
-
             <div class="image-block">
                 <img src="../michi.jpg" alt="Michi" class="avatar" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&h=400&q=80'">
             </div>
+
+            <div class="episode">EPISODIO V</div>
+            <h1>EL RETORNO<br>DE MICHI</h1>
 
             <p>
                 Es una época de caos en la galaxia. Los cachorros rebeldes atacan desde bases ocultas, destruyendo sofás y emitiendo estridentes ladridos a horas impías en los apartamentos del imperio.
