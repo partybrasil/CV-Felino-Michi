@@ -690,12 +690,28 @@
             // Gestos táctiles alternativos (Móvil)
             // Mantener pulsado el avatar para "MEOW"
             let meowPressTimer;
+            let touchStartX;
+            let touchStartY;
             if(avatar) {
-                avatar.addEventListener('touchstart', () => {
+                avatar.addEventListener('touchstart', (e) => {
+                    if (e.touches.length > 0) {
+                        touchStartX = e.touches[0].clientX;
+                        touchStartY = e.touches[0].clientY;
+                    }
                     meowPressTimer = setTimeout(triggerMeow, 2000);
                 });
                 avatar.addEventListener('touchend', () => clearTimeout(meowPressTimer));
-                avatar.addEventListener('touchmove', () => clearTimeout(meowPressTimer));
+                avatar.addEventListener('touchcancel', () => clearTimeout(meowPressTimer));
+                avatar.addEventListener('touchmove', (e) => {
+                    if (e.touches.length > 0) {
+                        const moveX = Math.abs(e.touches[0].clientX - touchStartX);
+                        const moveY = Math.abs(e.touches[0].clientY - touchStartY);
+                        // Si el dedo se mueve más de 10px, cancelamos la pulsación larga
+                        if (moveX > 10 || moveY > 10) {
+                            clearTimeout(meowPressTimer);
+                        }
+                    }
+                });
             }
 
             // 7 toques rápidos en el encabezado (h1) para modo "Visión Nocturna"
