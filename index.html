@@ -733,61 +733,6 @@
                 heroHeader.addEventListener('click', handleHeaderTap);
             }
 
-            // Konami code versión táctil (Swipes libres en la pantalla)
-            // Secuencia: Arriba, Arriba, Abajo, Abajo, Izquierda, Derecha, Izquierda, Derecha, Toque, Toque
-            let swipeSequence = [];
-            const konamiSwipeTarget = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'tap', 'tap'];
-            let touchStartXKonami = 0;
-            let touchStartYKonami = 0;
-            let swipeKonamiTimer;
-
-            document.addEventListener('touchstart', (e) => {
-                if (e.touches.length === 1) {
-                    touchStartXKonami = e.touches[0].clientX;
-                    touchStartYKonami = e.touches[0].clientY;
-                }
-            }, { passive: true });
-
-            document.addEventListener('touchend', (e) => {
-                if (e.changedTouches.length === 1) {
-                    const touchEndX = e.changedTouches[0].clientX;
-                    const touchEndY = e.changedTouches[0].clientY;
-                    
-                    const deltaX = touchEndX - touchStartXKonami;
-                    const deltaY = touchEndY - touchStartYKonami;
-                    const absX = Math.abs(deltaX);
-                    const absY = Math.abs(deltaY);
-                    
-                    let action = '';
-                    
-                    // Si el movimiento es muy pequeño (menos de 30px), es un tap/toque
-                    if (absX < 30 && absY < 30) {
-                        action = 'tap';
-                    } else if (absX > 30 || absY > 30) { // Si es mayor a 30px, es un deslizamiento (swipe)
-                        if (absX > absY) {
-                            action = deltaX > 0 ? 'right' : 'left';
-                        } else {
-                            action = deltaY > 0 ? 'down' : 'up';
-                        }
-                    }
-                    
-                    if (action) {
-                        swipeSequence.push(action);
-                        swipeSequence = swipeSequence.slice(-10); // Mantener solo los últimos 10 gestos
-                        
-                        // Si pasan más de 3 segundos entre gestos, reiniciamos la secuencia para evitar acumulación errónea
-                        clearTimeout(swipeKonamiTimer);
-                        swipeKonamiTimer = setTimeout(() => { swipeSequence = []; }, 3000);
-
-                        // Comprobar si la secuencia coincide con el Código Konami
-                        if (JSON.stringify(swipeSequence) === JSON.stringify(konamiSwipeTarget)) {
-                            triggerNightVision();
-                            swipeSequence = []; // Limpiar tras el éxito
-                        }
-                    }
-                }
-            }, { passive: true });
-
             // 3. Detalles en el Scroll
             const purrBar = document.getElementById('purr-bar');
             const purrMsg = document.getElementById('purr-message');
