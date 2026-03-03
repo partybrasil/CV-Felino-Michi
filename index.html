@@ -976,31 +976,88 @@
             // Ataque de la Patita
             let pawAttackTimer;
             document.querySelectorAll('.btn-primary, .btn-linkedin').forEach(btn => {
-                btn.addEventListener('mouseenter', () => {
-                    pawAttackTimer = setTimeout(() => {
-                        const rect = btn.getBoundingClientRect();
-                        const attackPaw = document.createElement('div');
-                        attackPaw.style.cssText = `position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><path d='M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z'/></svg>"); background-size: contain; background-repeat: no-repeat; top: ${rect.top + rect.height/2}px; left: -100px; z-index: 10000; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none;`;
-                        document.body.appendChild(attackPaw);
+                const launchPawAttack = (callback) => {
+                    const rect = btn.getBoundingClientRect();
+                    const attackPaw = document.createElement('div');
+                    attackPaw.style.cssText = `position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><path d='M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z'/></svg>"); background-size: contain; background-repeat: no-repeat; top: ${rect.top + rect.height/2}px; left: -100px; z-index: 10000; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none;`;
+                    document.body.appendChild(attackPaw);
+                    setTimeout(() => {
+                        attackPaw.style.left = (rect.left - 40) + 'px';
+                        btn.classList.add('shake-active');
+                        
+                        const textMsg = document.createElement('div');
+                        textMsg.innerText = '¡Si no lo vas a pulsar tú, lo pulso yo!';
+                        textMsg.style.cssText = `position: fixed; top: ${rect.top - 25}px; left: ${rect.left + rect.width/2}px; transform: translateX(-50%); color: var(--text-primary); font-weight: bold; font-size: 14px; opacity: 1; transition: opacity 0.5s; z-index: 100000; pointer-events: none; text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.9); white-space: nowrap;`;
+                        document.body.appendChild(textMsg);
+                        
                         setTimeout(() => {
-                            attackPaw.style.left = (rect.left - 40) + 'px';
-                            btn.classList.add('shake-active');
-                            setTimeout(() => btn.classList.remove('shake-active'), 1500);
-                            
-                            const textMsg = document.createElement('div');
-                            textMsg.innerText = '¡Si no lo vas a pulsar tú, lo pulso yo!';
-                            textMsg.style.cssText = `position: fixed; top: ${rect.top - 25}px; left: ${rect.left + rect.width/2}px; transform: translateX(-50%); color: var(--text-primary); font-weight: bold; font-size: 14px; opacity: 1; transition: opacity 0.5s; z-index: 100000; pointer-events: none; text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.9); white-space: nowrap;`;
-                            document.body.appendChild(textMsg);
+                            btn.classList.remove('shake-active');
+                            attackPaw.style.left = '-100px';
+                            textMsg.style.opacity = '0';
+                            setTimeout(() => { 
+                                attackPaw.remove(); 
+                                textMsg.remove(); 
+                                if (callback) callback();
+                            }, 500);
+                        }, 1500);
+                    }, 50);
+                };
 
-                            setTimeout(() => {
-                                attackPaw.style.left = '-100px';
-                                textMsg.style.opacity = '0';
-                                setTimeout(() => { attackPaw.remove(); textMsg.remove(); }, 500);
-                            }, 1500);
-                        }, 50);
-                    }, 500);
+                // Desktop logic
+                btn.addEventListener('mouseenter', () => {
+                    pawAttackTimer = setTimeout(() => launchPawAttack(), 500);
                 });
                 btn.addEventListener('mouseleave', () => clearTimeout(pawAttackTimer));
+
+                // Mobile logic
+                let isTouched = false;
+                let touchTimerMobile;
+
+                btn.addEventListener('touchstart', (e) => {
+                    if (window.innerWidth <= 768) {
+                        touchTimerMobile = setTimeout(() => {
+                            isTouched = true; // Mark as handled by long press
+                            launchPawAttack(() => { isTouched = false; });
+                        }, 500);
+                    }
+                }, {passive: true});
+                
+                ['touchend', 'touchmove', 'touchcancel'].forEach(event => {
+                    btn.addEventListener(event, () => clearTimeout(touchTimerMobile), {passive: true});
+                });
+
+                btn.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768 && !isTouched) {
+                        e.preventDefault(); // Intercept normal link
+                        isTouched = true;
+                        
+                        const originalHTML = btn.innerHTML;
+                        let count = 3;
+                        btn.innerHTML = `Intercepción Felina en ${count}...`;
+                        
+                        const countdownInterval = setInterval(() => {
+                            count--;
+                            if(count > 0) {
+                                btn.innerHTML = `Intercepción Felina en ${count}...`;
+                            } else {
+                                clearInterval(countdownInterval);
+                                btn.innerHTML = originalHTML; // Restore text right before attack
+                                
+                                launchPawAttack(() => {
+                                    // Execute link after animation shows up
+                                    const href = btn.getAttribute('href');
+                                    const target = btn.getAttribute('target');
+                                    if (target === '_blank') {
+                                        window.open(href, '_blank');
+                                    } else {
+                                        window.location.href = href;
+                                    }
+                                    isTouched = false;
+                                });
+                            }
+                        }, 1000);
+                    }
+                });
             });
 
             // Traductor Michi-Humano
