@@ -85,7 +85,7 @@ Contador de velocidad visual de tus dedos.
 
 ### 😻 Barra de Ronroneo (Footer) {🖥️📱 AMBOS}
 Progreso amigable de validación.
-- **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción humana: Máximo"*.
+- **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción: Prrr-Fecto!! 😽"* y un sutil ronroneo de fondo empezará a sonar (rrrrr...rrrrrr....).
 
 ### 🐈‍⬛ Pelos de Gato Virtuales (Generador de Partículas) {🖥️📱 AMBOS}
 La estática es real en esta página web.

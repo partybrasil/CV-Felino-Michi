@@ -11,6 +11,11 @@
     <title>Michi - Inquilino Senior y Especialista en Silencio</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/30/cat-head.png">
     
+    <!-- Mágia Precargada de Audio 🐾 (Easter Eggs sin lag) -->
+    <link rel="preload" as="audio" href="https://actions.google.com/sounds/v1/animals/cat_purr.ogg">
+    <link rel="preload" as="audio" href="https://www.myinstants.com/media/sounds/cat-meow-1.mp3">
+    <link rel="preload" as="audio" href="https://www.myinstants.com/media/sounds/nononono-cat-mp3cut.mp3">
+
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -466,6 +471,13 @@
 
         /* END EASTER EGGS CSS */
     </style>
+<script>
+        // Precargar audio del ronroneo estable (Google Official Sounds)
+        window.michiPurrAudio = new Audio('https://actions.google.com/sounds/v1/animals/cat_purr.ogg');
+        window.michiPurrAudio.preload = 'auto';
+        window.michiPurrAudio.loop = true;
+        window.michiPurrAudio.volume = 0.8;
+</script>
 </head>
 <body>
     <!-- Traductor Toggle -->
@@ -636,12 +648,12 @@
 
     <!-- EASTER EGGS -->
     <!-- Audio Elements -->
-    <audio id="meow-sound" src="https://www.myinstants.com/media/sounds/cat-meow-1.mp3"></audio>
-    <audio id="crazy-meow-sound" src="https://www.myinstants.com/media/sounds/nononono-cat-mp3cut.mp3"></audio>
+    <audio id="meow-sound" src="https://www.myinstants.com/media/sounds/cat-meow-1.mp3" preload="auto"></audio>
+    <audio id="crazy-meow-sound" src="https://www.myinstants.com/media/sounds/nononono-cat-mp3cut.mp3" preload="auto"></audio>
 
     <!-- HTML Elements -->
     <div id="purr-bar-container"><div id="purr-bar"></div></div>
-    <div id="purr-message" class="purr-max">Nivel de satisfacción humana: Máximo</div>
+    <div id="purr-message" class="purr-max">Nivel de satisfacción: Prrr-Fecto!! 😽</div>
     
     <div id="back-to-top">↑</div>
     <div id="cat-paw-attack"></div>
@@ -1041,12 +1053,20 @@
                 const scrolled = (window.scrollY / scrollHeight) * 100;
                 purrBar.style.width = Math.min(scrolled, 100) + '%';
 
-                if (scrolled >= 99 && !purrShown) {
+                if (scrolled >= 98 && !purrShown) {
                     purrMsg.style.opacity = '1';
                     purrShown = true;
-                } else if (scrolled < 99) {
+                    // Iniciar/Reanudar ronroneo
+                    if (window.michiPurrAudio) {
+                        window.michiPurrAudio.play().catch(e => console.log('Mic-play blocked:', e));
+                    }
+                } else if (scrolled < 98 && purrShown) {
                     purrMsg.style.opacity = '0';
                     purrShown = false;
+                    // Pausar ronroneo sin cortarlo abruptamente (fade out rápido o pausa)
+                    if (window.michiPurrAudio) {
+                        window.michiPurrAudio.pause();
+                    }
                 }
 
                 if (window.scrollY > 300) {
