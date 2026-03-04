@@ -740,7 +740,7 @@
 
     <div id="not-found-modal">
         <!-- New working Giphy URL -->
-        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjkwMDFjZGJhMGRjMWQ0MjRiMGQyOGZhMjY0NDIwNGZiZmZhMTBiYiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/mlvseq9yvZhba/giphy.gif" alt="Gato tirando vaso">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjkwMDFjZGJhMGRjMWQ0MjRiMGQyOGZhMjY0NDIwNGZiZmZhMTBiYiZlcD12MV9pbnRlcm5hbF9naWZzX2giZmYlM0QxNTAmY3Q9Zw/mlvseq9yvZhba/giphy.gif" alt="Gato tirando vaso">
         <p>Yo no he sido, ha sido la gravedad.</p>
         <button id="close-not-found">Volver</button>
     </div>
@@ -1284,6 +1284,7 @@
             const catPaw = document.getElementById('cat-paw-attack');
             
             let purrShown = false;
+            let purrVibrationInterval = null; // Guardar el ID del intervalo de vibración
 
             const leftPaw = document.querySelector('.knead-paw.left');
             const rightPaw = document.querySelector('.knead-paw.right');
@@ -1317,19 +1318,39 @@
                 const scrolled = (window.scrollY / scrollHeight) * 100;
                 purrBar.style.width = Math.min(scrolled, 100) + '%';
 
-                if (scrolled >= 98 && !purrShown) {
-                    purrMsg.style.opacity = '1';
-                    purrShown = true;
-                    // Iniciar/Reanudar ronroneo
-                    if (window.michiPurrAudio) {
-                        window.michiPurrAudio.play().catch(e => console.log('Mic-play blocked:', e));
+                if (scrolled >= 98) {
+                    if (!purrShown) {
+                        purrMsg.style.opacity = '1';
+                        purrShown = true;
+                        if(window.michiPurrAudio) {
+                            window.michiPurrAudio.play().catch(e => console.log('Audio autoplay blocked'));
+                            
+                            // Activar vibración felina en bucle (API Nativa para Móviles)
+                            if (navigator.vibrate) {
+                                // Patrón: Vibra 150ms, Pausa 100ms...
+                                navigator.vibrate([150, 100, 150, 100, 150]);
+                                purrVibrationInterval = setInterval(() => {
+                                    navigator.vibrate([150, 100, 150, 100, 150]);
+                                }, 1000); // Repetir cada segundo
+                            }
+                        }
                     }
-                } else if (scrolled < 98 && purrShown) {
-                    purrMsg.style.opacity = '0';
-                    purrShown = false;
-                    // Pausar ronroneo sin cortarlo abruptamente (fade out rápido o pausa)
-                    if (window.michiPurrAudio) {
-                        window.michiPurrAudio.pause();
+                } else {
+                    if (purrShown) {
+                        purrMsg.style.opacity = '0';
+                        purrShown = false;
+                        if(window.michiPurrAudio) {
+                            window.michiPurrAudio.pause();
+                            
+                            // Parar completamente la vibración
+                            if (purrVibrationInterval) {
+                                clearInterval(purrVibrationInterval);
+                                purrVibrationInterval = null; // Resetear el ID
+                            }
+                            if (navigator.vibrate) {
+                                navigator.vibrate(0); // Orden forzada de cese
+                            }
+                        }
                     }
                 }
 

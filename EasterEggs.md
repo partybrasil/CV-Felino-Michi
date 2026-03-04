@@ -102,7 +102,8 @@ Contador de velocidad visual de tus dedos.
 
 ### 😻 Barra de Ronroneo (Footer) {🖥️📱 AMBOS}
 Progreso amigable de validación.
-- **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción: Prrr-Fecto!! 😽"* y un sutil ronroneo de fondo empezará a sonar (rrrrr...rrrrrr....).
+- **Efecto:** Fíjate arriba del todo. Hay una barrita de progreso degradada de rosa a azul. Se va llenando a medida que bajas por la web. Cuando haces scroll hasta el fondo absoluto, aparecerá de golpe un cartel de estatus de ronroneo: *"Nivel de satisfacción: Prrr-Fecto!! 😽"*. 
+- **Magia Extra:** Empezará a sonar de fondo un sutil ronroneo constante de gato (rrrrr...rrrrrr....) y, si estás en tu móvil, **el teléfono comenzará a vibrar rítmicamente sin parar** simulando estar vivo. Ambas cosas cesarán si subes hacia arriba en la página perdiendo el 100%.
 
 ### 🐈‍⬛ Pelos de Gato Virtuales (Generador de Partículas) {🖥️📱 AMBOS}
 La estática es real en esta página web.
@@ -270,10 +271,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **31. "Amasando el DOM" (Efectos SVG)**
 - **La idea:** Pulsar Shift repetidas veces sobre el CV.
 - **El efecto:** Se aplica un filtro SVG de distorsión sobre toda la página que emula el ritmo de amasar pan. Toda la web "respira" suavemente de arriba a abajo.
-
-**33. "La Paradoja de la Puerta" (Alertas en Bucle)**
-- **La idea:** Al pulsar el botón "Salir de la página" o si va a cerrar pestaña (BeforeUnloadEvent).
-- **El efecto:** Salta un mensaje: *"Michi quiere salir. ¿Le abres la puerta?"*. Si pulsas sí: *"Michi se ha quedado en el marco dudando... ¿Le dejas entrar de nuevo?"*. Bucle humorístico corto.
 
 **34. "Modo Amasado Profundo" (Vibration API Intensiva)**
 - **La idea:** Si se pulsa encima de la cabecera en móvil con fuerza o durante rato.
