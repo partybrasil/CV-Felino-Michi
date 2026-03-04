@@ -462,8 +462,21 @@
         body.catnip-trippy .bg-shapes { animation: catnipHue 1s infinite linear; }
         body.catnip-trippy main.container { animation: catnipHue 1s infinite linear, catnipWave 1.5s infinite ease-in-out; }
 
-        /* LADRÓN DE CURSORES */
+        /* Ladrón de Cursores */
         body.cursor-stolen, body.cursor-stolen * { cursor: none !important; }
+        
+        /* X-RAY SCANNER */
+        body.xray-mode, body.xray-mode * { 
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="cyan" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>') 11 11, crosshair !important; 
+        }
+        body.xray-mode *:hover {
+            outline: 1px dashed rgba(0, 255, 255, 0.8) !important;
+            background: rgba(0, 255, 255, 0.1) !important;
+        }
+        #xray-tooltip {
+            position: fixed; pointer-events: none; background: rgba(0, 0, 0, 0.9); font-family: monospace; font-size: 13px; font-weight: bold; padding: 6px 12px; border: 1px solid cyan; border-radius: 6px; z-index: 1000000; opacity: 0; transition: opacity 0.1s; box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); text-shadow: 0 0 5px cyan; white-space: nowrap;
+        }
+        #xray-tooltip.show { opacity: 1; }
         #stolen-cursor { position: fixed; width: 20px; height: 30px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 36"><path fill="black" stroke="white" stroke-width="2" d="M1 1l16 16h-7l5 11-4 2-5-11-6 6z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100002; pointer-events: none; display: none; }
         #thief-paw { position: fixed; width: 120px; height: 120px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M495.9 166.6c-3.2-8.5-12.7-12.7-21.2-9.4L337.5 208v-96c0-8.8-7.2-16-16-16h-48v59.9l121.2-46c8.5-3.2 12.7-12.7 9.4-21.2-3.1-8.5-12.6-12.7-21.1-9.4L208 145.4v-40.8A38.4 38.4 0 0 0 169.6 66h-24C124.4 66 107 83.4 107 104.5V208l-69.5-25.9c-8.5-3.2-18 1.1-21.2 9.6-3.2 8.5 1.1 18 9.6 21.2l61.5 22.9C36.7 274.6 15 329.8 15 391.2A96.3 96.3 0 0 0 111.4 488H401c53 0 96-43.1 96-96 0-61.9-22-117.6-72.9-155.6l62.4-23.2c8.5-3.2 12.7-12.7 9.4-21.2z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100001; pointer-events: none; display: none; }
         #thief-message { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; font-weight: bold; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-primary); box-shadow: var(--glass-shadow); z-index: 100000; opacity: 0; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; pointer-events: none; }
@@ -678,6 +691,9 @@
         <button id="close-purr-widget">Cerrar Auditoría</button>
     </div>
 
+    <!-- X-Ray Tooltip -->
+    <div id="xray-tooltip"></div>
+
     <!-- Night Vision Elements -->
     <div id="night-vision-overlay"></div>
     <div class="claw-marks"></div>
@@ -709,6 +725,7 @@
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Z</span> / <span class="cheatsheet-key">Agitar móvil</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio de secretos.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">L</span> <span class="cheatsheet-desc">Modo Gatito con Láser. Caza el punto rojo.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">G</span> <span class="cheatsheet-desc">Efecto Gravedad Cero. Arrastra las cajas.</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">X</span> <span class="cheatsheet-desc">Escáner de Rayos X. Lupa para ver el esqueleto (HTML/CSS).</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">catnip</span> <span class="cheatsheet-desc">Activar el Modo Catnip (Viaje Psicodélico 5s).</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">Quieto 5s</span> <span class="cheatsheet-desc">Dejar el cursor quieto para que Michi te lo robe.</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">miau</span> / <span class="cheatsheet-key">Tap 2s Avatar</span> <span class="cheatsheet-desc">Activar Súper Maullido con terremoto de pantalla.</span></li>
@@ -964,6 +981,23 @@
                     triggerNightVision();
                     konamiKeys = [];
                     typedKeys = '';
+                }
+
+                // X-Ray check
+                if (keyLower === 'x' && !['INPUT','TEXTAREA'].includes(e.target.tagName)) {
+                    document.body.classList.toggle('xray-mode');
+                    const xrayIsOn = document.body.classList.contains('xray-mode');
+                    const tooltip = document.getElementById('xray-tooltip');
+                    if (tooltip && !xrayIsOn) {
+                        tooltip.classList.remove('show');
+                    }
+                    if(xrayIsOn) {
+                        const msg = document.createElement('div');
+                        msg.innerText = '🔍 Modo Escáner de Rayos X Activado';
+                        msg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);font-size:1.2rem;font-weight:bold;color:cyan;background:rgba(0,0,0,0.8);padding:10px 20px;border-radius:10px;border:1px solid cyan;z-index:99999;pointer-events:none;text-align:center;box-shadow:0 0 15px rgba(0,255,255,0.5);';
+                        document.body.appendChild(msg);
+                        setTimeout(() => msg.remove(), 2500);
+                    }
                 }
             });
 
@@ -1352,6 +1386,31 @@
                     purrWidget.classList.remove('show');
                 });
             }
+
+            // Modo Rayos X
+            const xrayTooltip = document.getElementById('xray-tooltip');
+            document.addEventListener('mousemove', (e) => {
+                if(document.body.classList.contains('xray-mode') && xrayTooltip) {
+                    xrayTooltip.style.left = (e.clientX + 15) + 'px';
+                    xrayTooltip.style.top = (e.clientY + 15) + 'px';
+                    
+                    const target = e.target;
+                    // Exclude body/html and the tooltip itself
+                    if(target && target !== document.body && target !== document.documentElement && target.id !== 'xray-tooltip' && target.tagName) {
+                        let info = `<span style="color:#ff79c6;">&lt;${target.tagName.toLowerCase()}</span>`;
+                        if(target.id) info += ` <span style="color:#50fa7b;">id</span>=<span style="color:#f1fa8c;">"${target.id}"</span>`;
+                        if(target.className && typeof target.className === 'string' && target.className.trim() !== '') {
+                            const cleanClass = target.className.replace(/xray-mode|show|fade-up|visible/g, '').trim();
+                            if(cleanClass) info += ` <span style="color:#50fa7b;">class</span>=<span style="color:#f1fa8c;">"${cleanClass}"</span>`;
+                        }
+                        info += `<span style="color:#ff79c6;">&gt;</span>`;
+                        xrayTooltip.innerHTML = info;
+                        xrayTooltip.classList.add('show');
+                    } else {
+                        xrayTooltip.classList.remove('show');
+                    }
+                }
+            });
 
             // Virtual Cat Hairs Logic
             const hairsContainer = document.createElement('div');

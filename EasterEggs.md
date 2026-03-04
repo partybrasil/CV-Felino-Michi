@@ -64,6 +64,11 @@ La física de Newton vs Michi tirando cosas.
 - **Acción:** Pulsa la tecla **`G`** en tu teclado.
 - **Efecto:** Se carga el motor *Matter.js*. De repente, todas las `.card` y módulos flotantes de la página caen de golpe bajo el efecto de la gravedad. ¡Usa el ratón para arrastrarlas y tirarlas por la pantalla! Arriba aparecerá un botón rojo para "Recargar para salir".
 
+### 🔍 El Escáner de Rayos X (Pulsar Tecla `X`) [🖥️ SOLO PC]
+Para cuando el reclutador techie quiere inspeccionar el DOM.
+- **Acción:** Pulsa la tecla **`X`** en tu teclado.
+- **Efecto:** Tu cursor se convierte en una lupa técnica. Al pasar por encima de cualquier elemento, un tooltip te revelará su etiqueta HTML exacta, sus IDs y clases, como si tuvieras visión de rayos X aplicada a la web. Además las cajas se resaltan con un borde parpadeante.
+
 ---
 
 ## 🔥 Modos Visuales y Scroll
@@ -171,10 +176,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **La idea:** Si el usuario intenta escribir o pulsa teclas al azar en cualquier parte del CV.
 - **El efecto:** Se bloquea visualmente la interacción y aparece una pata de gato "dormida" tapando el puntero o una cola cruzando la pantalla. 
 - **Mensaje:** *"Lo siento, el gato se ha sentado sobre el teclado. Vuelve a intentarlo cuando se despierte"*.
-
-**7. "El Escáner de Rayos X" (Hover Técnico)**
-- **La idea:** Un botón oculto o atajo.
-- **El efecto:** Al activarlo, el cursor es un círculo-lupa que, al pasar sobre el CV, muestra el esqueleto (etiquetas HTML/CSS crudas, o una vista "wireframe" técnica).
 
 **8. "El Reflejo en el Tazón"**
 - **La idea:** Dibujo de un tazón de agua escondido en el footer.
