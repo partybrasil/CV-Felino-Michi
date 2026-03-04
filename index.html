@@ -1525,7 +1525,7 @@
 
             // Ataque de la Patita
             let pawAttackTimer;
-            document.querySelectorAll('a.btn-primary, a.btn-linkedin').forEach(btn => {
+            document.querySelectorAll('a.btn-primary, a.btn-linkedin, #feed-now-btn').forEach(btn => {
                 const launchPawAttack = (callback) => {
                     const rect = btn.getBoundingClientRect();
                     const attackPaw = document.createElement('div');
@@ -1577,6 +1577,13 @@
                 });
 
                 btn.addEventListener('click', (e) => {
+                    // Si el boton es el de Alimentar, que siga su comportamiento default (que interceptamos abajo para la Fake Push)
+                    if (btn.id === 'feed-now-btn') {
+                        // Dejamos que el event listener propio del feed-now-btn (registrado abajo) lo capture
+                        // Pero disparamos la pata solo si fue via hover previo (isTouched=false)
+                        return;
+                    }
+
                     if (!isTouched) {
                         e.preventDefault(); // Intercept normal link
                         isTouched = true;
@@ -1596,9 +1603,9 @@
                                 launchPawAttack(() => {
                                     // Execute link after animation shows up
                                     const href = btn.getAttribute('href');
-                                    // Override browser popup blockers that kill async window.open
-                                    // by navigating the current tab smoothly to the destination.
-                                    window.location.href = href;
+                                    if(href && href !== '#') {
+                                        window.location.href = href;
+                                    }
                                     isTouched = false;
                                 });
                             }
@@ -2089,10 +2096,61 @@
             const closeFakePush = document.getElementById('close-fake-push');
             
             if (feedNowBtn && fakePush) {
+                // Estado para evitar doble trigger por el Countdown Intercepción
+                let feedIsTouched = false;
+                
                 feedNowBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    fakePush.classList.add('show');
+                    if(feedIsTouched) return;
+                    feedIsTouched = true;
+
+                    const originalHTML = feedNowBtn.innerHTML;
+                    let count = 3;
+                    feedNowBtn.innerHTML = `Intercepción Alimenticia en ${count}...`;
+
+                    const countdownInterval = setInterval(() => {
+                        count--;
+                        if(count > 0) {
+                            feedNowBtn.innerHTML = `Intercepción Alimenticia en ${count}...`;
+                        } else {
+                            clearInterval(countdownInterval);
+                            feedNowBtn.innerHTML = originalHTML;
+                            
+                            // Logica interna para forzar el ataque de la pata visualmente (reusando lógica)
+                            const rect = feedNowBtn.getBoundingClientRect();
+                            const attackPaw = document.createElement('div');
+                            attackPaw.style.cssText = `position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><path d='M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z'/></svg>"); background-size: contain; background-repeat: no-repeat; top: ${rect.top + rect.height/2}px; left: -100px; z-index: 10000; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events:none;`;
+                            document.body.appendChild(attackPaw);
+
+                            setTimeout(() => {
+                                attackPaw.style.left = (rect.left - 40) + 'px';
+                                feedNowBtn.classList.add('shake-active');
+                                
+                                const textMsg = document.createElement('div');
+                                textMsg.innerText = '¡La comida no espera!';
+                                textMsg.style.cssText = `position: fixed; top: ${rect.top - 25}px; left: ${rect.left + rect.width/2}px; transform: translateX(-50%); color: var(--text-primary); font-weight: bold; font-size: 14px; opacity: 1; transition: opacity 0.5s; z-index: 100000; pointer-events: none; text-shadow: 0 0 5px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.9); white-space: nowrap;`;
+                                document.body.appendChild(textMsg);
+                                
+                                setTimeout(() => {
+                                    feedNowBtn.classList.remove('shake-active');
+                                    attackPaw.style.left = '-100px';
+                                    textMsg.style.opacity = '0';
+                                    setTimeout(() => { 
+                                        attackPaw.remove(); 
+                                        textMsg.remove(); 
+                                        
+                                        // Abrir el Fake Push Despues del ataque
+                                        fakePush.classList.add('show');
+                                        feedIsTouched = false;
+
+                                    }, 500);
+                                }, 1500);
+                            }, 50);
+
+                        }
+                    }, 1000);
                 });
+                
                 
                 const bufido = new Audio('https://www.myinstants.com/media/sounds/cat-hiss.mp3');
                 

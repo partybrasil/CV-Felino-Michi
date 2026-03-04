@@ -119,11 +119,12 @@ Michi es un cazador sigiloso e impaciente.
 - **Acción:** Deja el cursor de tu ratón completamente quieto en cualquier zona inactiva de la pantalla durante más de **5 segundos**.
 - **Efecto:** Una rápida pata negra surgirá a escondidas desde el borde derecho de la web, atrapará físicamente el puntero del ratón y se lo llevará fuera de la pantalla. Unos segundos después, dejará caer un cartel en el pie de página diciendo *"Estaba jugando con él..."* y tu cursor será devuelto a la normalidad.
 
-### �🐾 Ataque de Patita a los Botones {🖥️📱 AMBOS}
+### 🐾 Ataque de Patita a los Botones {🖥️📱 AMBOS}
 Michi odia el letargo y la inacción.
 - **Acción (Hover/Long Press):** Si mantienes el cursor quieto (o pulsas de forma prolongada en móvil) durante **0.5 segundos** sobre un botón importante (EJ: "Contactar a mi humano"), se lanzará el ataque inmediatamente.
-- **Acción (Click/Tap):** Si tocas o haces clic en el botón de forma normal, el enlace se interceptará mostrando una cómica cuenta atrás de "3... 2... 1...".
-- **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón. Si activaste el modo Click/Tap, **se abrirá el enlace deseado justo después del zarpazo**.
+- **Acción (Click/Tap):** Si tocas o haces clic en un botón de forma normal, la acción se interceptará mostrando una cómica cuenta atrás de "3... 2... 1...".
+- **Efecto:** De golpe, una pata negra lateral saldrá disparada para empujar la UI del botón con fuerza (`shake`), dándole un manotazo rápido y escondiéndose inmediatamente de nuevo. Irá acompañado del texto: *"¡Si no lo vas a pulsar tú, lo pulso yo!"* flotando sutilmente sobre el botón. Si activaste el modo Click/Tap, **se ejecutará la acción deseada justo después del zarpazo**.
+- **Sinergia:** Esta intercepción también afecta al botón "Alimentar Ahora". Su texto de intercepción es *"Intercepción Alimenticia"* y el globo flotante dicta *"¡La comida no espera!"* en lugar del estándar, abriendo luego el Falso Popup de Notificación.
 
 ### 🌐 Traductor Michi-Humano (Toggle) {🖥️📱 AMBOS}
 
