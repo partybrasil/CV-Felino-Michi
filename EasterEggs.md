@@ -50,6 +50,12 @@ El gato ha encontrado la hierba mágica.
 - **Teclado (PC):** Escribe literalmente la palabra **`catnip`** en cualquier momento.
 - **Efecto:** La web se ondula y los colores se invierten/saturan en modo `hue-rotate` loco durante 5 segundos, simulando un colocón cósmico de hierba gatera. Aparecerá un cartel verde avisando del *"Viaje Astral por Hierba Gatera"*.
 
+### 🎹 El Concierto Nocturno (Teclado Musical) [🖥️ SOLO PC]
+Para los humanos con inclinaciones artísticas que adoran el "Prrr".
+- **Teclado (PC):** Pulsa los números del **`1` al `8`** en tu teclado.
+- **Efecto:** Cada tecla emitirá un maullido diferente ajustado en pitch, simulando las notas de una escala musical (1=Do, 2=Re, ..., 8=Do Alto). 
+- **Bonus Secreto:** Si tocas la escala completa seguida y sin fallar `1-2-3-4-5-6-7-8`, a Michi le aparecerá un majestuoso sombrero de copa en la cabeza y dará las gracias por tan exquisito concierto a lo Beethoven.
+
 ---
 
 ## ⌨️ Teclas Inmediatas
@@ -245,10 +251,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **27. "Censura Gatuna" (Modo Privacidad Irónico)**
 - **La idea:** Triple clic en el apartado de "Experiencia o Dueño".
 - **El efecto:** Varias patas negras censuran con barras estilo "documento clasificado" las palabras humanas, dejando visible solo "Michi", "Comida", "Dormir".
-
-**28. "El Concierto Nocturno" (Teclado Musical)**
-- **La idea:** El usuario pulsa las teclas Numéricas (1, 2, 3...).
-- **El efecto:** Cada número reproduce un pequeño sample de "Miau" en diferente nota musical. Si tocas una escala, Michi se pone un sombrero de copa.
 
 **29. "Cazando Moscas Digitales" (Pop-ups)**
 - **La idea:** Aparece una minimosca (un `div` diminuto volador animado) paseando por la pantalla.
