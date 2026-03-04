@@ -149,13 +149,13 @@ Michi es un cazador orgulloso que comparte sus trofeos.
 - **La idea:** Interacción combinada con `localStorage` en cada vuelta.
 - **El efecto:** Al volver a entrar o actualizar la página, hay un emoji gigante de un ratón muerto 🐭 o pájaro 🐦 tirado abajo a la izquierda de la pantalla. Mensaje flotante: *"Te he traído un regalo por volver. No me des las gracias"*.
 
-### � Botón "Alimentar Ahora" (Push Notification Falsa) {🖥️📱 AMBOS}
+### 🔔 Botón "Alimentar Ahora" (Push Notification Falsa) {🖥️📱 AMBOS}
 Cuidado con los permisos que concedes en internet.
-- **La idea:** Hay un gran botón extra de "Alimentar Ahora" en la sección de Contacto.
+- **La idea:** Hay un gran botón extra de "Alimentar Ahora" debajo del perfil inicial (Hero Section).
 - **El efecto:** Al pincharlo, imita un Pop-Up nativo del navegador pidiendo permiso para mostrar notificaciones. El aviso dicta: *"Michi exige enviarte recordatorios a las 6:00 AM sobre su Cuenco Vacío"*.
 - **La trampa:** Si le das a "Bloquear" o deniegas el permiso, Michi te bufa sonoramente y se enfurece visualmente. Si aceptas, te da las gracias por tu sumisión.
 
-### �🖨️ El "Efecto Impresora" (Anti-Papel) {🖥️📱 AMBOS}
+### 🖨️ El "Efecto Impresora" (Anti-Papel) {🖥️📱 AMBOS}
 Para los humanos prehistóricos o de recursos humanos anticuados.
 - **Acción:** Intenta imprimir la página web (EJ: pulsa `Ctrl + P` en tu teclado o dale a Imprimir/Guardar como PDF).
 - **Efecto:** El documento físico / PDF quedará inservible. El 100% de la web se ocultará en el folio en blanco y en su lugar aparecerá forzosamente impreso un texto humillante en mayúsculas negritas con una gigantesca huella de gato polvorienta de fondo. *"¿Tinta? ¿Papel? En pleno 2026 yo prefiero mi caja de arena..."*
