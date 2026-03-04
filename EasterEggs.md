@@ -54,7 +54,8 @@ El gato ha encontrado la hierba mágica.
 Para los humanos con inclinaciones artísticas que adoran el "Prrr".
 - **Teclado (PC):** Pulsa los números del **`1` al `8`** en tu teclado.
 - **Efecto:** Cada tecla emitirá un maullido diferente ajustado en pitch, simulando las notas de una escala musical (1=Do, 2=Re, ..., 8=Do Alto). 
-- **Bonus Secreto:** Si tocas la escala completa seguida y sin fallar `1-2-3-4-5-6-7-8`, a Michi le aparecerá un majestuoso sombrero de copa en la cabeza y dará las gracias por tan exquisito concierto a lo Beethoven.
+- **Bonus Secreto ("Sad Cat"):** Si tocas la escala completa seguida y sin fallar `1-2-3-4-5-6-7-8`, a Michi le aparecerá un majestuoso sombrero de copa en la cabeza, se pondrá a balancearse tristemente y **empezará a sonar la mítica "Sad Cat Song" en un bucle infinito**.
+- **Para pararlo:** Solo tienes que volver a pulsar cualquier tecla del 1 al 8 para "interrumpirle" y volver a tocar una nota normal. El sombrero desaparecerá y el bucle de tristeza cósmica terminará.
 
 ---
 

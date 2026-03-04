@@ -460,6 +460,9 @@
         /* SOMBRERO DE COPA (Concierto Nocturno) */
         #top-hat { position: absolute; top: -50px; left: 50%; transform: translateX(-50%) rotate(-10deg); width: 100px; height: 100px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 80 Q 50 90 90 80 L90 85 Q 50 95 10 85 Z" fill="%23222"/><rect x="25" y="20" width="50" height="60" fill="%23333"/><rect x="25" y="65" width="50" height="10" fill="%23ff3b30"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 10; opacity: 0; pointer-events: none; transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; }
         #top-hat.show { top: -20px; opacity: 1; }
+        
+        @keyframes sadSinging { 0% { transform: scale(1) translateY(0) rotate(0deg); } 25% { transform: scale(1.02) translateY(-2px) rotate(2deg); filter: contrast(1.1); } 50% { transform: scale(1) translateY(0) rotate(0deg); } 75% { transform: scale(0.98) translateY(2px) rotate(-2deg); filter: contrast(0.9); } 100% { transform: scale(1) translateY(0) rotate(0deg); } }
+        .sad-singing { animation: sadSinging 1.83s infinite ease-in-out; }
 
         /* Ladrón de Cursores */
         body.cursor-stolen, body.cursor-stolen * { cursor: none !important; }
@@ -662,6 +665,7 @@
     <!-- Audio Elements -->
     <audio id="meow-sound" src="https://www.myinstants.com/media/sounds/cat-meow-1.mp3" preload="auto"></audio>
     <audio id="crazy-meow-sound" src="https://www.myinstants.com/media/sounds/nononono-cat-mp3cut.mp3" preload="auto"></audio>
+    <audio id="sad-cat-song" src="https://www.myinstants.com/media/sounds/sad-meow-song.mp3" preload="auto" loop></audio>
 
     <!-- HTML Elements -->
     <div id="purr-bar-container"><div id="purr-bar"></div></div>
@@ -724,8 +728,8 @@
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Z</span> / <span class="cheatsheet-key">Agitar móvil</span> <span class="cheatsheet-desc">Mostrar / Ocultar este Grimorio de secretos.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">L</span> <span class="cheatsheet-desc">Modo Gatito con Láser. Caza el punto rojo.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">G</span> <span class="cheatsheet-desc">Efecto Gravedad Cero. Arrastra las cajas.</span></li>
-                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">X</span> <span class="cheatsheet-desc">Escáner de Rayos X. Lupa para ver el esqueleto (HTML/CSS).</span></li>
-                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">1-8</span> <span class="cheatsheet-desc">Teclado musical: Concierto del Miau nocturno (¡Toca 1-8 en orden!).</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">X</span> <span class="cheatsheet-desc">Escáner de Rayos X. Lupa técnica (HTML/CSS).</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">1-8</span> <span class="cheatsheet-desc">Concierto Nocturno (Teclas). Escala seguida para Sad Cat Song.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">catnip</span> <span class="cheatsheet-desc">Activar el Modo Catnip (Viaje Psicodélico 5s).</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">Quieto 5s</span> <span class="cheatsheet-desc">Dejar el cursor quieto para que Michi te lo robe.</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">miau</span> / <span class="cheatsheet-key">Tap 2s Avatar</span> <span class="cheatsheet-desc">Activar Súper Maullido con terremoto de pantalla.</span></li>
@@ -1008,6 +1012,19 @@
                 // Easter Egg Musical: El Concierto Nocturno (Teclas 1-8)
                 const isNumber = /^[1-8]$/.test(e.key);
                 if (isNumber && !['INPUT','TEXTAREA'].includes(e.target.tagName)) {
+                    // Detener el concierto sad-cat si estaba sonando
+                    const sadCatSong = document.getElementById('sad-cat-song');
+                    if (sadCatSong && !sadCatSong.paused) {
+                        sadCatSong.pause();
+                        sadCatSong.currentTime = 0;
+                        
+                        const hat = document.getElementById('top-hat');
+                        if (hat) hat.classList.remove('show');
+                        
+                        // Quitar animación de Michi triste si la tuviera
+                        if(avatar) avatar.classList.remove('sad-singing');
+                    }
+
                     // Mapeo rudimentario de una escala mayor, alterando playbackRate para subir/bajar pitch
                     // 1=Do, 2=Re, 3=Mi... (1.0 es velocidad/pitch original)
                     const rates = {
@@ -1046,15 +1063,27 @@
                         const hat = document.getElementById('top-hat');
                         if (hat) {
                             hat.classList.add('show');
-                            const hatMsg = document.createElement('div');
-                            hatMsg.className = 'michi-msg show';
-                            hatMsg.innerText = '🎩 ¡Un concierto digno de Beethoven! Prrr...';
-                            if(avatarWrapper) avatarWrapper.appendChild(hatMsg);
-                            setTimeout(() => {
-                                hat.classList.remove('show');
-                                hatMsg.remove();
-                            }, 6000);
                         }
+                        
+                        if (sadCatSong) {
+                            // Volumen ajustado, no queremos dejar sordo al humano
+                            sadCatSong.volume = 0.6;
+                            sadCatSong.play().catch(e => console.log('Sad Cat Audio autoplay blocked', e));
+                            
+                            // Animación en bucle
+                            if(avatar) avatar.classList.add('sad-singing');
+                        }
+
+                        const hatMsg = document.createElement('div');
+                        hatMsg.className = 'michi-msg show';
+                        hatMsg.innerText = '🎩 ¡Miaooo... Miaooooooo!... (Toca 1-8 para parar)';
+                        if(avatarWrapper) avatarWrapper.appendChild(hatMsg);
+                        
+                        setTimeout(() => {
+                            hatMsg.remove();
+                            // El sombrero ya no se oculta al rato aquí, se queda hasta pulsar 1-8
+                        }, 6000);
+                        
                         typedKeys = '';
                     }
                 }
