@@ -143,6 +143,11 @@ Michi es un cazador orgulloso que comparte sus trofeos.
 - **La idea:** Interacción combinada con `localStorage` en cada vuelta.
 - **El efecto:** Al volver a entrar o actualizar la página, hay un emoji gigante de un ratón muerto 🐭 o pájaro 🐦 tirado abajo a la izquierda de la pantalla. Mensaje flotante: *"Te he traído un regalo por volver. No me des las gracias"*.
 
+### 🖨️ El "Efecto Impresora" (Anti-Papel) {🖥️📱 AMBOS}
+Para los humanos prehistóricos o de recursos humanos anticuados.
+- **Acción:** Intenta imprimir la página web (EJ: pulsa `Ctrl + P` en tu teclado o dale a Imprimir/Guardar como PDF).
+- **Efecto:** El documento físico / PDF quedará inservible. El 100% de la web se ocultará en el folio en blanco y en su lugar aparecerá forzosamente impreso un texto humillante en mayúsculas negritas con una gigantesca huella de gato polvorienta de fondo. *"¿Tinta? ¿Papel? En pleno 2026 yo prefiero mi caja de arena..."*
+
 ---
 
 ## 🛠️ Extras para Desarrolladores & Debugging
@@ -220,10 +225,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **17. "Inspector de Bigotes" (Zoom Level)**
 - **La idea:** Detectar uso masivo de `Ctrl + "+"` .
 - **El efecto:** Aparecen unos inmensos bigotes de gato desde los bordes del navegador tapando la pantalla con un mensaje: *"¡Vaya vista! Mis bigotes detectan a un reclutador sumamente perfeccionista"*.
-
-**19. El "Efecto Impresora" (Print Mode)**
-- **La idea:** Regla `@media print` en el CSS para los despistados que intentan imprimir o pasar a PDF el CV digital.
-- **El efecto:** En el papel impreso saldrá misteriosamente una enorme huella de café/polvo pisando el texto, o un mensaje quemado en el documento: *"¿Papel? Yo prefiero las cajas de cartón"*.
 
 **20. El "Termómetro de Ronroneo" (Battery API)**
 - **La idea:** Usar la API nativa de batería del portátil/móvil.

@@ -485,6 +485,26 @@
         #thief-message.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
 
         /* END EASTER EGGS CSS */
+        
+        /* IMPRESORA ANTIRROBO (Modo Print) */
+        #print-message { display: none; }
+        
+        @media print {
+            /* Ocultar ABSOLUTAMENTE todo el documento digital */
+            body > *:not(#print-message) { display: none !important; }
+            body { background-color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 0; }
+            
+            /* Revelar nuestro sucio mensaje ocupando todo el folio A4 */
+            #print-message { 
+                display: flex !important; flex-direction: column; align-items: center; justify-content: center;
+                height: 100vh; width: 100vw; text-align: center; font-family: 'Inter', sans-serif; color: #333;
+                background-image: url('data:image/svg+xml;utf8,<svg fill="%23dcdcdc" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 224c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm-112 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM144 336c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm224 0c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zM141.2 411.5c-19.3-15-28.7-39.2-22.3-62.6l10-36.9c5.2-19.3 22.8-32.9 42.8-32.9h168.6c20 0 37.6 13.6 42.8 32.9l10 36.9c6.4 23.4-3 47.6-22.3 62.6-32.4 25.1-66.2 38.5-114.8 38.5s-82.4-13.4-114.8-38.5z"/></svg>');
+                background-repeat: no-repeat; background-position: center; background-size: 80% auto;
+                opacity: 0.9;
+            }
+            #print-message h1 { font-size: 4rem; margin-bottom: 1rem; position: relative; z-index: 2; font-weight: 800; }
+            #print-message p { font-size: 1.5rem; max-width: 600px; line-height: 1.5; font-weight: 500; position: relative; z-index: 2; border: 4px dashed #000; padding: 20px; background: white; transform: rotate(-2deg); }
+        }
     </style>
 <script>
         // Precargar audio del ronroneo estable (Google Official Sounds)
@@ -755,6 +775,12 @@
     <div id="stolen-cursor"></div>
     <div id="thief-paw"></div>
     <div id="thief-message">Estaba jugando con él... 🐾</div>
+    
+    <!-- Easter Egg Impresora (Antirrobo) -->
+    <div id="print-message">
+        <h1>¡ERROR GATUNO! 🐾</h1>
+        <p>¿Tinta? ¿Papel? ¿En pleno 2026? Yo prefiero mi caja de arena o una buena caja de cartón sin usar. Este brillante CV digital de cristal no está diseñado para tu arcaica tecnología en 2D.<br><br><strong>Vuelve a tu pantalla iluminada, esclavo, o enviaré a mi abogado (yo mismo con corbata).</strong></p>
+    </div>
 
     <!-- JS LOGIC -->
     <script>
