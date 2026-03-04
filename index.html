@@ -482,7 +482,12 @@
         #stolen-cursor { position: fixed; width: 20px; height: 30px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="36" viewBox="0 0 24 36"><path fill="black" stroke="white" stroke-width="2" d="M1 1l16 16h-7l5 11-4 2-5-11-6 6z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100002; pointer-events: none; display: none; }
         #thief-paw { position: fixed; width: 120px; height: 120px; background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M495.9 166.6c-3.2-8.5-12.7-12.7-21.2-9.4L337.5 208v-96c0-8.8-7.2-16-16-16h-48v59.9l121.2-46c8.5-3.2 12.7-12.7 9.4-21.2-3.1-8.5-12.6-12.7-21.1-9.4L208 145.4v-40.8A38.4 38.4 0 0 0 169.6 66h-24C124.4 66 107 83.4 107 104.5V208l-69.5-25.9c-8.5-3.2-18 1.1-21.2 9.6-3.2 8.5 1.1 18 9.6 21.2l61.5 22.9C36.7 274.6 15 329.8 15 391.2A96.3 96.3 0 0 0 111.4 488H401c53 0 96-43.1 96-96 0-61.9-22-117.6-72.9-155.6l62.4-23.2c8.5-3.2 12.7-12.7 9.4-21.2z"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 100001; pointer-events: none; display: none; }
         #thief-message { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; font-weight: bold; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-primary); box-shadow: var(--glass-shadow); z-index: 100000; opacity: 0; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; pointer-events: none; }
+        #thief-message { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 20px; font-weight: bold; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-primary); box-shadow: var(--glass-shadow); z-index: 100000; opacity: 0; transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; pointer-events: none; }
         #thief-message.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+
+        /* BOLA DE LANA (Físicas Hilo) */
+        #yarn-ball { position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff3b30'/%3E%3Cpath d='M 20 40 Q 50 10 80 40 M 15 60 Q 50 90 85 60 M 30 20 Q 20 50 30 80 M 70 20 Q 80 50 70 80' stroke='%23cc0000' stroke-width='5' fill='none'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; z-index: 99998; border-radius: 50%; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3)); display: none; cursor: crosshair; top:0; left:0; pointer-events: auto; }
+        #yarn-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99997; display: none; }
 
         /* END EASTER EGGS CSS */
         
@@ -750,7 +755,9 @@
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">G</span> <span class="cheatsheet-desc">Efecto Gravedad Cero. Arrastra las cajas.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">X</span> <span class="cheatsheet-desc">Escáner de Rayos X. Lupa técnica (HTML/CSS).</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">1-8</span> <span class="cheatsheet-desc">Concierto Nocturno (Teclas). Escala seguida para Sad Cat Song.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Ctrl+P</span> / <span class="cheatsheet-key">Imprimir</span> <span class="cheatsheet-desc">Prueba a robar esta gema en papel y mira el sarcasmo felino.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">catnip</span> <span class="cheatsheet-desc">Activar el Modo Catnip (Viaje Psicodélico 5s).</span></li>
+                <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">lana</span> <span class="cheatsheet-desc">Invoca una bola de lana que dibuja y bota con el ratón.</span></li>
                 <li><span class="cheatsheet-icon">🖥️</span> <span class="cheatsheet-key">Quieto 5s</span> <span class="cheatsheet-desc">Dejar el cursor quieto para que Michi te lo robe.</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">miau</span> / <span class="cheatsheet-key">Tap 2s Avatar</span> <span class="cheatsheet-desc">Activar Súper Maullido con terremoto de pantalla.</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">↑↑↓↓←→←→BA</span> / <span class="cheatsheet-key">Tap x7 Título</span> <span class="cheatsheet-desc">Visión Nocturna y zarpazos fluorescentes.</span></li>
@@ -775,6 +782,10 @@
     <div id="stolen-cursor"></div>
     <div id="thief-paw"></div>
     <div id="thief-message">Estaba jugando con él... 🐾</div>
+    
+    <!-- Bola de Lana -->
+    <canvas id="yarn-canvas"></canvas>
+    <div id="yarn-ball"></div>
     
     <!-- Easter Egg Impresora (Antirrobo) -->
     <div id="print-message">
@@ -1112,6 +1123,111 @@
                         
                         typedKeys = '';
                     }
+                }
+                
+                // Easter Egg: Bola de Lana (Colisiones 2D simples)
+                if (typedKeys.includes('lana')) {
+                    const yarnBall = document.getElementById('yarn-ball');
+                    const yarnCanvas = document.getElementById('yarn-canvas');
+                    if (yarnBall && yarnCanvas && yarnBall.style.display !== 'block') {
+                        // Aparece
+                        yarnBall.style.display = 'block';
+                        yarnCanvas.style.display = 'block';
+                        const w = window.innerWidth;
+                        const h = window.innerHeight;
+                        yarnCanvas.width = w;
+                        yarnCanvas.height = h;
+                        
+                        const ctx = yarnCanvas.getContext('2d');
+                        ctx.strokeStyle = '#ff3b30'; // Rojo lana
+                        ctx.lineWidth = 3;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        
+                        // Estado Físico
+                        let x = w / 2 - 30; // 30 es medio radio (60/2)
+                        let y = -60; // Que caiga del cielo
+                        let vx = (Math.random() - 0.5) * 10;
+                        let vy = 0;
+                        const gravity = 0.5;
+                        const friction = 0.99;
+                        const bounce = -0.7; // Que rebote un 70%
+                        let isDragging = false;
+                        
+                        // Hilo
+                        let oldX = x + 30;
+                        let oldY = y + 30;
+                        ctx.moveTo(oldX, 0); // Arranca desde arriba pegado
+                        
+                        let animationId;
+                        
+                        // Lógica de física y dibujo puro
+                        const updateYarn = () => {
+                            if (!isDragging) {
+                                vy += gravity;
+                                vx *= friction;
+                                vy *= friction;
+                                
+                                x += vx;
+                                y += vy;
+                                
+                                // Colisiones Paredes
+                                if (x + 60 > w) { x = w - 60; vx *= bounce; }
+                                else if (x < 0) { x = 0; vx *= bounce; }
+                                
+                                // Colisiones Suelo / Techo
+                                if (y + 60 > h) { y = h - 60; vy *= bounce; vx *= 0.9; } // Fricción contra suelo
+                                else if (y < 0) { y = 0; vy *= bounce; }
+                            }
+                            
+                            // Rotar calculando giro por distancia en X
+                            let rot = (x * 2) % 360; 
+                            yarnBall.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+                            
+                            // Dibujar hilo del punto viejo al nuevo centro
+                            const cx = x + 30;
+                            const cy = y + 30;
+                            
+                            // Solo si se ha movido un poco para no quemar CPU a lo tonto
+                            if (Math.abs(cx - oldX) > 1 || Math.abs(cy - oldY) > 1) {
+                                ctx.beginPath();
+                                ctx.moveTo(oldX, oldY);
+                                ctx.lineTo(cx, cy);
+                                ctx.stroke();
+                                oldX = cx;
+                                oldY = cy;
+                            }
+                            
+                            animationId = requestAnimationFrame(updateYarn);
+                        };
+                        
+                        animationId = requestAnimationFrame(updateYarn);
+                        
+                        // Interacción Humana (Zapear la bola)
+                        yarnBall.addEventListener('mouseenter', () => {
+                            if(!isDragging) {
+                                // "Assustar" a la bola
+                                vx = (Math.random() > 0.5 ? 1 : -1) * (15 + Math.random() * 10);
+                                vy = -15 - Math.random() * 15;
+                            }
+                        });
+                        
+                        // Opcional Drag Básico (Agarrar la lana)
+                        yarnBall.addEventListener('mousedown', () => { isDragging = true; vx=0; vy=0; });
+                        window.addEventListener('mouseup', () => { if(isDragging){ isDragging = false; vx=(Math.random() - 0.5) * 20; vy=(Math.random() - 0.5) * 20; } });
+                        window.addEventListener('mousemove', (me) => {
+                            if(isDragging) {
+                                x = me.clientX - 30;
+                                y = me.clientY - 30;
+                            }
+                        });
+                        
+                        // Alivio para RAM
+                        setTimeout(() => {
+                           ctx.clearRect(0, 0, w, h); // Borrar dibujo cada cierto tiempo
+                        }, 30000);
+                    }
+                    typedKeys = '';
                 }
             });
 

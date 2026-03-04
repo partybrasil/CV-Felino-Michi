@@ -57,6 +57,11 @@ Para los humanos con inclinaciones artísticas que adoran el "Prrr".
 - **Bonus Secreto ("Sad Cat"):** Si tocas la escala completa seguida y sin fallar `1-2-3-4-5-6-7-8`, a Michi le aparecerá un majestuoso sombrero de copa en la cabeza, se pondrá a balancearse tristemente y **empezará a sonar la mítica "Sad Cat Song" en un bucle infinito**.
 - **Para pararlo:** Solo tienes que volver a pulsar cualquier tecla del 1 al 8 para "interrumpirle" y volver a tocar una nota normal. El sombrero desaparecerá y el bucle de tristeza cósmica terminará.
 
+### 🧶 El Ataque de la Bola de Lana [🖥️ SOLO PC]
+Para cuando tienes ganas de romper cosas virtuales en lugar de trabajar.
+- **Teclado (PC):** Escribe literalmente la palabra **`lana`** en tu teclado en cualquier momento.
+- **Efecto:** Una jugosa bola de lana roja caerá del cielo y empezará a botar con físicas 2D por toda la pantalla. Si pasas el ratón por encima, la "asustarás" y saldrá disparada. También puedes arrastrarla con el clic. ¡Ah! Y por donde pase, irá dejando un enorme rastro de hilo rojo enredando todo tu CV.
+
 ---
 
 ## ⌨️ Teclas Inmediatas
@@ -230,9 +235,9 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 - **La idea:** Usar la API nativa de batería del portátil/móvil.
 - **El efecto:** Si tienes un 100% o carga, el Michi tiene rayos alrededor (`box-shadow` dinámica). Si queda menos del 20%, sale cansado y un letrero avisa: *"Me queda poca energía... Necesito mi siesta (y tú un cargador de pared)"*.
 
-**22. "Ataque a la Bola de Lana" (Colisión 2D)**
-- **La idea:** Escribiendo la palabra "lana" en cualquier parte.
-- **El efecto:** Cae una bola de lana virtual. Cada vez que el ratón o el dedo la toca, la bola rebota por toda la pantalla desenredando un hilo que dibuja físicamente en el DOM.
+**21. "Fallo de Matrix" (Click repetido)**
+- **La idea:** Clicar 10 veces rápidas en el título "Inquilino Senior".
+- **El efecto:** Filtro Glitch salvaje en toda la web.
 
 **23. "Modo Camuflaje en Caja" (Drag & Drop Avanzado)**
 - **La idea:** Al arrastrar la foto de Michi hacia el componente Footer.
