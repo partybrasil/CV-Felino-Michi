@@ -149,7 +149,13 @@ Michi es un cazador orgulloso que comparte sus trofeos.
 - **La idea:** Interacción combinada con `localStorage` en cada vuelta.
 - **El efecto:** Al volver a entrar o actualizar la página, hay un emoji gigante de un ratón muerto 🐭 o pájaro 🐦 tirado abajo a la izquierda de la pantalla. Mensaje flotante: *"Te he traído un regalo por volver. No me des las gracias"*.
 
-### 🖨️ El "Efecto Impresora" (Anti-Papel) {🖥️📱 AMBOS}
+### � Botón "Alimentar Ahora" (Push Notification Falsa) {🖥️📱 AMBOS}
+Cuidado con los permisos que concedes en internet.
+- **La idea:** Hay un gran botón extra de "Alimentar Ahora" en la sección de Contacto.
+- **El efecto:** Al pincharlo, imita un Pop-Up nativo del navegador pidiendo permiso para mostrar notificaciones. El aviso dicta: *"Michi exige enviarte recordatorios a las 6:00 AM sobre su Cuenco Vacío"*.
+- **La trampa:** Si le das a "Bloquear" o deniegas el permiso, Michi te bufa sonoramente y se enfurece visualmente. Si aceptas, te da las gracias por tu sumisión.
+
+### �🖨️ El "Efecto Impresora" (Anti-Papel) {🖥️📱 AMBOS}
 Para los humanos prehistóricos o de recursos humanos anticuados.
 - **Acción:** Intenta imprimir la página web (EJ: pulsa `Ctrl + P` en tu teclado o dale a Imprimir/Guardar como PDF).
 - **Efecto:** El documento físico / PDF quedará inservible. El 100% de la web se ocultará en el folio en blanco y en su lugar aparecerá forzosamente impreso un texto humillante en mayúsculas negritas con una gigantesca huella de gato polvorienta de fondo. *"¿Tinta? ¿Papel? En pleno 2026 yo prefiero mi caja de arena..."*
@@ -327,10 +333,6 @@ Solo para humanos obsesionados con Lighthouse y Web Vitals.
 **48. "Reflejo del Espejo" (Transform Invertido)**
 - **La idea:** Escribiendo la palabra "espejo" del revés o al derecho.
 - **El efecto:** Toda la web experimenta un `transform: scaleX(-1)`. Michi de repente parece ofendido viendo su reflejo opuesto y se eriza levantando el pelo con filtros de contraste agresivos.
-
-**49. "Botón Alimentar Ahora" (Push Notifications Falsas)**
-- **La idea:** Un Pop-Up falso imitando la petición de notificaciones de un navegador.
-- **El efecto:** En vez de notificaciones estándar, el aviso dicta: *"Michi exige enviarte recordatorios a las 6:00 AM sobre su Cuenco Vacío"*. Si lo deniegas, te bufa sonoramente.
 
 **50. "Doble Toque de Nariz (Boop)" (Tap Avanzado)**
 - **La idea:** Tocar la nariz exacta en la foto (Hitbox pequeñita de CSS clip-path).

@@ -489,6 +489,21 @@
         #yarn-ball { position: fixed; width: 60px; height: 60px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff3b30'/%3E%3Cpath d='M 20 40 Q 50 10 80 40 M 15 60 Q 50 90 85 60 M 30 20 Q 20 50 30 80 M 70 20 Q 80 50 70 80' stroke='%23cc0000' stroke-width='5' fill='none'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; z-index: 99998; border-radius: 50%; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3)); display: none; cursor: crosshair; top:0; left:0; pointer-events: auto; }
         #yarn-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99997; display: none; }
 
+        /* FAKE PUSH NOTIFICATION */
+        #fake-push-notification { position: fixed; top: 20px; right: 20px; width: 350px; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: translateX(400px); z-index: 100000; padding: 15px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        #fake-push-notification.show { opacity: 1; pointer-events: auto; transform: translateX(0); }
+        .fake-push-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .fake-push-title { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; }
+        .fake-push-body { display: flex; gap: 12px; margin-bottom: 15px; }
+        .fake-push-icon { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .fake-push-text { font-size: 0.95rem; color: var(--text-primary); line-height: 1.4; flex: 1; }
+        .fake-push-actions { display: flex; justify-content: flex-end; gap: 10px; }
+        .fake-push-btn { padding: 8px 16px; border-radius: 6px; border: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .fake-push-deny { background: rgba(0,0,0,0.05); color: var(--text-primary); }
+        .fake-push-deny:hover { background: rgba(0,0,0,0.1); }
+        .fake-push-allow { background: var(--accent-blue); color: white; }
+        .fake-push-allow:hover { background: var(--accent-blue-hover); }
+
         /* END EASTER EGGS CSS */
         
         /* IMPRESORA ANTIRROBO (Modo Print) */
@@ -648,6 +663,11 @@
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 Ver perfil de LinkedIn de mi humano
             </a>
+
+            <button id="feed-now-btn" class="btn-primary feed-btn" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #333; margin-top: 1.5rem; border: none; cursor: pointer; display: inline-flex; justify-content: center; box-shadow: 0 5px 15px rgba(255,154,158,0.4);">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 7h2v6h-2zm0 8h2v2h-2z"/></svg>
+                🔔 Alimentar Ahora
+            </button>
             
             <!-- Easter Egg 404 Trigger -->
             <a href="#404-secret" style="color: var(--text-secondary); text-decoration: underline; font-size: 0.85rem; margin-top: 1.5rem; cursor: pointer;">No hacer clic aquí (Archivo súper secreto)</a>
@@ -773,6 +793,7 @@
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Traductor iOS</span> <span class="cheatsheet-desc">Miau Mode. Todo el texto al gatuno puro.</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click 📦❓ Logo</span> <span class="cheatsheet-desc">Animaciones en la Caja de Schrödinger (Footer).</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Link Secreto</span> <span class="cheatsheet-desc">Cerca de LinkedIn. Culpa de la Gravedad.</span></li>
+                <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Alimentar Ahora</span> <span class="cheatsheet-desc">Invoca un falso permiso de notificaciones (Peligro de bufido).</span></li>
                 <li><span class="cheatsheet-icon">🖥️📱</span> <span class="cheatsheet-key">Click Purr-formance</span> <span class="cheatsheet-desc">Métricas estilo Lighthouse versión felina.</span></li>
             </ul>
         </div>
@@ -787,6 +808,28 @@
     <canvas id="yarn-canvas"></canvas>
     <div id="yarn-ball"></div>
     
+    <!-- Easter Egg Fake Push Notification -->
+    <div id="fake-push-notification">
+        <div class="fake-push-header">
+            <div class="fake-push-title">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/></svg>
+                Google Chrome
+            </div>
+            <button id="close-fake-push" class="close-x-btn" style="position: static; font-size: 1.2rem; margin: -5px -5px 0 0;">✖</button>
+        </div>
+        <div class="fake-push-body">
+            <img src="https://img.icons8.com/ios-glyphs/60/cat-head.png" class="fake-push-icon" alt="Michi">
+            <div class="fake-push-text">
+                Michi.com quiere enviarte notificaciones:<br><br>
+                <strong>"Michi exige enviarte recordatorios a las 6:00 AM sobre su Cuenco Vacío."</strong>
+            </div>
+        </div>
+        <div class="fake-push-actions">
+            <button id="fake-push-deny" class="fake-push-btn fake-push-deny">Bloquear</button>
+            <button id="fake-push-allow" class="fake-push-btn fake-push-allow">Permitir</button>
+        </div>
+    </div>
+
     <!-- Easter Egg Impresora (Antirrobo) -->
     <div id="print-message">
         <h1>¡ERROR GATUNO! 🐾</h1>
@@ -1482,7 +1525,7 @@
 
             // Ataque de la Patita
             let pawAttackTimer;
-            document.querySelectorAll('.btn-primary, .btn-linkedin').forEach(btn => {
+            document.querySelectorAll('a.btn-primary, a.btn-linkedin').forEach(btn => {
                 const launchPawAttack = (callback) => {
                     const rect = btn.getBoundingClientRect();
                     const attackPaw = document.createElement('div');
@@ -2037,6 +2080,64 @@
             document.addEventListener('keydown', resetThiefTimer, {passive: true});
             document.addEventListener('scroll', resetThiefTimer, {passive: true});
             resetThiefTimer();
+
+            // Easter Egg: Botón Alimentar Ahora (Push Falsa)
+            const feedNowBtn = document.getElementById('feed-now-btn');
+            const fakePush = document.getElementById('fake-push-notification');
+            const fakePushDeny = document.getElementById('fake-push-deny');
+            const fakePushAllow = document.getElementById('fake-push-allow');
+            const closeFakePush = document.getElementById('close-fake-push');
+            
+            if (feedNowBtn && fakePush) {
+                feedNowBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    fakePush.classList.add('show');
+                });
+                
+                const bufido = new Audio('https://www.myinstants.com/media/sounds/cat-hiss.mp3');
+                
+                const denegarPush = () => {
+                    bufido.play().catch(e => console.log('Hiss audio blocked'));
+                    fakePush.classList.remove('show');
+                    
+                    const warningMsg = document.createElement('div');
+                    warningMsg.innerText = '¡HSSSSS! ¿Te atreves a denegar mis latas? Vigila tus zapatos esta noche... 😾💦';
+                    warningMsg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);font-size:1.1rem;font-weight:bold;color:#d32f2f;background:rgba(255,255,255,0.95);padding:15px 25px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 3px solid #d32f2f; max-width: 90%; line-height: 1.4;';
+                    document.body.appendChild(warningMsg);
+                    setTimeout(() => warningMsg.remove(), 5000);
+
+                    if(avatar) {
+                        avatar.style.transition = 'transform 0.1s, filter 0.1s';
+                        avatar.style.transform = 'scale(1.15) rotate(5deg)';
+                        avatar.style.filter = 'contrast(1.5) hue-rotate(300deg)';
+                        setTimeout(() => {
+                            if(!avatar.classList.contains('avatar-turn')) {
+                                avatar.style.transform = '';
+                            }
+                            avatar.style.filter = '';
+                        }, 1000);
+                    }
+                };
+                
+                fakePushDeny.addEventListener('click', denegarPush);
+                closeFakePush.addEventListener('click', () => fakePush.classList.remove('show'));
+                
+                fakePushAllow.addEventListener('click', () => {
+                    fakePush.classList.remove('show');
+                    
+                    const happyMeow = document.getElementById('meow-sound');
+                    if (happyMeow) {
+                        happyMeow.currentTime = 0;
+                        happyMeow.play().catch(e => console.log('Meow audio blocked'));
+                    }
+                    
+                    const msg = document.createElement('div');
+                    msg.innerText = 'Prrr... Sabia decisión, humano inferior. Ve preparando el cuenco de atún o te cantaré la canción de mi pueblo a las 5:00 AM. 🐟😼';
+                    msg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);font-size:1.1rem;font-weight:bold;color:#4caf50;background:rgba(255,255,255,0.95);padding:15px 25px;border-radius:20px;z-index:99999;pointer-events:none;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.15); border: 3px solid #4caf50; max-width: 90%; line-height: 1.4;';
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 5000);
+                });
+            }
 
         });
     </script>
