@@ -458,8 +458,8 @@
         body.catnip-trippy main.container { animation: catnipHue 1s infinite linear, catnipWave 1.5s infinite ease-in-out; }
         
         /* SOMBRERO DE COPA (Concierto Nocturno) */
-        #top-hat { position: absolute; top: -50px; left: 50%; transform: translateX(-50%) rotate(-10deg); width: 100px; height: 100px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 80 Q 50 90 90 80 L90 85 Q 50 95 10 85 Z" fill="%23222"/><rect x="25" y="20" width="50" height="60" fill="%23333"/><rect x="25" y="65" width="50" height="10" fill="%23ff3b30"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 10; opacity: 0; pointer-events: none; transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; }
-        #top-hat.show { top: -20px; opacity: 1; }
+        #top-hat { position: absolute; top: -70px; left: 50%; transform: translateX(calc(-50% - 10px)) rotate(-10deg); width: 100px; height: 100px; background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 80 Q 50 90 90 80 L90 85 Q 50 95 10 85 Z" fill="%23222"/><rect x="25" y="20" width="50" height="60" fill="%23333"/><rect x="25" y="65" width="50" height="10" fill="%23ff3b30"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 10; opacity: 0; pointer-events: none; transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s; }
+        #top-hat.show { top: -40px; opacity: 1; }
         
         @keyframes sadSinging { 0% { transform: scale(1) translateY(0) rotate(0deg); } 25% { transform: scale(1.02) translateY(-2px) rotate(2deg); filter: contrast(1.1); } 50% { transform: scale(1) translateY(0) rotate(0deg); } 75% { transform: scale(0.98) translateY(2px) rotate(-2deg); filter: contrast(0.9); } 100% { transform: scale(1) translateY(0) rotate(0deg); } }
         .sad-singing { animation: sadSinging 1.83s infinite ease-in-out; }
